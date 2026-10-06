@@ -126,6 +126,30 @@ a{color:inherit;text-decoration:none}
   .op .deco{font-size:76px}
 }
 
+/* Celular: ingresso compacto e horizontal, com canhoto à direita (linha pontilhada vertical + seta) */
+@media (max-width:520px){
+  .cards{gap:14px}
+  .ticket{--n:11px;border-radius:12px}
+  .body{gap:6px;padding:16px 86px 16px 20px}
+  .foot{display:block}
+  .seam{position:absolute;top:0;bottom:0;right:70px;margin:0;border-top:0;border-left:1.5px dashed}
+  .btn{position:absolute;right:13px;top:50%;margin-top:-22px;width:44px;height:44px;padding:0;justify-content:center;border-radius:50%;font-size:0;gap:0}
+  .btn svg{width:18px;height:18px}
+  .yt .foot,.wa .foot,.op .foot{height:0}
+  .tag{font-size:9.5px;padding:4px 8px}
+  .title{font-size:25px}
+  .desc{font-size:12.5px;line-height:1.42}
+  .bn .urgent{flex-basis:auto;justify-content:flex-start;font-size:10.5px;margin-top:2px}
+  .op .facts b{font-size:10.5px;padding:4px 8px}
+  .op .desc{display:none}
+  .deco{opacity:.55}
+  .bn .deco{font-size:60px;right:84px;top:10px}
+  .op .deco{font-size:56px;right:84px;top:8px}
+  .yt .deco,.wa .deco{width:44px;height:44px;right:86px;top:14px}
+  .yt .deco svg{width:20px;height:20px;margin-left:3px}
+  .wa .deco svg{width:24px;height:24px}
+}
+
 .site{max-width:600px;margin:0 auto;padding:20px 16px 40px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;color:var(--text-soft);font-size:12.5px}
 .demo{border:1px dashed var(--line);border-radius:6px;padding:5px 10px;background:var(--white)}
 </style>
@@ -218,6 +242,7 @@ a{color:inherit;text-decoration:none}
 function alignCuts(){
   document.querySelectorAll('.ticket').forEach(card=>{
     const seam=card.querySelector('.seam'); if(!seam) return;
+    if(getComputedStyle(seam).borderTopStyle==='none'){card.style.setProperty('--cy','50%');return;}
     const y=seam.getBoundingClientRect().top-card.getBoundingClientRect().top+seam.offsetHeight/2;
     card.style.setProperty('--cy',Math.round(y)+'px');
   });
