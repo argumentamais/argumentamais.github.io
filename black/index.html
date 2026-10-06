@@ -76,8 +76,12 @@ button[disabled]{opacity:.6;cursor:progress}
 button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .formerr{margin:0;font:600 13px var(--f);color:var(--red)}
 .steps{display:flex;gap:6px;margin-bottom:16px}
-.steps span{flex:1;height:4px;border-radius:2px;background:var(--ink-3)}
-.steps span.on{background:var(--gold)}
+.steps span{flex:1;height:4px;border-radius:2px;background:var(--ink-3);position:relative;overflow:hidden}
+.steps span::after{content:"";position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.steps span.on::after{transform:scaleX(1)}
+.reveal{animation:reveal .35s cubic-bezier(.2,.7,.2,1)}
+@keyframes reveal{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.steps span::after{transition:none}.reveal{animation:none}}
 .step{display:flex;flex-direction:column;gap:16px}
 .step h2{margin:-10px 0 -12px}
 .stepno{margin:0;font:800 11px var(--f);letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
@@ -100,8 +104,6 @@ button.ghost:hover{background:transparent;color:var(--text)}
 .done .check svg{width:30px;height:30px;fill:none;stroke:var(--gold-2);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 .done h2{margin:0;font:900 italic 26px/1.1 var(--f);text-transform:uppercase}
 .done p{margin:0;color:var(--soft);max-width:34ch}
-.wa{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 22px;border-radius:8px;background:var(--green);color:#fff;font:800 14px var(--f);letter-spacing:.04em;text-transform:uppercase;text-decoration:none}
-.wa svg{width:20px;height:20px;fill:#fff}
 .note{font:500 12px var(--f);color:#6C7182}
 
 .foot{text-align:center;color:#6C7182;font-size:12px;display:flex;flex-direction:column;gap:6px}
@@ -196,7 +198,7 @@ button.ghost:hover{background:transparent;color:var(--text)}
         <div id="step2" class="step" hidden>
           <p class="stepno">Etapa 2 de 2</p>
           <h2>Seus dados</h2>
-          <p class="hint">Se você for menor de idade, também precisamos falar com seu responsável financeiro.</p>
+          <p class="hint">Se outra pessoa cuida do pagamento, também precisamos falar com ela.</p>
           <div class="field">
             <label for="nome">Seu nome completo</label>
             <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Como você se chama?">
@@ -207,6 +209,8 @@ button.ghost:hover{background:transparent;color:var(--text)}
             <input type="tel" id="whatsapp" name="whatsapp" class="phone" autocomplete="tel-national" inputmode="numeric" placeholder="(41) 99999-9999">
             <span class="err" id="whatsapp-err"></span>
           </div>
+          <label class="consent" for="proprio"><input type="checkbox" id="proprio" name="proprio">Eu sou meu(minha) próprio(a) responsável financeiro(a)</label>
+          <div id="respBox" class="step">
           <div class="field">
             <label for="resp_nome">Nome do seu(sua) responsável</label>
             <input type="text" id="resp_nome" name="resp_nome" autocomplete="off" placeholder="Ex.: Maria da Silva">
@@ -222,6 +226,7 @@ button.ghost:hover{background:transparent;color:var(--text)}
             <label class="consent" for="avisou"><input type="checkbox" id="avisou" name="avisou" value="Sim, eu avisei">Sim, eu avisei</label>
             <span class="err" id="avisou-err"></span>
           </fieldset>
+          </div>
           <div class="field">
             <label for="email">Seu e-mail</label>
             <input type="email" id="email" name="email" autocomplete="email" placeholder="seuemail@gmail.com">
@@ -231,15 +236,14 @@ button.ghost:hover{background:transparent;color:var(--text)}
           <p class="formerr" id="formerr" hidden></p>
           <button type="submit" id="send">Quero entrar na lista <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
           <button type="button" id="back" class="ghost">← Voltar</button>
-          <p class="legal">Ao enviar, você e seu responsável aceitam receber as novidades da Black 2027 da Argumenta MAIS no WhatsApp e por e-mail.</p>
+          <p class="legal">Ao enviar, você (e seu responsável, se for o caso) aceita receber as novidades da Black 2027 da Argumenta MAIS no WhatsApp e por e-mail.</p>
         </div>
       </form>
     </div>
     <div id="doneView" class="done" hidden>
       <span class="check"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-      <h2>Você está na lista!</h2>
-      <p id="doneMsg">Assim que a Black 2027 abrir, você recebe as condições em primeira mão.</p>
-      <a class="wa" href="https://wa.me/5541988848184?text=Oi%2C%20Pedro!%20Acabei%20de%20entrar%20na%20lista%20da%20Black%202027" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Falar com o Pedro</a>
+      <h2>Parabéns!</h2>
+      <p id="doneMsg">Seu cadastro na Black 2027 está confirmado. Nossa equipe vai entrar em contato pelo WhatsApp em até 24 horas.</p>
       <span class="note" id="testNote" hidden>Modo de teste: este envio não foi para a planilha.</span>
     </div>
   </section>
@@ -283,20 +287,47 @@ function validate1(){
 function validate2(){
   let ok = field('nome', $('nome').value.trim().split(/\s+/).length >= 2 ? '' : 'Escreva nome e sobrenome.');
   ok = field('whatsapp', digits('whatsapp').length >= 10 ? '' : 'Digite o WhatsApp com DDD.') && ok;
+  if (!$('proprio').checked) {
   ok = field('resp_nome', $('resp_nome').value.trim().length >= 3 ? '' : 'Escreva o nome do responsável.') && ok;
   ok = field('resp_whatsapp', digits('resp_whatsapp').length >= 10 ? '' : 'Digite o WhatsApp do responsável com DDD.') && ok;
   ok = msg('avisou', $('avisou').checked ? '' : 'Avise seu responsável e marque esta opção.') && ok;
+  }
   ok = field('email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('email').value.trim()) ? '' : 'Confira o e-mail.') && ok;
   return ok;
 }
-function go(n){
-  $('step1').hidden = n !== 1; $('step2').hidden = n !== 2;
-  $('dot1').classList.toggle('on', true); $('dot2').classList.toggle('on', n === 2);
-  document.querySelector('.card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Troca suave: o bloco atual sai deslizando, o cartão ajusta a altura e o próximo entra pelo lado.
+async function swap(from, to, dir){
+  if (calm || !from.animate) { from.hidden = true; to.hidden = false; return; }
+  const box = document.querySelector('.card'), h0 = box.offsetHeight;
+  await from.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: `translateX(${-28 * dir}px)` }],
+    { duration: 200, easing: 'cubic-bezier(.4,0,1,1)' }).finished;
+  from.hidden = true; to.hidden = false;
+  const h1 = box.offsetHeight;
+  box.style.overflow = 'hidden';
+  box.animate([{ height: h0 + 'px' }, { height: h1 + 'px' }], { duration: 340, easing: 'cubic-bezier(.2,.7,.2,1)' })
+    .finished.then(() => { box.style.overflow = ''; });
+  await to.animate([{ opacity: 0, transform: `translateX(${28 * dir}px)` }, { opacity: 1, transform: 'none' }],
+    { duration: 380, easing: 'cubic-bezier(.2,.7,.2,1)' }).finished;
+}
+let cur = 1, busy = false;
+async function go(n){
+  if (busy || n === cur) return; busy = true;
+  $('dot2').classList.toggle('on', n === 2);
+  const card = document.querySelector('.card');
+  if (card.getBoundingClientRect().top < 0) card.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'start' });
+  await swap($('step' + cur), $('step' + n), n > cur ? 1 : -1);
+  cur = n; busy = false;
   (n === 1 ? $('obj-enem') : $('nome')).focus({ preventScroll: true });
 }
 $('next').addEventListener('click', () => { if (validate1()) go(2); });
 $('back').addEventListener('click', () => go(1));
+$('proprio').addEventListener('change', e => {
+  const box = $('respBox');
+  box.hidden = e.target.checked;
+  if (!box.hidden) { box.classList.remove('reveal'); void box.offsetWidth; box.classList.add('reveal'); }
+  ['resp_nome', 'resp_whatsapp'].forEach(id => field(id, '')); msg('avisou', '');
+});
 form.addEventListener('change', e => { if (e.target.name === 'conheceu') $('indicouBox').hidden = e.target.value !== 'Indicação'; });
 form.addEventListener('change', e => { if (e.target.name && $(e.target.name + '-err')) msg(e.target.name, ''); });
 
@@ -304,12 +335,13 @@ form.addEventListener('submit', async e => {
   e.preventDefault();
   formerr.hidden = true;
   if (!validate2()) return;
+  const proprio = $('proprio').checked;
   const data = new URLSearchParams({
     nome: $('nome').value.trim(),
     whatsapp: $('whatsapp').value.trim(),
-    resp_nome: $('resp_nome').value.trim(),
-    resp_whatsapp: $('resp_whatsapp').value.trim(),
-    avisou: $('avisou').checked ? 'Sim, eu avisei' : '',
+    resp_nome: proprio ? 'O próprio aluno' : $('resp_nome').value.trim(),
+    resp_whatsapp: proprio ? '' : $('resp_whatsapp').value.trim(),
+    avisou: proprio ? 'Não se aplica' : ($('avisou').checked ? 'Sim, eu avisei' : ''),
     email: $('email').value.trim(),
     objetivo: checked('objetivo').join(', '),
     horarios: checked('horarios').join(', '),
@@ -330,8 +362,8 @@ form.addEventListener('submit', async e => {
       $('testNote').hidden = false;
     }
     const first = $('nome').value.trim().split(/\s+/)[0];
-    $('doneMsg').textContent = first + ', assim que a Black 2027 abrir, você recebe as condições em primeira mão.';
-    $('formView').hidden = true; $('doneView').hidden = false;
+    $('doneMsg').textContent = first + ', seu cadastro na Black 2027 está confirmado. Nossa equipe vai entrar em contato pelo WhatsApp em até 24 horas.';
+    await swap($('formView'), $('doneView'), 1);
   } catch (err) {
     formerr.textContent = 'Não conseguimos enviar agora. Verifique sua internet e tente de novo.';
     formerr.hidden = false;
