@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<meta name="description" content="Argumenta MAIS: redação para ENEM e UFPR com o profe Pedro.">
+<link rel="icon" href="img/logo-branco.png">
+<title>Bio Argumenta Mais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,800;1,900&display=swap">
+<style>
+/* Layout: capa azul da marca com logo, foto em círculo, promessa e ícones; abaixo, cards-ingresso por produto sobre fundo pontilhado. Montserrat, azul, tinta, vermelho, dourado, verde. Visual claro único, cores explícitas. */
+:root{
+  --ink:#12141C; --paper:#F5F2EA; --white:#FFFFFF;
+  --blue:#1D5FC2; --blue-dark:#154890; --blue-light:#4E8FE0;
+  --red:#D7263D; --gold:#C9A227; --green:#1FA855; --green-dark:#128041; --yellow:#FFF71A;
+  --text:#1A1A1A; --text-soft:#5B5648; --line:rgba(20,20,20,.12);
+  --f:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+body{background:var(--paper);color:var(--text);font:400 15px/1.55 var(--f);-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(rgba(20,20,20,.10) 1.2px,transparent 1.2px);background-size:18px 18px}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--blue-light);outline-offset:3px;border-radius:6px}
+
+/* ---------- Capa ---------- */
+.cover{position:relative;overflow:hidden;background:linear-gradient(165deg,var(--blue) 0%,var(--blue-dark) 100%);color:var(--white);padding:16px 16px 26px;text-align:center}
+.photos{--fade:90px;position:absolute;inset:0;display:flex;pointer-events:none}
+.photos img{flex:1 1 0;min-width:0;height:100%;margin-inline:calc(var(--fade) / -2);object-fit:cover;object-position:50% 25%;display:block;opacity:.30;mix-blend-mode:luminosity;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 var(--fade),#000 calc(100% - var(--fade)),transparent 100%),linear-gradient(180deg,#000 70%,transparent 100%);-webkit-mask-composite:source-in;
+  mask-image:linear-gradient(90deg,transparent 0,#000 var(--fade),#000 calc(100% - var(--fade)),transparent 100%),linear-gradient(180deg,#000 70%,transparent 100%);mask-composite:intersect}
+.photos::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 75% at 50% 48%,rgba(21,72,144,.88) 0%,rgba(21,72,144,.55) 55%,rgba(21,72,144,.15) 100%)}
+@media (max-width:520px){.photos{--fade:70px}.photos img:nth-child(n+3){display:none}}
+.orbits{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.orbits .o{fill:none;stroke:rgba(255,255,255,.16);stroke-width:1}
+.orbits .o.faint{stroke:rgba(255,255,255,.09)}
+.orbits .dot{fill:rgba(255,255,255,.10)}
+.orbits .dot.y{fill:rgba(255,247,26,.16)}
+.cover .mark{position:absolute;width:420px;height:420px;right:-170px;top:-120px;border-radius:50%;background:rgba(255,255,255,.07)}
+.cover .mark.b{width:300px;height:300px;left:-150px;right:auto;top:auto;bottom:-170px;background:rgba(255,255,255,.05)}
+.inner{position:relative;max-width:560px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:11px}
+.logo{width:190px;max-width:70%;height:auto}
+.portrait{margin-top:4px;width:118px;height:118px;border-radius:50%;padding:5px;background:var(--white);box-shadow:0 18px 40px -16px rgba(0,0,0,.55)}
+.portrait img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 30%;display:block}
+.name{margin:0;font:italic 400 22px/1.1 var(--f);letter-spacing:.2px}
+.promise{margin:0;font:800 clamp(13px,3.95vw,23px)/1.4 var(--f);text-transform:uppercase}
+.promise .ln{display:block;white-space:nowrap}
+@media (max-width:340px){.promise .ln{white-space:normal}}
+.promise u{text-decoration:none;background:var(--yellow);color:#000;padding:0 .22em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.proof{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.proof span{display:inline-flex;align-items:center;gap:6px;font:700 12px var(--f);padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28)}
+.proof svg{width:14px;height:14px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.icons{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:2px}
+.icons a{width:46px;height:46px;border-radius:50%;background:var(--white);display:grid;place-items:center;transition:transform .2s,box-shadow .2s;box-shadow:0 8px 18px -10px rgba(0,0,0,.5)}
+.icons a:hover{transform:scale(1.08);box-shadow:0 12px 22px -10px rgba(0,0,0,.6)}
+.icons svg{width:22px;height:22px;fill:none;stroke:var(--blue);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.icons svg .f{fill:var(--blue);stroke:none}
+.icons svg.wa-logo{fill:var(--blue);stroke:none;width:23px;height:23px}
+
+/* ---------- Cards ---------- */
+.cards{max-width:600px;margin:0 auto;padding:32px 16px 16px;display:flex;flex-direction:column;gap:22px}
+.label{margin:0 0 -4px;text-align:center;font:700 12px var(--f);letter-spacing:.14em;text-transform:uppercase;color:var(--text-soft)}
+.ticket{--n:14px;position:relative;display:block;border-radius:14px;overflow:hidden;
+  -webkit-mask:radial-gradient(circle var(--n) at 0 var(--cy,62%),#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle var(--n) at 100% var(--cy,62%),#0000 98%,#000) right/51% 100% no-repeat;
+          mask:radial-gradient(circle var(--n) at 0 var(--cy,62%),#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle var(--n) at 100% var(--cy,62%),#0000 98%,#000) right/51% 100% no-repeat;
+  box-shadow:0 14px 30px -18px rgba(20,20,20,.35);transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.ticket:hover{transform:scale(1.025)}
+.ticket:active{transform:scale(1.01)}
+.body{position:relative;z-index:1;padding:24px 22px 22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.tag{align-self:flex-start;font:800 11px var(--f);letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:3px}
+.title{margin:0;font:900 italic clamp(30px,8.6vw,44px)/.95 var(--f);text-transform:uppercase;letter-spacing:.2px}
+.desc{margin:0;max-width:36ch;font-size:14.5px;line-height:1.5}
+.seam{border-top:1.5px dashed;margin:8px 0 4px;opacity:.35}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 14px var(--f);padding:12px 18px;border-radius:3px}
+.btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.ticket:hover .btn svg{transform:translateX(3px)}
+.urgent{display:inline-flex;align-items:center;gap:8px;font:800 12px var(--f);letter-spacing:.08em;text-transform:uppercase;color:#FF4D5E}
+.urgent i{width:8px;height:8px;border-radius:50%;background:#FF4D5E;box-shadow:0 0 0 0 rgba(255,77,94,.6);animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{to{box-shadow:0 0 0 8px rgba(255,77,94,0)}}
+.deco{position:absolute;z-index:0;pointer-events:none}
+
+/* Black November: tinta + dourado */
+.bn{background:var(--ink);color:#F2F0E9}
+.bn .tag{background:var(--gold);color:var(--ink)}
+.bn .title span{color:var(--gold)}
+.bn .desc{color:#A9ADBB}
+.bn .btn{background:var(--gold);color:var(--ink)}
+.bn .deco{right:18px;top:14px;font:900 110px/1 var(--f);letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1.5px rgba(201,162,39,.38)}
+
+/* Operação 40: branco + azul, com foto da aula */
+.op{background:var(--white);color:var(--text);border:2px solid var(--blue)}
+.op .tag{background:rgba(29,95,194,.10);color:var(--blue)}
+.op .title{color:var(--text)}
+.op .title span{color:var(--blue)}
+.op .desc{color:var(--text-soft)}
+.op .btn{background:var(--red);color:var(--white)}
+.op .facts{display:flex;gap:8px;flex-wrap:wrap}
+.op .facts b{font:800 12px var(--f);padding:6px 10px;border-radius:3px;background:var(--paper);color:var(--text)}
+.op .deco{right:14px;top:10px;font:900 italic 96px/1 var(--f);color:rgba(29,95,194,.10)}
+
+/* YouTube: vermelho */
+.yt{background:var(--red);color:var(--white)}
+.yt .tag{background:rgba(255,255,255,.18);color:var(--white)}
+.yt .desc{color:rgba(255,255,255,.9)}
+.yt .btn{background:var(--white);color:var(--red)}
+.yt .deco{right:18px;top:20px;width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center}
+.yt .deco svg{width:30px;height:30px;fill:var(--white);margin-left:5px}
+
+/* WhatsApp: verde */
+.wa{background:var(--green);color:var(--white)}
+.wa .tag{background:rgba(255,255,255,.18);color:var(--white)}
+.wa .desc{color:rgba(255,255,255,.92)}
+.wa .btn{background:var(--white);color:var(--green-dark)}
+.wa .deco{right:18px;top:20px;width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center}
+.wa .deco svg{width:36px;height:36px;fill:var(--white);stroke:none}
+
+@media (max-width:520px){.bn .urgent{flex-basis:100%;justify-content:center}}
+@media (max-width:420px){
+  .yt .deco,.wa .deco{width:60px;height:60px;right:14px;top:16px}
+  .bn .deco{font-size:84px;right:14px}
+  .op .deco{font-size:76px}
+}
+
+.site{max-width:600px;margin:0 auto;padding:20px 16px 40px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;color:var(--text-soft);font-size:12.5px}
+.demo{border:1px dashed var(--line);border-radius:6px;padding:5px 10px;background:var(--white)}
+</style>
+</head>
+<body>
+<header class="cover">
+  <div class="photos" aria-hidden="true"><img src="img/aprovado-1.jpg" alt=""><img src="img/aprovado-4.jpg" alt=""><img src="img/aprovado-3.jpg" alt=""><img src="img/aprovado-2.jpg" alt=""></div>
+  <svg class="orbits" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <ellipse class="o" cx="230" cy="250" rx="380" ry="300" transform="rotate(-24 230 250)"/>
+    <ellipse class="o faint" cx="260" cy="230" rx="300" ry="420" transform="rotate(32 260 230)"/>
+    <ellipse class="o" cx="980" cy="420" rx="340" ry="250" transform="rotate(18 980 420)"/>
+    <circle class="o faint" cx="1010" cy="120" r="150"/>
+    <circle class="dot y" cx="410" cy="70" r="26"/>
+    <circle class="dot" cx="70" cy="470" r="34"/>
+    <circle class="dot" cx="1130" cy="330" r="22"/>
+    <circle class="dot y" cx="860" cy="560" r="16"/>
+  </svg>
+  <div class="inner">
+    <img class="logo" src="img/logo-branco.png" alt="Argumenta MAIS, a 1ª escola de redação de Araucária">
+    <div class="portrait"><img src="img/pedro.jpg" alt="Professor Pedro"></div>
+    <h1 class="name">Professor Pedro</h1>
+    <p class="promise"><span class="ln">Aprenda a escrever <u>de verdade</u></span><span class="ln">e conquiste sua vaga dos <u>sonhos</u></span></p>
+    <div class="proof">
+      <span><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4z"/></svg>450+ 900+ no ENEM</span>
+      <span><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4z"/></svg>Centenas de aprovados na UFPR</span>
+    </div>
+    <nav class="icons" aria-label="Redes e contato">
+      <a href="https://www.instagram.com/argumentamais/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="f" cx="17.4" cy="6.6" r="1.1"/></svg></a>
+      <a href="https://www.youtube.com/@argumentamais/" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path class="f" d="M10 9.2v5.6l4.8-2.8z"/></svg></a>
+      <a href="https://wa.me/5541988848184" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="wa-logo" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
+    </nav>
+  </div>
+</header>
+
+<main class="cards">
+  <p class="label">Escolha por onde começar</p>
+
+  <a class="ticket bn" href="../black/">
+    <span class="deco" aria-hidden="true">BN</span>
+    <div class="body">
+      <span class="tag">Só em novembro</span>
+      <h2 class="title">Black <span>November</span></h2>
+      <p class="desc">Inscreva-se na nossa Black 2027. Após dez anos de docência do profe Pedro, quem ganha o presente é você.</p>
+      <div class="seam"></div>
+      <div class="foot"><span class="btn">Entrar na lista VIP <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="urgent"><i aria-hidden="true"></i>Vagas limitadas</span></div>
+    </div>
+  </a>
+
+  <a class="ticket op" href="https://argumentamais.github.io/operacao40/operacao40-site/" target="_blank" rel="noopener">
+    <span class="deco" aria-hidden="true">40</span>
+    <div class="body">
+      <span class="tag">Superintensivo ENEM e UFPR</span>
+      <h2 class="title">Operação <span>40</span></h2>
+      <div class="facts"><b>40 aulas ao vivo</b><b>Materiais em PDF</b></div>
+      <p class="desc">Teoria, prática guiada e correção ao vivo comigo, todo dia, até a prova.</p>
+      <div class="seam"></div>
+      <div class="foot"><span class="btn">Fazer matrícula <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+    </div>
+  </a>
+
+  <a class="ticket yt" href="https://www.youtube.com/@argumentamais/" target="_blank" rel="noopener">
+    <span class="deco" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></span>
+    <div class="body">
+      <span class="tag">Aulas gratuitas</span>
+      <h2 class="title">YouTube</h2>
+      <p class="desc">Temas comentados, repertórios e correções para você treinar de graça.</p>
+      <div class="seam"></div>
+      <div class="foot"><span class="btn">Assistir no canal <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+    </div>
+  </a>
+
+  <a class="ticket wa" href="https://wa.me/5541988848184" target="_blank" rel="noopener">
+    <span class="deco" aria-hidden="true"><svg class="wa-logo" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></span>
+    <div class="body">
+      <span class="tag">Atendimento direto</span>
+      <h2 class="title">WhatsApp</h2>
+      <p class="desc">Tire suas dúvidas e descubra qual turma é a certa para você.</p>
+      <div class="seam"></div>
+      <div class="foot"><span class="btn">Chamar no WhatsApp <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+    </div>
+  </a>
+</main>
+
+<footer class="site">
+  <span>© 2026 Argumenta MAIS · Araucária, PR</span>
+</footer>
+
+<script>
+/* Alinha os recortes do ingresso com a linha pontilhada de cada card */
+function alignCuts(){
+  document.querySelectorAll('.ticket').forEach(card=>{
+    const seam=card.querySelector('.seam'); if(!seam) return;
+    const y=seam.getBoundingClientRect().top-card.getBoundingClientRect().top+seam.offsetHeight/2;
+    card.style.setProperty('--cy',Math.round(y)+'px');
+  });
+}
+alignCuts();
+addEventListener('resize',alignCuts);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(alignCuts);
+</script>
+
+</body>
+</html>

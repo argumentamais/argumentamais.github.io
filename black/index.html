@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<meta name="description" content="Inscreva-se na Black 2027 da Argumenta MAIS.">
+<link rel="icon" href="img/logo-branco.png">
+<title>Black 2027 Argumenta Mais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,900&display=swap">
+<style>
+/* Layout: página única escura, estilo do card Black November da bio (tinta + dourado). Topo com logo e título; cartão-ingresso com o formulário; tela de sucesso no mesmo lugar. Visual escuro único, cores explícitas. */
+:root{
+  --ink:#0E1016; --ink-2:#161922; --ink-3:#1E2230; --line:rgba(255,255,255,.12);
+  --text:#F2F0E9; --soft:#A9ADBB; --gold:#C9A227; --gold-2:#E2C25A; --red:#FF4D5E; --green:#1FA855;
+  --f:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+body{background:var(--ink);color:var(--text);font:400 15px/1.55 var(--f);-webkit-font-smoothing:antialiased;padding-inline:16px;padding-block:0 40px;
+  background-image:radial-gradient(70% 45% at 85% 0%,rgba(201,162,39,.16),transparent 70%),radial-gradient(rgba(255,255,255,.05) 1.2px,transparent 1.2px);background-size:auto,18px 18px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold-2);outline-offset:3px;border-radius:6px}
+.wrap{max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:24px;padding-top:24px}
+
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top img{width:170px;max-width:55%;height:auto}
+.top a{font:700 12px var(--f);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--soft)}
+.top a:hover{color:var(--text)}
+
+.hero{position:relative;display:flex;flex-direction:column;gap:14px;padding-top:8px}
+.hero .bn{position:absolute;right:-6px;top:-6px;font:900 140px/1 var(--f);letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1.5px rgba(201,162,39,.30);pointer-events:none}
+.tags{display:flex;gap:10px;flex-wrap:wrap;align-items:center;position:relative}
+.tag{font:800 11px var(--f);letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:3px;background:var(--gold);color:var(--ink)}
+.urgent{display:inline-flex;align-items:center;gap:8px;font:800 12px var(--f);letter-spacing:.08em;text-transform:uppercase;color:var(--red)}
+.urgent i{width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,77,94,.6)}100%{box-shadow:0 0 0 8px rgba(255,77,94,0)}}
+h1{position:relative;margin:0;font:900 italic clamp(40px,12vw,60px)/.95 var(--f);text-transform:uppercase;letter-spacing:.2px}
+h1 span{color:var(--gold)}
+.lead{position:relative;margin:0;font:500 16px/1.55 var(--f);color:var(--soft);max-width:40ch}
+.lead b{color:var(--text);font-weight:700}
+.sign{display:flex;align-items:center;gap:12px;position:relative}
+.sign img{width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:50% 30%;border:2px solid var(--gold)}
+.sign p{margin:0;font:italic 400 14px/1.35 var(--f);color:var(--soft)}
+.sign p b{display:block;font-style:italic;font-weight:400;color:var(--text);font-size:15px}
+
+/* Cartão do formulário */
+.card{background:var(--ink-2);border:1px solid var(--line);border-radius:14px;padding:24px 20px;box-shadow:0 24px 50px -30px rgba(0,0,0,.9)}
+.card h2{margin:0 0 4px;font:800 18px/1.2 var(--f);text-transform:uppercase;letter-spacing:.02em}
+.card .hint{margin:0 0 18px;color:var(--soft);font-size:13.5px}
+form{display:flex;flex-direction:column;gap:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+label,.legend{font:700 12px var(--f);letter-spacing:.06em;text-transform:uppercase;color:var(--soft)}
+input[type=text],input[type=tel],input[type=email]{width:100%;height:50px;padding:0 14px;border-radius:8px;border:2px solid var(--ink-3);background:var(--ink);color:var(--text);font:500 16px var(--f);transition:border-color .15s}
+input::placeholder{color:#5D6272}
+input:focus{outline:none;border-color:var(--gold)}
+input[aria-invalid=true]{border-color:var(--red)}
+.err{min-height:0;font:600 12.5px var(--f);color:var(--red)}
+fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.chips label{position:relative;cursor:pointer}
+.chips input{position:absolute;opacity:0;inset:0}
+.chips span{display:flex;align-items:center;justify-content:center;height:46px;border-radius:8px;border:2px solid var(--ink-3);background:var(--ink);font:800 13px var(--f);letter-spacing:.04em;color:var(--text);transition:border-color .15s,background .15s}
+.chips input:checked+span{border-color:var(--gold);background:rgba(201,162,39,.14);color:var(--gold-2)}
+.chips input:focus-visible+span{outline:3px solid var(--gold-2);outline-offset:2px}
+.consent{display:flex;gap:10px;align-items:flex-start;font:500 13px/1.45 var(--f);color:var(--soft);text-transform:none;letter-spacing:0;cursor:pointer}
+.consent input{margin-top:2px;width:18px;height:18px;accent-color:var(--gold);flex:none}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+button{height:56px;border:0;border-radius:8px;background:var(--gold);color:var(--ink);font:800 15px var(--f);letter-spacing:.04em;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:background .15s,transform .15s}
+button:hover{background:var(--gold-2)}
+button:active{transform:scale(.98)}
+button[disabled]{opacity:.6;cursor:progress}
+button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.formerr{margin:0;font:600 13px var(--f);color:var(--red)}
+.steps{display:flex;gap:6px;margin-bottom:16px}
+.steps span{flex:1;height:4px;border-radius:2px;background:var(--ink-3)}
+.steps span.on{background:var(--gold)}
+.step{display:flex;flex-direction:column;gap:16px}
+.step h2{margin:-10px 0 -12px}
+.stepno{margin:0;font:800 11px var(--f);letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.legend em{font-style:normal;font-weight:500;text-transform:none;letter-spacing:0}
+.chips span{text-align:center;line-height:1.15;padding:0 6px}
+.chips.stack{grid-template-columns:1fr}
+.chips.four{grid-template-columns:repeat(2,1fr)}
+@media (min-width:480px){.chips.four{grid-template-columns:repeat(4,1fr)}}
+.chips .wide{grid-column:1/-1}
+label em{font-style:normal;font-weight:500;text-transform:none;letter-spacing:0}
+.chips input[type=checkbox]+span::before{content:"";width:14px;height:14px;border-radius:3px;border:2px solid #5D6272;margin-right:8px;flex:none}
+.chips input[type=checkbox]:checked+span::before{background:var(--gold);border-color:var(--gold);box-shadow:inset 0 0 0 2px var(--ink)}
+button.ghost{height:44px;background:transparent;color:var(--soft);font-size:13px;margin-top:-6px}
+button.ghost:hover{background:transparent;color:var(--text)}
+.legal{margin:0;font:500 12px/1.45 var(--f);color:#6C7182;text-align:center}
+
+/* Sucesso */
+.done{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:12px 4px}
+.done .check{width:64px;height:64px;border-radius:50%;background:rgba(201,162,39,.16);border:2px solid var(--gold);display:grid;place-items:center}
+.done .check svg{width:30px;height:30px;fill:none;stroke:var(--gold-2);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.done h2{margin:0;font:900 italic 26px/1.1 var(--f);text-transform:uppercase}
+.done p{margin:0;color:var(--soft);max-width:34ch}
+.wa{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 22px;border-radius:8px;background:var(--green);color:#fff;font:800 14px var(--f);letter-spacing:.04em;text-transform:uppercase;text-decoration:none}
+.wa svg{width:20px;height:20px;fill:#fff}
+.note{font:500 12px var(--f);color:#6C7182}
+
+.foot{text-align:center;color:#6C7182;font-size:12px;display:flex;flex-direction:column;gap:6px}
+.foot a{text-decoration:none;color:var(--soft)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <img src="img/logo-branco.png" alt="Argumenta MAIS">
+    <a href="https://www.instagram.com/argumentamais/" target="_blank" rel="noopener">@argumentamais</a>
+  </header>
+
+  <section class="hero">
+    <span class="bn" aria-hidden="true">BN</span>
+    <div class="tags"><span class="tag">Só em novembro</span><span class="urgent"><i aria-hidden="true"></i>Vagas limitadas</span></div>
+    <h1>Black <span>2027</span></h1>
+    <p class="lead">Inscreva-se na nossa Black 2027. Após <b>dez anos de docência</b> do profe Pedro, quem ganha o presente é você.</p>
+    <div class="sign"><img src="img/pedro.jpg" alt=""><p><b>Profe Pedro</b>Argumenta MAIS · Araucária</p></div>
+  </section>
+
+  <section class="card" aria-live="polite">
+    <div id="formView">
+      <div class="steps" aria-hidden="true"><span class="on" id="dot1"></span><span id="dot2"></span></div>
+      <form id="form" novalidate>
+        <div id="step1" class="step">
+          <p class="stepno">Etapa 1 de 2</p>
+          <h2>Seu perfil</h2>
+          <p class="hint">Conta pra gente como você quer estudar.</p>
+          <fieldset>
+            <legend class="legend">Seu objetivo</legend>
+            <div class="chips">
+              <label><input type="radio" id="obj-enem" name="objetivo" value="ENEM"><span>ENEM</span></label>
+              <label><input type="radio" id="obj-ufpr" name="objetivo" value="UFPR"><span>UFPR</span></label>
+              <label><input type="radio" id="obj-ambos" name="objetivo" value="ENEM e UFPR"><span>Os dois</span></label>
+            </div>
+            <span class="err" id="objetivo-err"></span>
+          </fieldset>
+          <fieldset>
+            <legend class="legend">Ano escolar</legend>
+            <div class="chips four">
+              <label><input type="radio" id="ano-1" name="ano" value="1º ano"><span>1º ano</span></label>
+              <label><input type="radio" id="ano-2" name="ano" value="2º ano"><span>2º ano</span></label>
+              <label><input type="radio" id="ano-3" name="ano" value="3º ano"><span>3º ano</span></label>
+              <label><input type="radio" id="ano-f" name="ano" value="Já formado(a)"><span>Já formado(a)</span></label>
+            </div>
+            <span class="err" id="ano-err"></span>
+          </fieldset>
+          <fieldset>
+            <legend class="legend">Horários disponíveis <em>(pode marcar mais de um)</em></legend>
+            <div class="chips">
+              <label><input type="checkbox" id="hr-manha" name="horarios" value="Manhã"><span>Manhã</span></label>
+              <label><input type="checkbox" id="hr-tarde" name="horarios" value="Tarde"><span>Tarde</span></label>
+              <label><input type="checkbox" id="hr-noite" name="horarios" value="Noite"><span>Noite</span></label>
+            </div>
+            <span class="err" id="horarios-err"></span>
+          </fieldset>
+          <fieldset>
+            <legend class="legend">Interesse</legend>
+            <div class="chips stack">
+              <label><input type="radio" id="int-presencial" name="interesse" value="100% presencial"><span>100% presencial</span></label>
+              <label><input type="radio" id="int-online" name="interesse" value="100% on-line"><span>100% on-line</span></label>
+              <label><input type="radio" id="int-hibrido" name="interesse" value="Híbrido"><span>Híbrido</span></label>
+            </div>
+            <span class="err" id="interesse-err"></span>
+          </fieldset>
+          <div class="field">
+            <label for="curso">Curso dos sonhos <em>(opcional)</em></label>
+            <input type="text" id="curso" name="curso" autocomplete="off" placeholder="Ex.: Medicina, Direito, Psicologia">
+          </div>
+          <fieldset>
+            <legend class="legend">Como conheceu a Argumenta MAIS?</legend>
+            <div class="chips">
+              <label><input type="radio" id="or-insta" name="conheceu" value="Instagram"><span>Instagram</span></label>
+              <label><input type="radio" id="or-yt" name="conheceu" value="YouTube"><span>YouTube</span></label>
+              <label><input type="radio" id="or-tt" name="conheceu" value="TikTok"><span>TikTok</span></label>
+              <label><input type="radio" id="or-ind" name="conheceu" value="Indicação"><span>Indicação</span></label>
+              <label><input type="radio" id="or-esc" name="conheceu" value="Escola"><span>Escola</span></label>
+              <label><input type="radio" id="or-goo" name="conheceu" value="Google"><span>Google</span></label>
+              <label class="wide"><input type="radio" id="or-ex" name="conheceu" value="Já fui aluno(a)"><span>Já fui aluno(a)</span></label>
+            </div>
+            <span class="err" id="conheceu-err"></span>
+          </fieldset>
+          <div class="field" id="indicouBox" hidden>
+            <label for="indicou">Quem te indicou?</label>
+            <input type="text" id="indicou" name="indicou" autocomplete="off" placeholder="Nome de quem te indicou">
+            <span class="err" id="indicou-err"></span>
+          </div>
+          <button type="button" id="next">Continuar <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+
+        <div id="step2" class="step" hidden>
+          <p class="stepno">Etapa 2 de 2</p>
+          <h2>Seus dados</h2>
+          <p class="hint">Se você for menor de idade, também precisamos falar com seu responsável financeiro.</p>
+          <div class="field">
+            <label for="nome">Seu nome completo</label>
+            <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Como você se chama?">
+            <span class="err" id="nome-err"></span>
+          </div>
+          <div class="field">
+            <label for="whatsapp">Seu WhatsApp</label>
+            <input type="tel" id="whatsapp" name="whatsapp" class="phone" autocomplete="tel-national" inputmode="numeric" placeholder="(41) 99999-9999">
+            <span class="err" id="whatsapp-err"></span>
+          </div>
+          <div class="field">
+            <label for="resp_nome">Nome do seu(sua) responsável</label>
+            <input type="text" id="resp_nome" name="resp_nome" autocomplete="off" placeholder="Ex.: Maria da Silva">
+            <span class="err" id="resp_nome-err"></span>
+          </div>
+          <div class="field">
+            <label for="resp_whatsapp">WhatsApp do seu(sua) responsável</label>
+            <input type="tel" id="resp_whatsapp" name="resp_whatsapp" class="phone" autocomplete="off" inputmode="numeric" placeholder="(41) 99999-9999">
+            <span class="err" id="resp_whatsapp-err"></span>
+          </div>
+          <fieldset>
+            <legend class="legend">Você avisou seu responsável que iremos contatá-lo?</legend>
+            <label class="consent" for="avisou"><input type="checkbox" id="avisou" name="avisou" value="Sim, eu avisei">Sim, eu avisei</label>
+            <span class="err" id="avisou-err"></span>
+          </fieldset>
+          <div class="field">
+            <label for="email">Seu e-mail</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="seuemail@gmail.com">
+            <span class="err" id="email-err"></span>
+          </div>
+          <div class="hp" aria-hidden="true"><label for="site">Não preencha</label><input type="text" id="site" name="site" tabindex="-1" autocomplete="off"></div>
+          <p class="formerr" id="formerr" hidden></p>
+          <button type="submit" id="send">Quero entrar na lista <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <button type="button" id="back" class="ghost">← Voltar</button>
+          <p class="legal">Ao enviar, você e seu responsável aceitam receber as novidades da Black 2027 da Argumenta MAIS no WhatsApp e por e-mail.</p>
+        </div>
+      </form>
+    </div>
+    <div id="doneView" class="done" hidden>
+      <span class="check"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+      <h2>Você está na lista!</h2>
+      <p id="doneMsg">Assim que a Black 2027 abrir, você recebe as condições em primeira mão.</p>
+      <a class="wa" href="https://wa.me/5541988848184?text=Oi%2C%20Pedro!%20Acabei%20de%20entrar%20na%20lista%20da%20Black%202027" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Falar com o Pedro</a>
+      <span class="note" id="testNote" hidden>Modo de teste: este envio não foi para a planilha.</span>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>© 2026 Argumenta MAIS · Araucária, PR</span>
+    <span>Seus dados são usados só para falar com você sobre a Black 2027.</span>
+  </footer>
+</div>
+
+<script>
+/* Cole aqui o link do App da Web do Apps Script (termina em /exec). Vazio = modo de teste. */
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzhqHEPtqhPQgF2wh9v_Vfo4y72tKbYABDHBvdAkioQMR8xo7iO-H9NNyICxbMpWPby/exec';
+
+const $ = id => document.getElementById(id);
+const form = $('form'), send = $('send'), formerr = $('formerr');
+const sendLabel = 'Quero entrar na lista ';
+
+document.querySelectorAll('.phone').forEach(inp => inp.addEventListener('input', e => {
+  const d = e.target.value.replace(/\D/g, '').slice(0, 11);
+  let out = d;
+  if (d.length > 2) out = '(' + d.slice(0, 2) + ') ' + d.slice(2);
+  if (d.length > 6) out = '(' + d.slice(0, 2) + ') ' + d.slice(2, d.length - 4) + '-' + d.slice(-4);
+  e.target.value = out;
+}));
+
+function msg(id, text){ $(id + '-err').textContent = text || ''; return !text; }
+function field(id, text){ $(id).setAttribute('aria-invalid', text ? 'true' : 'false'); return msg(id, text); }
+const checked = name => [...form.querySelectorAll('input[name="' + name + '"]:checked')].map(i => i.value);
+const digits = id => $(id).value.replace(/\D/g, '');
+
+function validate1(){
+  let ok = msg('objetivo', checked('objetivo').length ? '' : 'Escolha seu objetivo.');
+  ok = msg('horarios', checked('horarios').length ? '' : 'Marque pelo menos um horário.') && ok;
+  ok = msg('interesse', checked('interesse').length ? '' : 'Escolha um formato.') && ok;
+  ok = msg('ano', checked('ano').length ? '' : 'Escolha seu ano escolar.') && ok;
+  ok = msg('conheceu', checked('conheceu').length ? '' : 'Conta pra gente como nos conheceu.') && ok;
+  if (checked('conheceu')[0] === 'Indicação') ok = field('indicou', $('indicou').value.trim().length >= 2 ? '' : 'Escreva quem te indicou.') && ok;
+  return ok;
+}
+function validate2(){
+  let ok = field('nome', $('nome').value.trim().split(/\s+/).length >= 2 ? '' : 'Escreva nome e sobrenome.');
+  ok = field('whatsapp', digits('whatsapp').length >= 10 ? '' : 'Digite o WhatsApp com DDD.') && ok;
+  ok = field('resp_nome', $('resp_nome').value.trim().length >= 3 ? '' : 'Escreva o nome do responsável.') && ok;
+  ok = field('resp_whatsapp', digits('resp_whatsapp').length >= 10 ? '' : 'Digite o WhatsApp do responsável com DDD.') && ok;
+  ok = msg('avisou', $('avisou').checked ? '' : 'Avise seu responsável e marque esta opção.') && ok;
+  ok = field('email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('email').value.trim()) ? '' : 'Confira o e-mail.') && ok;
+  return ok;
+}
+function go(n){
+  $('step1').hidden = n !== 1; $('step2').hidden = n !== 2;
+  $('dot1').classList.toggle('on', true); $('dot2').classList.toggle('on', n === 2);
+  document.querySelector('.card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  (n === 1 ? $('obj-enem') : $('nome')).focus({ preventScroll: true });
+}
+$('next').addEventListener('click', () => { if (validate1()) go(2); });
+$('back').addEventListener('click', () => go(1));
+form.addEventListener('change', e => { if (e.target.name === 'conheceu') $('indicouBox').hidden = e.target.value !== 'Indicação'; });
+form.addEventListener('change', e => { if (e.target.name && $(e.target.name + '-err')) msg(e.target.name, ''); });
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  formerr.hidden = true;
+  if (!validate2()) return;
+  const data = new URLSearchParams({
+    nome: $('nome').value.trim(),
+    whatsapp: $('whatsapp').value.trim(),
+    resp_nome: $('resp_nome').value.trim(),
+    resp_whatsapp: $('resp_whatsapp').value.trim(),
+    avisou: $('avisou').checked ? 'Sim, eu avisei' : '',
+    email: $('email').value.trim(),
+    objetivo: checked('objetivo').join(', '),
+    horarios: checked('horarios').join(', '),
+    interesse: checked('interesse').join(', '),
+    ano: checked('ano').join(', '),
+    curso: $('curso').value.trim(),
+    conheceu: checked('conheceu').join(', '),
+    indicou: checked('conheceu')[0] === 'Indicação' ? $('indicou').value.trim() : '',
+    origem: new URLSearchParams(location.search).get('utm_source') || 'bio',
+    site: $('site').value
+  });
+  send.disabled = true; send.firstChild.textContent = 'Enviando… ';
+  try {
+    if (SCRIPT_URL) {
+      await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: data });
+    } else {
+      await new Promise(r => setTimeout(r, 600));
+      $('testNote').hidden = false;
+    }
+    const first = $('nome').value.trim().split(/\s+/)[0];
+    $('doneMsg').textContent = first + ', assim que a Black 2027 abrir, você recebe as condições em primeira mão.';
+    $('formView').hidden = true; $('doneView').hidden = false;
+  } catch (err) {
+    formerr.textContent = 'Não conseguimos enviar agora. Verifique sua internet e tente de novo.';
+    formerr.hidden = false;
+  } finally {
+    send.disabled = false; send.firstChild.textContent = sendLabel;
+  }
+});
+</script>
+
+</body>
+</html>
