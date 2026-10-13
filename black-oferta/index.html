@@ -33,7 +33,7 @@ a{color:inherit}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 
 /* Faixa vermelha com contagem: uma linha só, compacta */
-.bar{position:sticky;top:0;z-index:20;background:var(--red);padding:6px 16px;padding-top:max(6px,env(safe-area-inset-top));box-shadow:0 6px 20px -10px rgba(229,34,47,.8)}
+.bar{position:sticky;top:0;z-index:20;background:var(--red);padding:6px 16px 10px;padding-top:max(6px,env(safe-area-inset-top));box-shadow:0 6px 20px -10px rgba(229,34,47,.8)}
 .bar-in{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:18px}
 .bar p{margin:0;display:flex;align-items:center;gap:8px;font:800 12.5px/1.2 var(--f);text-transform:uppercase;letter-spacing:.02em}
 .bar p svg{width:18px;height:18px;flex:none;fill:var(--yellow)}
@@ -135,6 +135,46 @@ h1 em{font-style:normal;color:var(--blue-2)}
 .cv .gold b{color:#FBE7A1;text-shadow:0 0 10px rgba(232,196,82,.45)}
 @keyframes neon{50%{box-shadow:0 0 9px rgba(232,196,82,.9),0 0 28px rgba(232,196,82,.5),inset 0 0 12px rgba(232,196,82,.18)}}
 
+
+/* Barrinha do tempo: esvazia até a revelação */
+.timebar{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(0,0,0,.28);overflow:hidden}
+.timebar i{position:absolute;inset:0 auto 0 0;width:100%;background:linear-gradient(90deg,#FFB21A,var(--yellow));box-shadow:0 0 8px var(--yellow);transition:width 1s linear}
+.timebar i::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),transparent);background-size:40% 100%;background-repeat:no-repeat;animation:run 2.4s linear infinite}
+@keyframes run{from{background-position:-40% 0}to{background-position:140% 0}}
+
+/* Animação dos botões: brilho passando e seta empurrando */
+.cta{overflow:hidden;isolation:isolate}
+.cta::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.5) 50%,transparent 65%);background-size:300% 100%;animation:sweep 3.4s ease-in-out infinite}
+@keyframes sweep{0%,55%{background-position:120% 0}100%{background-position:-60% 0}}
+.cta svg{animation:arrow 1.4s ease-in-out infinite}
+@keyframes arrow{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+.cta:hover svg{animation-duration:.7s}
+
+/* Estrelas: brilham mais ao passar o mouse ou o dedo */
+.cv .gold{position:relative;transition:box-shadow .3s,transform .3s}
+.cv .gold svg{transition:transform .45s cubic-bezier(.3,1.7,.5,1),filter .3s,fill .3s}
+.cv .gold:hover,.cv .gold.shine{transform:scale(1.015);box-shadow:0 0 10px rgba(232,196,82,1),0 0 34px rgba(232,196,82,.6),inset 0 0 16px rgba(232,196,82,.25)}
+.cv .gold:hover svg,.cv .gold.shine svg{transform:scale(1.45) rotate(72deg);fill:#FFE27A;filter:drop-shadow(0 0 4px #FFF3B0) drop-shadow(0 0 12px #FFD24D) drop-shadow(0 0 22px rgba(255,210,77,.8))}
+.cv .gold .spark{position:absolute;left:26px;top:50%;width:0;height:0;pointer-events:none}
+.cv .gold .spark i{position:absolute;width:4px;height:4px;margin:-2px;border-radius:50%;background:#FFF3B0;box-shadow:0 0 6px #FFD24D;opacity:0}
+.cv .gold:hover .spark i,.cv .gold.shine .spark i{animation:spark .8s ease-out forwards}
+@keyframes spark{0%{opacity:1;transform:rotate(var(--a)) translateY(0)}100%{opacity:0;transform:rotate(var(--a)) translateY(-26px)}}
+
+/* Feed de aprovados */
+.wall{background:var(--ink);padding:8px 0 88px;overflow:hidden}
+.wall h2{margin:0 auto 28px;padding:0 16px;max-width:1120px;text-align:center;font:900 clamp(24px,6vw,38px)/1.1 var(--f);text-transform:uppercase}
+.wall h2 mark{background:var(--yellow);color:#000;padding:0 .14em}
+.marquee{-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:flex;gap:16px;width:max-content;padding:14px 0;animation:slide 45s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(calc(-50% - 8px))}}
+.shot{position:relative;flex:none;margin:0;width:clamp(150px,40vw,210px);aspect-ratio:3/4;border-radius:14px;overflow:hidden;border:3px solid #fff;box-shadow:6px 6px 0 var(--blue);transform:rotate(-2deg);transition:transform .3s}
+.shot:nth-child(even){transform:rotate(2deg);box-shadow:6px 6px 0 var(--yellow)}
+.shot:hover{transform:rotate(0) scale(1.05)}
+.shot img{width:100%;height:100%;object-fit:cover}
+.shot span{position:absolute;left:8px;bottom:8px;font:800 10.5px/1.2 var(--f);letter-spacing:.06em;text-transform:uppercase;background:var(--yellow);color:#000;padding:4px 7px;border-radius:3px}
+
 /* Janelas (formulário e pop-up de saída) */
 dialog{border:0;padding:0;background:transparent;color:var(--text);width:min(440px,calc(100vw - 32px));max-height:calc(100svh - 32px);overflow:visible}
 dialog::backdrop{background:rgba(3,4,8,.78);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
@@ -196,6 +236,7 @@ input[aria-invalid=true]{border-color:var(--red-2)}
       <div><b id="cd-s">00</b><span>Seg</span></div>
     </div>
   </div>
+  <div class="timebar" aria-hidden="true"><i id="timefill"></i></div>
 </div>
 
 <main>
@@ -239,14 +280,30 @@ input[aria-invalid=true]{border-color:var(--red-2)}
         <ul class="cv">
           <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><b>10 anos de docência</b><span>Uma década ensinando redação para o ENEM e os vestibulares.</span></div></li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><b>Fundador da Argumenta MAIS</b><span>A 1ª escola de redação de Araucária.</span></div></li>
-          <li class="gold"><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><div><b>Único curso da cidade com aprovados em Medicina</b></div></li>
-          <li class="gold"><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><div><b>Único curso da cidade com centenas de 900+</b></div></li>
-          <li class="gold"><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><div><b>Único curso da cidade com centenas de aprovados na UFPR</b></div></li>
-          <li class="gold"><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><div><b>Único curso com alunos 980 no ENEM</b></div></li>
+          <li class="gold"><span class="spark" aria-hidden="true"><i style="--a:0deg"></i><i style="--a:45deg"></i><i style="--a:90deg"></i><i style="--a:135deg"></i><i style="--a:180deg"></i><i style="--a:225deg"></i><i style="--a:270deg"></i><i style="--a:315deg"></i></span><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><div><b>Único curso da cidade com aprovados em Medicina</b></div></li>
+          <li class="gold"><span class="spark" aria-hidden="true"><i style="--a:0deg"></i><i style="--a:45deg"></i><i style="--a:90deg"></i><i style="--a:135deg"></i><i style="--a:180deg"></i><i style="--a:225deg"></i><i style="--a:270deg"></i><i style="--a:315deg"></i></span><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><div><b>Único curso da cidade com centenas de 900+</b></div></li>
+          <li class="gold"><span class="spark" aria-hidden="true"><i style="--a:0deg"></i><i style="--a:45deg"></i><i style="--a:90deg"></i><i style="--a:135deg"></i><i style="--a:180deg"></i><i style="--a:225deg"></i><i style="--a:270deg"></i><i style="--a:315deg"></i></span><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><div><b>Único curso da cidade com centenas de aprovados na UFPR</b></div></li>
+          <li class="gold"><span class="spark" aria-hidden="true"><i style="--a:0deg"></i><i style="--a:45deg"></i><i style="--a:90deg"></i><i style="--a:135deg"></i><i style="--a:180deg"></i><i style="--a:225deg"></i><i style="--a:270deg"></i><i style="--a:315deg"></i></span><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><div><b>Único curso com alunos 980 no ENEM</b></div></li>
         </ul>
       </div>
     </div>
     <div class="guide-cta"><button class="cta" type="button" data-open>Quero me cadastrar na Black <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+  </section>
+
+  <section class="wall" aria-labelledby="wallTitle">
+    <h2 id="wallTitle">Quem já <mark>argumentou mais</mark></h2>
+    <div class="marquee">
+      <div class="track" id="track">
+        <figure class="shot"><img src="img/aprovados/1.webp" alt="Aluna ou aluno aprovado da Argumenta MAIS" width="360" height="480" loading="lazy"></figure>
+        <figure class="shot"><img src="img/aprovados/2.webp" alt="Aluna ou aluno aprovado da Argumenta MAIS" width="360" height="480" loading="lazy"></figure>
+        <figure class="shot"><img src="img/aprovados/3.webp" alt="Luiz Gustavo, aprovado em Medicina na UFPR" width="360" height="480" loading="lazy"><span>Medicina · UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/4.webp" alt="Aluna ou aluno aprovado da Argumenta MAIS" width="360" height="480" loading="lazy"></figure>
+        <figure class="shot"><img src="img/aprovados/5.webp" alt="Aluna ou aluno aprovado da Argumenta MAIS" width="360" height="480" loading="lazy"></figure>
+        <figure class="shot"><img src="img/aprovados/6.webp" alt="Aluna ou aluno aprovado da Argumenta MAIS" width="360" height="480" loading="lazy"></figure>
+        <figure class="shot"><img src="img/aprovados/7.webp" alt="Aluna ou aluno aprovado da Argumenta MAIS" width="360" height="480" loading="lazy"></figure>
+        <figure class="shot"><img src="img/aprovados/8.webp" alt="Aluna ou aluno aprovado da Argumenta MAIS" width="360" height="480" loading="lazy"></figure>
+      </div>
+    </div>
   </section>
 </main>
 
@@ -310,6 +367,8 @@ input[aria-invalid=true]{border-color:var(--red-2)}
 /* ===== Ajustes rápidos ===== */
 // Dia e hora em que a oferta será revelada (horário de Brasília).
 const REVELACAO = '2026-11-01T19:00:00-03:00';
+// Início da contagem: a barrinha vermelha começa cheia aqui e esvazia até a revelação.
+const INICIO = '2026-10-01T00:00:00-03:00';
 // Mesmo App da Web do cadastro da Black: os leads caem na mesma planilha. Vazio = modo de teste.
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzhqHEPtqhPQgF2wh9v_Vfo4y72tKbYABDHBvdAkioQMR8xo7iO-H9NNyICxbMpWPby/exec';
 /* =========================== */
@@ -329,6 +388,8 @@ $('barDate').textContent = `${parte.day}/${parte.month}, às ${+parte.hour}h${pa
 const pad = n => String(n).padStart(2, '0');
 function tick(){
   let s = Math.max(0, Math.floor((alvo - Date.now()) / 1000));
+  const total = alvo - new Date(INICIO);
+  $('timefill').style.width = Math.max(0, Math.min(100, (alvo - Date.now()) / total * 100)) + '%';
   if (!s) { $('barText').textContent = 'A oferta da Black 2027 está no ar!'; $('clock').hidden = true; return; }
   $('cd-d').textContent = pad(Math.floor(s / 86400)); s %= 86400;
   $('cd-h').textContent = pad(Math.floor(s / 3600)); s %= 3600;
@@ -337,6 +398,16 @@ function tick(){
   setTimeout(tick, 1000 - Date.now() % 1000);
 }
 tick();
+
+/* Feed de aprovados: duplica as fotos para a faixa girar sem fim */
+const track = $('track');
+[...track.children].forEach(f => { const c = f.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.querySelector('img').alt = ''; track.appendChild(c); });
+
+/* Estrelas brilham no toque também (celular não tem "passar o mouse") */
+document.querySelectorAll('.cv .gold').forEach(li => li.addEventListener('pointerdown', () => {
+  li.classList.remove('shine'); void li.offsetWidth; li.classList.add('shine');
+  clearTimeout(li._t); li._t = setTimeout(() => li.classList.remove('shine'), 1400);
+}));
 
 /* Formulário */
 const lead = $('lead'), exitBox = $('exit'), form = $('form'), send = $('send'), formerr = $('formerr');
