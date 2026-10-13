@@ -161,6 +161,14 @@ h1 em{font-style:normal;color:var(--blue-2)}
 .cv .gold:hover .spark i,.cv .gold.shine .spark i{animation:spark .8s ease-out forwards}
 @keyframes spark{0%{opacity:1;transform:rotate(var(--a)) translateY(0)}100%{opacity:0;transform:rotate(var(--a)) translateY(-26px)}}
 
+/* Faixa azul passando entre os bônus e o guia */
+.ticker{background:var(--blue);color:#fff;overflow:hidden;padding:13px 0;border-block:2px solid #0B0D14}
+.ticker-track{display:flex;width:max-content;animation:tick 30s linear infinite}
+@keyframes tick{to{transform:translateX(-50%)}}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-track span{display:flex;align-items:center;gap:28px;padding-right:28px;white-space:nowrap;font:800 13.5px/1 var(--f);letter-spacing:.06em;text-transform:uppercase}
+.ticker-track span::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--yellow);box-shadow:0 0 8px var(--yellow)}
+
 /* Feed de aprovados */
 .wall{background:var(--ink);padding:8px 0 88px;overflow:hidden}
 .wall h2{margin:0 auto 28px;padding:0 16px;max-width:1120px;text-align:center;font:900 clamp(24px,6vw,38px)/1.1 var(--f);text-transform:uppercase}
@@ -269,6 +277,10 @@ input[aria-invalid=true]{border-color:var(--red-2)}
       <button class="cta" type="button" data-open>Quero minha vaga na Black <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
   </section>
+
+  <div class="ticker" role="marquee" aria-label="A maior Black da história. Mais de 5 mil reais em bônus. 10 anos de docência, 10 motivos para você ser Argumenta. O melhor e mais impactante curso da cidade">
+    <div class="ticker-track" id="ticker"><span>A maior Black da história</span><span>Mais de 5 mil reais em bônus</span><span>10 anos de docência, 10 motivos para você ser Argumenta</span><span>O melhor e mais impactante curso da cidade</span></div>
+  </div>
 
   <section class="guide">
     <div class="guide-in">
@@ -402,6 +414,11 @@ tick();
 /* Feed de aprovados: duplica as fotos para a faixa girar sem fim */
 const track = $('track');
 [...track.children].forEach(f => { const c = f.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.querySelector('img').alt = ''; track.appendChild(c); });
+
+const ticker = $('ticker');
+const base = ticker.innerHTML;
+ticker.innerHTML = base.repeat(4);
+[...ticker.children].forEach((el, i) => { if (i >= 4) el.setAttribute('aria-hidden', 'true'); });
 
 /* Estrelas brilham no toque também (celular não tem "passar o mouse") */
 document.querySelectorAll('.cv .gold').forEach(li => li.addEventListener('pointerdown', () => {
