@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Garanta sua aprovação em 2027 com a maior Black da história da Argumenta MAIS e mais de 5 mil reais em bônus.">
+<meta property="og:title" content="Black 2027 · Argumenta MAIS">
+<meta property="og:description" content="A maior Black da história da Argumenta MAIS, com mais de 5 mil reais em bônus.">
+<meta property="og:image" content="https://argumentamais.github.io/black-oferta/img/pedro-evento.webp">
+<meta name="theme-color" content="#E5222F">
+<link rel="icon" href="img/logo-branco.png">
+<title>Black 2027 Argumenta Mais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap">
+<style>
+/* Página de captura da Black: faixa vermelha fixa com contagem, capa escura com a foto do evento, bônus em fundo claro pontilhado, "Quem será teu guia?", dois botões verdes que abrem o formulário, pop-up de saída. */
+:root{
+  --ink:#07080D; --ink-2:#11131B; --ink-3:#1C1F2B; --line:rgba(255,255,255,.12);
+  --text:#F5F4EF; --soft:#B3B7C4; --mute:#6F7486;
+  --red:#E5222F; --red-2:#FF4D5E; --blue:#1B6DC1; --blue-2:#4FA3FF; --yellow:#FFF71A; --gold:#C9A227;
+  --green:#18B544; --green-2:#0E9437;
+  --f:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+img{max-width:100%;display:block}
+[hidden]{display:none!important}
+body{background:var(--ink);color:var(--text);font:500 15px/1.55 var(--f);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* Faixa vermelha com contagem: uma linha só, compacta */
+.bar{position:sticky;top:0;z-index:20;background:var(--red);padding:6px 16px 10px;padding-top:max(6px,env(safe-area-inset-top));box-shadow:0 6px 20px -10px rgba(229,34,47,.8)}
+.bar-in{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:18px}
+.bar p{margin:0;display:flex;align-items:center;gap:8px;font:800 12.5px/1.2 var(--f);text-transform:uppercase;letter-spacing:.02em}
+.bar p svg{width:18px;height:18px;flex:none;fill:var(--yellow)}
+.clock{display:flex;gap:5px;flex:none}
+.clock div{min-width:44px;padding:3px 4px;border:1px solid rgba(255,255,255,.28);border-radius:5px;background:rgba(0,0,0,.14);text-align:center}
+.clock b{display:block;font:800 17px/1 var(--f);font-variant-numeric:tabular-nums}
+.clock span{display:block;margin-top:1px;font:600 9px/1 var(--f);letter-spacing:.03em;opacity:.9}
+@media (max-width:620px){
+  .bar{padding-inline:12px}
+  .bar-in{justify-content:space-between;gap:10px}
+  .bar p{font-size:10.5px;gap:6px}
+  .bar p svg{width:15px;height:15px}
+  .clock{gap:4px}
+  .clock div{min-width:36px;padding:3px 2px}
+  .clock b{font-size:15px}
+  .clock span{font-size:8px}
+}
+
+/* Capa escura: foto do evento à direita (no celular, em cima), texto à esquerda */
+.hero{position:relative;overflow:hidden;isolation:isolate;background:var(--ink)}
+.hero-photo{position:absolute;inset:0 0 0 auto;width:62%;z-index:-1}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:40% 30%}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--ink) 0%,rgba(7,8,13,.82) 22%,rgba(7,8,13,.25) 55%,rgba(7,8,13,.1) 80%),linear-gradient(0deg,var(--ink),transparent 25%)}
+.hero-in{max-width:1120px;margin:0 auto;padding:72px 16px 80px;min-height:calc(100svh - 48px);display:flex;align-items:center}
+.copy{display:flex;flex-direction:column;gap:22px;max-width:620px}
+.logo{width:250px;height:auto}
+h1{margin:0;font:900 clamp(24px,6.4vw,40px)/1.12 var(--f);text-transform:uppercase;letter-spacing:-.005em;text-wrap:pretty}
+h1 .nw{white-space:nowrap}
+@media (min-width:900px){h1 mark{white-space:nowrap}}
+h1 mark{background:var(--yellow);color:#000;padding:.02em .16em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+h1 em{font-style:normal;color:var(--blue-2)}
+.lead{margin:0;font:500 17px/1.55 var(--f);color:var(--soft);max-width:42ch}
+.lead b{color:var(--text);font-weight:800}
+@media (max-width:899px){
+  .hero-photo{position:relative;inset:auto;width:auto;height:clamp(240px,62vw,420px)}
+  .hero-photo img{object-position:50% 20%}
+  .hero-photo::after{background:linear-gradient(0deg,var(--ink) 2%,rgba(7,8,13,.35) 40%,rgba(7,8,13,.15))}
+  .hero-in{padding:0 16px 48px;margin-top:-56px;min-height:0;position:relative}
+  .copy{gap:18px}
+  .logo{width:210px}
+}
+
+/* Botão verde */
+.cta{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:440px;min-height:64px;padding:12px 22px;border:3px solid #fff;border-radius:999px;
+  background:linear-gradient(180deg,#22C94F,var(--green-2));color:#fff;font:900 16px/1.15 var(--f);letter-spacing:.04em;text-transform:uppercase;text-align:center;cursor:pointer;text-decoration:none;
+  box-shadow:0 10px 30px -8px rgba(24,181,68,.75);transition:transform .2s,box-shadow .2s;animation:nudge 2.6s ease-in-out infinite}
+.cta:hover{transform:scale(1.03);box-shadow:0 14px 36px -8px rgba(24,181,68,.95)}
+.cta:active{transform:scale(.98)}
+.cta svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+@keyframes nudge{0%,80%,100%{box-shadow:0 10px 30px -8px rgba(24,181,68,.75),0 0 0 0 rgba(24,181,68,.55)}90%{box-shadow:0 10px 30px -8px rgba(24,181,68,.75),0 0 0 14px rgba(24,181,68,0)}}
+.micro{margin:-6px 0 0;display:flex;align-items:center;gap:8px;font:600 12.5px var(--f);color:var(--mute)}
+.micro svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.4}
+.foot{border-top:1px solid var(--line);padding:22px 16px calc(28px + env(safe-area-inset-bottom));text-align:center;color:var(--mute);font-size:12px;display:flex;flex-direction:column;gap:6px}
+.foot a{text-decoration:none;color:var(--soft)}
+
+/* Bônus: fundo claro com pontinhos pretos, cards pretos e azuis */
+.perks{background:#F6F6F2;color:#0B0D14;background-image:radial-gradient(rgba(0,0,0,.16) 1.3px,transparent 1.4px);background-size:20px 20px}
+.perks-in{max-width:1120px;margin:0 auto;padding:72px 16px 80px;display:flex;flex-direction:column;gap:32px;align-items:center;text-align:center}
+.kicker{margin:0 0 -18px;font:800 12px var(--f);letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+.perks h2,.guide h2{margin:0;font:900 clamp(26px,6.4vw,42px)/1.08 var(--f);text-transform:uppercase;text-wrap:balance}
+.perks h2 mark,.guide h2 mark{background:var(--yellow);color:#000;padding:0 .14em}
+.grid{display:grid;gap:16px;width:100%;grid-template-columns:1fr}
+@media (min-width:700px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1040px){.grid{grid-template-columns:repeat(4,1fr)}}
+.perk{position:relative;overflow:hidden;border-radius:16px;padding:26px 22px 24px;text-align:left;display:flex;flex-direction:column;gap:12px;color:#fff;
+  background:#0B0D14;border:2px solid #0B0D14;box-shadow:6px 6px 0 var(--blue);transition:transform .2s}
+.perk:nth-child(even){background:var(--blue);border-color:var(--blue);box-shadow:6px 6px 0 #0B0D14}
+.perk:hover{transform:scale(1.02)}
+.perk .n{position:absolute;right:14px;top:6px;font:900 64px/1 var(--f);color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.18)}
+.perk .ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.1);color:var(--yellow)}
+.perk .ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.perk h3{margin:4px 0 0;font:900 17px/1.2 var(--f);text-transform:uppercase;letter-spacing:.01em}
+.perk h3 small{display:block;margin-top:4px;font:800 11px var(--f);letter-spacing:.1em;color:var(--yellow)}
+.perk p{margin:0;color:rgba(255,255,255,.78);font-size:14.5px;line-height:1.5}
+.perks .cta{border-color:#0B0D14}
+
+/* Quem será teu guia? */
+.guide{background:var(--ink)}
+.guide-in{max-width:1120px;margin:0 auto;padding:80px 16px;display:grid;gap:40px;align-items:center;grid-template-columns:1fr}
+@media (min-width:900px){.guide-in{grid-template-columns:1fr 1.05fr;gap:56px}}
+.guide figure{margin:0;position:relative;align-self:center;border-radius:18px;overflow:hidden;border:2px solid var(--blue);box-shadow:8px 8px 0 var(--blue)}
+.guide figure img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%}
+@media (max-width:899px){.guide figure img{aspect-ratio:1}}
+.guide figcaption{position:absolute;left:14px;bottom:14px;font:800 12px var(--f);letter-spacing:.08em;text-transform:uppercase;background:var(--yellow);color:#000;padding:6px 10px;border-radius:3px}
+.guide-cta{display:flex;justify-content:center;padding:0 16px 80px;margin-top:-24px}
+.guide .txt{display:flex;flex-direction:column;gap:20px}
+.guide .kicker{margin:0 0 -12px}
+.guide .name{margin:0;font:600 16px/1.55 var(--f);color:var(--soft)}
+.guide .name b{color:var(--text)}
+.cv{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.cv li{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;border-radius:12px;background:var(--ink-2);border:1px solid var(--line)}
+.cv li svg{flex:none;width:22px;height:22px;margin-top:1px;fill:none;stroke:var(--blue-2);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.cv b{display:block;font:800 14.5px/1.3 var(--f);text-transform:uppercase;letter-spacing:.02em}
+.cv span{display:block;color:var(--soft);font-size:14px;margin-top:2px}
+.cv li{align-items:center}
+.cv .gold{--g:#E8C452;border:1.5px solid var(--g);background:linear-gradient(135deg,rgba(232,196,82,.14),rgba(232,196,82,.03) 60%),var(--ink-2);
+  box-shadow:0 0 6px rgba(232,196,82,.7),0 0 18px rgba(232,196,82,.35),inset 0 0 10px rgba(232,196,82,.12);animation:neon 3s ease-in-out infinite}
+.cv .gold:nth-child(4){animation-delay:-.75s}.cv .gold:nth-child(5){animation-delay:-1.5s}.cv .gold:nth-child(6){animation-delay:-2.25s}
+.cv .gold svg{stroke:var(--g);fill:rgba(232,196,82,.25)}
+.cv .gold b{color:#FBE7A1;text-shadow:0 0 10px rgba(232,196,82,.45)}
+@keyframes neon{50%{box-shadow:0 0 9px rgba(232,196,82,.9),0 0 28px rgba(232,196,82,.5),inset 0 0 12px rgba(232,196,82,.18)}}
+
+
+/* Barrinha do tempo: esvazia até a revelação */
+.timebar{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(0,0,0,.28);overflow:hidden}
+.timebar i{position:absolute;inset:0 auto 0 0;width:100%;background:linear-gradient(90deg,#FFB21A,var(--yellow));box-shadow:0 0 8px var(--yellow);transition:width 1s linear}
+.timebar i::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),transparent);background-size:40% 100%;background-repeat:no-repeat;animation:run 2.4s linear infinite}
+@keyframes run{from{background-position:-40% 0}to{background-position:140% 0}}
+
+/* Animação dos botões: brilho passando e seta empurrando */
+.cta{overflow:hidden;isolation:isolate}
+.cta::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.5) 50%,transparent 65%);background-size:300% 100%;animation:sweep 3.4s ease-in-out infinite}
+@keyframes sweep{0%,55%{background-position:120% 0}100%{background-position:-60% 0}}
+.cta svg{animation:arrow 1.4s ease-in-out infinite}
+@keyframes arrow{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+.cta:hover svg{animation-duration:.7s}
+
+/* Estrelas: brilham mais ao passar o mouse ou o dedo */
+.cv .gold{position:relative;transition:box-shadow .3s,transform .3s}
+.cv .gold svg{transition:transform .45s cubic-bezier(.3,1.7,.5,1),filter .3s,fill .3s}
+.cv .gold:hover,.cv .gold.shine{transform:scale(1.015);box-shadow:0 0 10px rgba(232,196,82,1),0 0 34px rgba(232,196,82,.6),inset 0 0 16px rgba(232,196,82,.25)}
+.cv .gold:hover svg,.cv .gold.shine svg{transform:scale(1.45) rotate(72deg);fill:#FFE27A;filter:drop-shadow(0 0 4px #FFF3B0) drop-shadow(0 0 12px #FFD24D) drop-shadow(0 0 22px rgba(255,210,77,.8))}
+.cv .gold .spark{position:absolute;left:26px;top:50%;width:0;height:0;pointer-events:none}
+.cv .gold .spark i{position:absolute;width:4px;height:4px;margin:-2px;border-radius:50%;background:#FFF3B0;box-shadow:0 0 6px #FFD24D;opacity:0}
+.cv .gold:hover .spark i,.cv .gold.shine .spark i{animation:spark .8s ease-out forwards}
+@keyframes spark{0%{opacity:1;transform:rotate(var(--a)) translateY(0)}100%{opacity:0;transform:rotate(var(--a)) translateY(-26px)}}
+
+/* Faixa azul passando entre os bônus e o guia */
+.ticker{background:var(--blue);color:#fff;overflow:hidden;padding:13px 0;border-block:2px solid #0B0D14}
+.ticker-track{display:flex;width:max-content;animation:tick 65s linear infinite}
+@keyframes tick{to{transform:translateX(-50%)}}
+.ticker-track span{display:flex;align-items:center;gap:28px;padding-right:28px;white-space:nowrap;font:800 13.5px/1 var(--f);letter-spacing:.06em;text-transform:uppercase}
+.ticker-track span::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--yellow);box-shadow:0 0 8px var(--yellow)}
+
+/* Último botão, vermelho */
+.wall-cta{display:flex;justify-content:center;padding:44px 16px 0}
+.cta.red{background:linear-gradient(180deg,#FF3B47,#C8141F);box-shadow:0 10px 30px -8px rgba(229,34,47,.75);animation-name:nudgeRed}
+.cta.red:hover{box-shadow:0 14px 36px -8px rgba(229,34,47,.95)}
+@keyframes nudgeRed{0%,80%,100%{box-shadow:0 10px 30px -8px rgba(229,34,47,.75),0 0 0 0 rgba(229,34,47,.55)}90%{box-shadow:0 10px 30px -8px rgba(229,34,47,.75),0 0 0 14px rgba(229,34,47,0)}}
+
+/* Feed de aprovados */
+.wall{background:var(--ink);padding:8px 0 88px;overflow:hidden}
+.wall h2{margin:0 auto 28px;padding:0 16px;max-width:1120px;text-align:center;font:900 clamp(24px,6vw,38px)/1.1 var(--f);text-transform:uppercase}
+.wall h2 mark{background:var(--yellow);color:#000;padding:0 .14em}
+.marquee{-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:flex;gap:16px;width:max-content;padding:14px 0;animation:slide 170s linear infinite}
+@keyframes slide{to{transform:translateX(calc(-50% - 8px))}}
+.shot{position:relative;flex:none;margin:0;width:clamp(150px,40vw,210px);aspect-ratio:3/4;border-radius:14px;overflow:hidden;border:3px solid #fff;box-shadow:6px 6px 0 var(--blue);transform:rotate(-2deg);transition:transform .3s}
+.shot:nth-child(even){transform:rotate(2deg);box-shadow:6px 6px 0 var(--yellow)}
+.shot:hover{transform:rotate(0) scale(1.05)}
+.shot img{width:100%;height:100%;object-fit:cover}
+.shot span{position:absolute;left:8px;right:8px;bottom:8px;font:700 10.5px/1.25 var(--f);letter-spacing:.03em;text-transform:uppercase;background:var(--yellow);color:#000;padding:5px 8px;border-radius:4px}
+.shot span b{display:block;font-weight:900;font-size:12px;letter-spacing:.02em}
+
+/* Janelas (formulário e pop-up de saída) */
+dialog{border:0;padding:0;background:transparent;color:var(--text);width:min(440px,calc(100vw - 32px));max-height:calc(100svh - 32px);overflow:visible}
+dialog::backdrop{background:rgba(3,4,8,.78);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+dialog[open]{animation:pop .32s cubic-bezier(.2,.8,.2,1.1)}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
+.box{position:relative;background:var(--ink-2);border:1px solid var(--line);border-radius:16px;padding:28px 22px 22px;max-height:calc(100svh - 32px);overflow:auto;box-shadow:0 30px 70px -20px rgba(0,0,0,.9)}
+.x{position:absolute;top:10px;right:10px;width:36px;height:36px;border:0;border-radius:50%;background:transparent;color:var(--soft);cursor:pointer;display:grid;place-items:center}
+.x:hover{background:var(--ink-3);color:var(--text)}
+.x svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
+.box h2{margin:0 0 6px;padding-right:28px;font:900 italic 24px/1.1 var(--f);text-transform:uppercase}
+.box .hint{margin:0 0 18px;color:var(--soft);font-size:14px}
+form{display:flex;flex-direction:column;gap:14px}
+.field{display:flex;flex-direction:column;gap:6px}
+label{font:700 12px var(--f);letter-spacing:.06em;text-transform:uppercase;color:var(--soft)}
+label em{font-style:normal;font-weight:500;text-transform:none;letter-spacing:0}
+input{width:100%;height:52px;padding:0 14px;border-radius:10px;border:2px solid var(--ink-3);background:var(--ink);color:var(--text);font:600 16px var(--f);transition:border-color .15s}
+input::placeholder{color:#555A6B}
+input:focus{outline:none;border-color:var(--green)}
+input[aria-invalid=true]{border-color:var(--red-2)}
+.err{font:600 12.5px var(--f);color:var(--red-2)}
+.err:empty{display:none}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.box .cta{max-width:none;min-height:58px;font-size:15px;animation:none;margin-top:4px}
+.box .cta[disabled]{opacity:.65;cursor:progress;transform:none}
+.formerr{margin:0;font:600 13px var(--f);color:var(--red-2)}
+.legal{margin:0;font:500 11.5px/1.45 var(--f);color:var(--mute);text-align:center}
+
+.done{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px}
+.done .check{width:64px;height:64px;border-radius:50%;background:rgba(24,181,68,.14);border:2px solid var(--green);display:grid;place-items:center}
+.done .check svg{width:30px;height:30px;fill:none;stroke:#3EDB6C;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.done h2{padding:0}
+.done p{margin:0;color:var(--soft)}
+.wa{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;height:56px;border-radius:999px;background:#25D366;color:#06210f;font:900 14px var(--f);letter-spacing:.04em;text-transform:uppercase;text-decoration:none;transition:transform .2s}
+.wa:hover{transform:scale(1.03)}
+.wa svg{width:22px;height:22px;fill:currentColor}
+.note{font:500 12px var(--f);color:var(--mute)}
+
+/* Pop-up de saída */
+#exit .box{text-align:center;padding:30px 22px 20px;border:2px solid var(--red);background:linear-gradient(180deg,rgba(229,34,47,.16),transparent 45%),var(--ink-2)}
+.alarm{width:72px;height:72px;margin:0 auto 14px;border-radius:50%;background:var(--red);display:grid;place-items:center;box-shadow:0 0 0 8px rgba(229,34,47,.2);animation:shake 2.4s ease-in-out infinite}
+.alarm svg{width:36px;height:36px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+@keyframes shake{0%,70%,100%{transform:rotate(0)}75%{transform:rotate(-10deg)}80%{transform:rotate(9deg)}85%{transform:rotate(-6deg)}90%{transform:rotate(4deg)}}
+#exit h2{padding:0;font-size:clamp(22px,6.4vw,28px)}
+#exit h2 mark{background:var(--yellow);color:#000;padding:0 .12em}
+#exit p{margin:8px 0 20px;color:var(--soft);font-size:15px}
+.leave{margin-top:10px;width:100%;height:44px;border:0;background:transparent;color:var(--mute);font:600 13px var(--f);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.leave:hover{color:var(--soft)}
+</style>
+</head>
+<body>
+
+<div class="bar" role="region" aria-label="Contagem regressiva">
+  <div class="bar-in">
+    <p><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 21h22L12 2Zm0 5.5 7.6 12.5H4.4L12 7.5Zm-1 3.5v4h2v-4h-2Zm0 5v2h2v-2h-2Z"/></svg><span id="barText">A oferta será revelada no dia <span id="barDate">01/11, às 19h</span></span></p>
+    <div class="clock" id="clock" aria-live="off">
+      <div><b id="cd-d">00</b><span>Dias</span></div>
+      <div><b id="cd-h">00</b><span>Horas</span></div>
+      <div><b id="cd-m">00</b><span>Min</span></div>
+      <div><b id="cd-s">00</b><span>Seg</span></div>
+    </div>
+  </div>
+  <div class="timebar" aria-hidden="true"><i id="timefill"></i></div>
+</div>
+
+<main>
+  <section class="hero">
+    <picture class="hero-photo">
+      <source media="(max-width:899px)" srcset="img/pedro-evento-m.webp">
+      <img src="img/pedro-evento.webp" alt="Profe Pedro de braços abertos em um aulão da Argumenta MAIS lotado" width="1600" height="1135" fetchpriority="high">
+    </picture>
+    <div class="hero-in">
+      <div class="copy">
+        <img class="logo" src="img/logo-branco.png" alt="Argumenta MAIS, a 1ª escola de redação de Araucária" width="900" height="200">
+        <h1>Garanta sua aprovação em 2027 com a <mark><span class="nw">maior Black</span> <span class="nw">da história</span></mark> e <em>mais de <span class="nw">5 mil</span> <span class="nw">reais em bônus</span></em></h1>
+        <p class="lead">Clique no botão abaixo e aproveite o <b>maior desconto da Argumenta MAIS</b>.</p>
+        <button class="cta" type="button" data-open>Garantir minha vaga <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <p class="micro"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Grátis. Leva menos de 20 segundos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="perks">
+    <div class="perks-in">
+      <p class="kicker">Só para quem está na lista</p>
+      <h2>O que você <mark>garante</mark> nesta Black</h2>
+      <div class="grid">
+        <div class="perk"><span class="n" aria-hidden="true">1</span><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></span><h3>Acesso antecipado</h3><p>Você vê a oferta no WhatsApp antes de ela abrir para o público e escolhe sua vaga primeiro.</p></div>
+        <div class="perk"><span class="n" aria-hidden="true">2</span><span class="ic"><svg viewBox="0 0 24 24"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7Zm0 0h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7Z"/></svg></span><h3>Bônus exclusivos</h3><p>Mais de 5 mil reais em bônus que só quem estiver na lista vai poder garantir.</p></div>
+        <div class="perk"><span class="n" aria-hidden="true">3</span><span class="ic"><svg viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><h3>Menor preço da história</h3><p>O maior desconto que a Argumenta MAIS já deu, por tempo limitado.</p></div>
+        <div class="perk"><span class="n" aria-hidden="true">4</span><span class="ic"><svg viewBox="0 0 24 24"><path d="M18.2 8.4c2.4 0 4.3 1.6 4.3 3.6s-1.9 3.6-4.3 3.6c-3.8 0-8.6-7.2-12.4-7.2C3.4 8.4 1.5 10 1.5 12s1.9 3.6 4.3 3.6c3.8 0 8.6-7.2 12.4-7.2Z"/></svg></span><h3>A sua última Black<small>Vitalício no on-line</small></h3><p>Garantiu o curso on-line nesta Black? Então, é seu pra sempre. Você nunca mais vai precisar de professor de redação.</p></div>
+      </div>
+      <button class="cta" type="button" data-open>Quero minha vaga na Black <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
+
+  <div class="ticker" role="marquee" aria-label="A maior Black da história. Mais de 5 mil reais em bônus. 10 anos de docência, 10 motivos para você ser Argumenta. O melhor e mais impactante curso da cidade">
+    <div class="ticker-track" id="ticker"><span>A maior Black da história</span><span>Mais de 5 mil reais em bônus</span><span>10 anos de docência, 10 motivos para você ser Argumenta</span><span>O melhor e mais impactante curso da cidade</span></div>
+  </div>
+
+  <section class="guide">
+    <div class="guide-in">
+      <figure><img src="img/pedro-sorrindo.webp" alt="Profe Pedro sorrindo, de perfil" width="667" height="1000" loading="lazy"><figcaption>Profe Pedro</figcaption></figure>
+      <div class="txt">
+        <p class="kicker">Professor e fundador</p>
+        <h2>Quem será <mark>teu guia?</mark></h2>
+        <p class="name"><b>Profe Pedro</b>, fundador da Argumenta MAIS, a 1ª escola de redação de Araucária.</p>
+        <ul class="cv">
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><b>10 anos de docência</b><span>Uma década ensinando redação para o ENEM e os vestibulares.</span></div></li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><b>Fundador da Argumenta MAIS</b><span>A 1ª escola de redação de Araucária.</span></div></li>
+          <li class="gold"><span class="spark" aria-hidden="true"><i style="--a:0deg"></i><i style="--a:45deg"></i><i style="--a:90deg"></i><i style="--a:135deg"></i><i style="--a:180deg"></i><i style="--a:225deg"></i><i style="--a:270deg"></i><i style="--a:315deg"></i></span><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><div><b>Único curso da cidade com aprovados em Medicina</b></div></li>
+          <li class="gold"><span class="spark" aria-hidden="true"><i style="--a:0deg"></i><i style="--a:45deg"></i><i style="--a:90deg"></i><i style="--a:135deg"></i><i style="--a:180deg"></i><i style="--a:225deg"></i><i style="--a:270deg"></i><i style="--a:315deg"></i></span><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><div><b>Único curso da cidade com centenas de 900+</b></div></li>
+          <li class="gold"><span class="spark" aria-hidden="true"><i style="--a:0deg"></i><i style="--a:45deg"></i><i style="--a:90deg"></i><i style="--a:135deg"></i><i style="--a:180deg"></i><i style="--a:225deg"></i><i style="--a:270deg"></i><i style="--a:315deg"></i></span><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><div><b>Único curso da cidade com centenas de aprovados na UFPR</b></div></li>
+          <li class="gold"><span class="spark" aria-hidden="true"><i style="--a:0deg"></i><i style="--a:45deg"></i><i style="--a:90deg"></i><i style="--a:135deg"></i><i style="--a:180deg"></i><i style="--a:225deg"></i><i style="--a:270deg"></i><i style="--a:315deg"></i></span><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><div><b>Único curso com alunos 980 no ENEM</b></div></li>
+        </ul>
+      </div>
+    </div>
+    <div class="guide-cta"><button class="cta" type="button" data-open>Quero me cadastrar na Black <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+  </section>
+
+  <section class="wall" aria-labelledby="wallTitle">
+    <h2 id="wallTitle">Quem já <mark>argumentou mais</mark></h2>
+    <div class="marquee">
+      <div class="track" id="track">
+        <figure class="shot"><img src="img/aprovados/1.webp" alt="Arquitetura: Aprovação na UFPR" width="360" height="480" loading="lazy"><span><b>Arquitetura</b>Aprovação na UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/ana-elisa.webp" alt="Ana Elisa: 940 no ENEM" width="360" height="480" loading="lazy"><span><b>Ana Elisa</b>940 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/9.webp" alt="Guilherme Pereira: Medicina UFPR" width="360" height="480" loading="lazy"><span><b>Guilherme Pereira</b>Medicina UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/giovanna.webp" alt="Giovanna Rosol: 960 no ENEM" width="360" height="480" loading="lazy"><span><b>Giovanna Rosol</b>960 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/2.webp" alt="Zootecnia: Aprovação na UFPR" width="360" height="480" loading="lazy"><span><b>Zootecnia</b>Aprovação na UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/lucas.webp" alt="Lucas Picussa: Eng. Mecânica UFPR" width="360" height="480" loading="lazy"><span><b>Lucas Picussa</b>Eng. Mecânica UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/deborah.webp" alt="Deborah Viegas: 940 no ENEM" width="360" height="480" loading="lazy"><span><b>Deborah Viegas</b>940 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/3.webp" alt="Luiz Gustavo: Medicina UFPR" width="360" height="480" loading="lazy"><span><b>Luiz Gustavo</b>Medicina UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/leticia.webp" alt="Leticia Martins: 960 no ENEM" width="360" height="480" loading="lazy"><span><b>Leticia Martins</b>960 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/4.webp" alt="Paola Fiori: Nutrição UFPR" width="360" height="480" loading="lazy"><span><b>Paola Fiori</b>Nutrição UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/renata.webp" alt="Renata Lesniowski: 940 no ENEM" width="360" height="480" loading="lazy"><span><b>Renata Lesniowski</b>940 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/iann.webp" alt="Iann Furtado: Eng. Civil UFPR" width="360" height="480" loading="lazy"><span><b>Iann Furtado</b>Eng. Civil UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/milena.webp" alt="Milena Luciano: 940 no ENEM" width="360" height="480" loading="lazy"><span><b>Milena Luciano</b>940 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/10.webp" alt="Juliana Almeida: Medicina UFPR" width="360" height="480" loading="lazy"><span><b>Juliana Almeida</b>Medicina UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/gabriele.webp" alt="Gabriele Nunes: Economia UFPR · 2º lugar" width="360" height="480" loading="lazy"><span><b>Gabriele Nunes</b>Economia UFPR · 2º lugar</span></figure>
+        <figure class="shot"><img src="img/aprovados/ana-teixeira.webp" alt="Ana Teixeira: 920 no ENEM" width="360" height="480" loading="lazy"><span><b>Ana Teixeira</b>920 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/6.webp" alt="Laura Pessoa: Pedagogia UFPR · 940 no ENEM" width="360" height="480" loading="lazy"><span><b>Laura Pessoa</b>Pedagogia UFPR · 940 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/lara.webp" alt="Lara Moreira: 920 no ENEM" width="360" height="480" loading="lazy"><span><b>Lara Moreira</b>920 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/eduardo.webp" alt="Eduardo Lopes: Nutrição UFPR" width="360" height="480" loading="lazy"><span><b>Eduardo Lopes</b>Nutrição UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/eduarda.webp" alt="Eduarda Klemba: 900 no ENEM" width="360" height="480" loading="lazy"><span><b>Eduarda Klemba</b>900 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/5.webp" alt="Enfermagem: Aprovação na UFPR" width="360" height="480" loading="lazy"><span><b>Enfermagem</b>Aprovação na UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/isadora.webp" alt="Isadora Zandonay: 900 no ENEM" width="360" height="480" loading="lazy"><span><b>Isadora Zandonay</b>900 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/joao-pedro.webp" alt="João Pedro: 900 no ENEM" width="360" height="480" loading="lazy"><span><b>João Pedro</b>900 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/perola.webp" alt="Pérola Vogt: 900 no ENEM" width="360" height="480" loading="lazy"><span><b>Pérola Vogt</b>900 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/7.webp" alt="Ciências Sociais: Aprovação na UFPR" width="360" height="480" loading="lazy"><span><b>Ciências Sociais</b>Aprovação na UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/8.webp" alt="Psicologia: Aprovação na UFPR" width="360" height="480" loading="lazy"><span><b>Psicologia</b>Aprovação na UFPR</span></figure>
+      </div>
+    </div>
+    <div class="wall-cta"><button class="cta red" type="button" data-open>Quero Argumentar MAIS <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>© 2026 Argumenta MAIS · Todos os direitos reservados.</span>
+  <span>CNPJ: 52.905.996/0001-88 · Araucária, PR · <a href="https://www.instagram.com/argumentamais/" target="_blank" rel="noopener">@argumentamais</a></span>
+  <span>Seus dados são usados só para falar com você sobre a Black 2027.</span>
+</footer>
+
+<!-- Formulário -->
+<dialog id="lead" aria-labelledby="leadTitle">
+  <div class="box">
+    <button class="x" type="button" data-close aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div id="formView">
+      <h2 id="leadTitle">Garanta sua vaga na lista VIP</h2>
+      <p class="hint">Preencha e receba a oferta da Black 2027 em primeira mão.</p>
+      <form id="form" novalidate>
+        <div class="field">
+          <label for="nome">Seu nome completo</label>
+          <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Como você se chama?">
+          <span class="err" id="nome-err"></span>
+        </div>
+        <div class="field">
+          <label for="whatsapp">Seu WhatsApp</label>
+          <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel-national" inputmode="numeric" placeholder="(41) 99999-9999">
+          <span class="err" id="whatsapp-err"></span>
+        </div>
+        <div class="field">
+          <label for="email">Seu e-mail</label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="seuemail@gmail.com">
+          <span class="err" id="email-err"></span>
+        </div>
+        <div class="hp" aria-hidden="true"><label for="site">Não preencha</label><input type="text" id="site" name="site" tabindex="-1" autocomplete="off"></div>
+        <p class="formerr" id="formerr" hidden></p>
+        <button class="cta" type="submit" id="send"><span>Quero minha vaga</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <p class="legal">Ao enviar, você aceita receber as novidades da Black 2027 da Argumenta MAIS no WhatsApp e por e-mail.</p>
+      </form>
+    </div>
+    <div id="doneView" class="done" hidden>
+      <span class="check"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+      <h2>Você está na lista!</h2>
+      <p id="doneMsg">Seu lugar na lista VIP da Black 2027 está garantido.</p>
+      <p>Agora entre no <b>grupo oficial da Black</b> no WhatsApp. É lá que a oferta chega primeiro.</p>
+      <a class="wa" href="https://chat.whatsapp.com/LUufVI1gSB1ELdb5ZrFuIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Entrar no grupo da Black</a>
+      <span class="note" id="testNote" hidden>Modo de teste: este envio não foi para a planilha.</span>
+    </div>
+  </div>
+</dialog>
+
+<!-- Pop-up de saída -->
+<dialog id="exit" aria-labelledby="exitTitle" aria-describedby="exitText">
+  <div class="box">
+    <span class="alarm" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></span>
+    <h2 id="exitTitle">Seu concorrente <mark>vai se inscrever</mark></h2>
+    <p id="exitText">Você quer mesmo sair e deixar a vaga dele garantida?</p>
+    <button class="cta" type="button" id="stay">Não! Quero minha vaga <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <button class="leave" type="button" id="leave">Sim, quero sair</button>
+  </div>
+</dialog>
+
+<script>
+/* ===== Ajustes rápidos ===== */
+// Dia e hora em que a oferta será revelada (horário de Brasília).
+const REVELACAO = '2026-11-01T19:00:00-03:00';
+// Início da contagem: a barrinha vermelha começa cheia aqui e esvazia até a revelação.
+const INICIO = '2026-10-01T00:00:00-03:00';
+// Mesmo App da Web do cadastro da Black: os leads caem na mesma planilha. Vazio = modo de teste.
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzhqHEPtqhPQgF2wh9v_Vfo4y72tKbYABDHBvdAkioQMR8xo7iO-H9NNyICxbMpWPby/exec';
+/* =========================== */
+
+const $ = id => document.getElementById(id);
+const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const store = {
+  get(k, s){ try { return (s ? sessionStorage : localStorage).getItem(k); } catch(e){ return null; } },
+  set(k, v, s){ try { (s ? sessionStorage : localStorage).setItem(k, v); } catch(e){} }
+};
+
+/* Contagem regressiva */
+const alvo = new Date(REVELACAO);
+const parte = Object.fromEntries(new Intl.DateTimeFormat('pt-BR', { timeZone: 'America/Sao_Paulo', day: '2-digit', month: '2-digit', hour: 'numeric', minute: '2-digit', hourCycle: 'h23' })
+  .formatToParts(alvo).map(p => [p.type, p.value]));
+$('barDate').textContent = `${parte.day}/${parte.month}, às ${+parte.hour}h${parte.minute !== '00' ? parte.minute : ''}`;
+const pad = n => String(n).padStart(2, '0');
+function tick(){
+  let s = Math.max(0, Math.floor((alvo - Date.now()) / 1000));
+  const total = alvo - new Date(INICIO);
+  $('timefill').style.width = Math.max(0, Math.min(100, (alvo - Date.now()) / total * 100)) + '%';
+  if (!s) { $('barText').textContent = 'A oferta da Black 2027 está no ar!'; $('clock').hidden = true; return; }
+  $('cd-d').textContent = pad(Math.floor(s / 86400)); s %= 86400;
+  $('cd-h').textContent = pad(Math.floor(s / 3600)); s %= 3600;
+  $('cd-m').textContent = pad(Math.floor(s / 60));
+  $('cd-s').textContent = pad(s % 60);
+  setTimeout(tick, 1000 - Date.now() % 1000);
+}
+tick();
+
+/* Feed de aprovados: duplica as fotos para a faixa girar sem fim */
+const track = $('track');
+[...track.children].forEach(f => { const c = f.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.querySelector('img').alt = ''; track.appendChild(c); });
+
+const ticker = $('ticker');
+const base = ticker.innerHTML;
+ticker.innerHTML = base.repeat(4);
+[...ticker.children].forEach((el, i) => { if (i >= 4) el.setAttribute('aria-hidden', 'true'); });
+
+/* Estrelas brilham no toque também (celular não tem "passar o mouse") */
+document.querySelectorAll('.cv .gold').forEach(li => li.addEventListener('pointerdown', () => {
+  li.classList.remove('shine'); void li.offsetWidth; li.classList.add('shine');
+  clearTimeout(li._t); li._t = setTimeout(() => li.classList.remove('shine'), 1400);
+}));
+
+/* Formulário */
+const lead = $('lead'), exitBox = $('exit'), form = $('form'), send = $('send'), formerr = $('formerr');
+let registrado = store.get('bo_ok') === '1';
+function abrirForm(){
+  if (exitBox.open) exitBox.close();
+  if (!lead.open) lead.showModal();
+  if (!registrado) setTimeout(() => $('nome').focus(), 60);
+}
+document.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', abrirForm));
+document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', () => b.closest('dialog').close()));
+[lead, exitBox].forEach(d => d.addEventListener('click', e => { if (e.target === d) d.close(); }));
+
+$('whatsapp').addEventListener('input', e => {
+  const d = e.target.value.replace(/\D/g, '').slice(0, 11);
+  let out = d;
+  if (d.length > 2) out = '(' + d.slice(0, 2) + ') ' + d.slice(2);
+  if (d.length > 6) out = '(' + d.slice(0, 2) + ') ' + d.slice(2, d.length - 4) + '-' + d.slice(-4);
+  e.target.value = out;
+});
+function field(id, text){ $(id).setAttribute('aria-invalid', text ? 'true' : 'false'); $(id + '-err').textContent = text || ''; return !text; }
+form.addEventListener('input', e => { if (e.target.id && $(e.target.id + '-err')) field(e.target.id, ''); });
+function validar(){
+  let ok = field('nome', $('nome').value.trim().split(/\s+/).length >= 2 ? '' : 'Escreva nome e sobrenome.');
+  ok = field('whatsapp', $('whatsapp').value.replace(/\D/g, '').length >= 10 ? '' : 'Digite o WhatsApp com DDD.') && ok;
+  ok = field('email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('email').value.trim()) ? '' : 'Confira o e-mail.') && ok;
+  if (!ok) form.querySelector('[aria-invalid=true]').focus();
+  return ok;
+}
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  formerr.hidden = true;
+  if (!validar()) return;
+  const utm = new URLSearchParams(location.search).get('utm_source');
+  const data = new URLSearchParams({
+    nome: $('nome').value.trim(),
+    whatsapp: $('whatsapp').value.trim(),
+    email: $('email').value.trim(),
+    origem: 'Página da oferta' + (utm ? ' · ' + utm : ''),
+    site: $('site').value
+  });
+  send.disabled = true; send.firstElementChild.textContent = 'Enviando…';
+  try {
+    if (SCRIPT_URL) await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: data });
+    else { await new Promise(r => setTimeout(r, 600)); $('testNote').hidden = false; }
+    registrado = true; store.set('bo_ok', '1');
+    $('doneMsg').textContent = $('nome').value.trim().split(/\s+/)[0] + ', seu lugar na lista VIP da Black 2027 está garantido.';
+    $('formView').hidden = true; $('doneView').hidden = false;
+  } catch (err) {
+    formerr.textContent = 'Não conseguimos enviar agora. Verifique sua internet e tente de novo.';
+    formerr.hidden = false;
+  } finally {
+    send.disabled = false; send.firstElementChild.textContent = 'Quero minha vaga';
+  }
+});
+
+/* Pop-up de saída: aparece uma vez por visita, só para quem ainda não se inscreveu.
+   Computador: quando o mouse sai pela parte de cima da janela (rumo à aba ou ao X).
+   Celular: quando a pessoa toca em "voltar" (botão do aparelho, gesto ou seta do navegador do Instagram). */
+const inicio = Date.now();
+let porVoltar = false, armadilha = false;
+const jaViu = () => store.get('bo_exit', true) === '1';
+function mostrarSaida(viaVoltar){
+  if (registrado || jaViu() || lead.open || exitBox.open) return false;
+  store.set('bo_exit', '1', true);
+  porVoltar = viaVoltar;
+  exitBox.showModal();
+  return true;
+}
+document.addEventListener('mouseout', e => {
+  if (!e.relatedTarget && e.clientY <= 0 && Date.now() - inicio > 3000) mostrarSaida(false);
+});
+// Cria uma "página extra" no histórico no primeiro toque, para segurar o primeiro "voltar".
+function armar(){
+  if (armadilha || registrado || jaViu()) return;
+  armadilha = true;
+  history.pushState({ bo: 1 }, '');
+}
+['pointerdown', 'keydown', 'touchend'].forEach(ev => addEventListener(ev, armar, { once: true, passive: true }));
+addEventListener('popstate', () => {
+  if (!armadilha) return;
+  armadilha = false;
+  if (!mostrarSaida(true)) history.back();
+});
+$('stay').addEventListener('click', () => { porVoltar = false; abrirForm(); });
+$('leave').addEventListener('click', () => {
+  exitBox.close();
+  if (porVoltar) history.back();
+});
+</script>
+</body>
+</html>
