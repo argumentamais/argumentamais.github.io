@@ -172,13 +172,14 @@ h1 em{font-style:normal;color:var(--blue-2)}
 .wall h2{margin:0 auto 28px;padding:0 16px;max-width:1120px;text-align:center;font:900 clamp(24px,6vw,38px)/1.1 var(--f);text-transform:uppercase}
 .wall h2 mark{background:var(--yellow);color:#000;padding:0 .14em}
 .marquee{-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.track{display:flex;gap:16px;width:max-content;padding:14px 0;animation:slide 45s linear infinite}
+.track{display:flex;gap:16px;width:max-content;padding:14px 0;animation:slide 120s linear infinite}
 @keyframes slide{to{transform:translateX(calc(-50% - 8px))}}
 .shot{position:relative;flex:none;margin:0;width:clamp(150px,40vw,210px);aspect-ratio:3/4;border-radius:14px;overflow:hidden;border:3px solid #fff;box-shadow:6px 6px 0 var(--blue);transform:rotate(-2deg);transition:transform .3s}
 .shot:nth-child(even){transform:rotate(2deg);box-shadow:6px 6px 0 var(--yellow)}
 .shot:hover{transform:rotate(0) scale(1.05)}
 .shot img{width:100%;height:100%;object-fit:cover}
-.shot span{position:absolute;left:8px;bottom:8px;font:800 10.5px/1.2 var(--f);letter-spacing:.06em;text-transform:uppercase;background:var(--yellow);color:#000;padding:4px 7px;border-radius:3px}
+.shot span{position:absolute;left:8px;right:8px;bottom:8px;font:700 10.5px/1.25 var(--f);letter-spacing:.03em;text-transform:uppercase;background:var(--yellow);color:#000;padding:5px 8px;border-radius:4px}
+.shot span b{display:block;font-weight:900;font-size:12px;letter-spacing:.02em}
 
 /* Janelas (formulário e pop-up de saída) */
 dialog{border:0;padding:0;background:transparent;color:var(--text);width:min(440px,calc(100vw - 32px));max-height:calc(100svh - 32px);overflow:visible}
@@ -303,16 +304,32 @@ input[aria-invalid=true]{border-color:var(--red-2)}
     <h2 id="wallTitle">Quem já <mark>argumentou mais</mark></h2>
     <div class="marquee">
       <div class="track" id="track">
-        <figure class="shot"><img src="img/aprovados/1.webp" alt="Aluna ou aluno aprovado da Argumenta MAIS" width="360" height="480" loading="lazy"></figure>
-        <figure class="shot"><img src="img/aprovados/9.webp" alt="Guilherme Pereira, aprovado em Medicina na UFPR" width="360" height="480" loading="lazy"><span>Guilherme · Medicina UFPR</span></figure>
-        <figure class="shot"><img src="img/aprovados/2.webp" alt="Aluna ou aluno aprovado da Argumenta MAIS" width="360" height="480" loading="lazy"></figure>
-        <figure class="shot"><img src="img/aprovados/3.webp" alt="Luiz Gustavo, aprovado em Medicina na UFPR" width="360" height="480" loading="lazy"><span>Luiz Gustavo · Medicina UFPR</span></figure>
-        <figure class="shot"><img src="img/aprovados/4.webp" alt="Aluna ou aluno aprovado da Argumenta MAIS" width="360" height="480" loading="lazy"></figure>
-        <figure class="shot"><img src="img/aprovados/10.webp" alt="Juliana Almeida, aprovada em Medicina na UFPR" width="360" height="480" loading="lazy"><span>Juliana · Medicina UFPR</span></figure>
-        <figure class="shot"><img src="img/aprovados/5.webp" alt="Aluna ou aluno aprovado da Argumenta MAIS" width="360" height="480" loading="lazy"></figure>
-        <figure class="shot"><img src="img/aprovados/6.webp" alt="Aluna ou aluno aprovado da Argumenta MAIS" width="360" height="480" loading="lazy"></figure>
-        <figure class="shot"><img src="img/aprovados/7.webp" alt="Aluna ou aluno aprovado da Argumenta MAIS" width="360" height="480" loading="lazy"></figure>
-        <figure class="shot"><img src="img/aprovados/8.webp" alt="Aluna ou aluno aprovado da Argumenta MAIS" width="360" height="480" loading="lazy"></figure>
+        <figure class="shot"><img src="img/aprovados/1.webp" alt="Arquitetura: Aprovação na UFPR" width="360" height="480" loading="lazy"><span><b>Arquitetura</b>Aprovação na UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/ana-elisa.webp" alt="Ana Elisa: 940 no ENEM" width="360" height="480" loading="lazy"><span><b>Ana Elisa</b>940 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/9.webp" alt="Guilherme Pereira: Medicina UFPR" width="360" height="480" loading="lazy"><span><b>Guilherme Pereira</b>Medicina UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/giovanna.webp" alt="Giovanna Rosol: 960 no ENEM" width="360" height="480" loading="lazy"><span><b>Giovanna Rosol</b>960 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/2.webp" alt="Zootecnia: Aprovação na UFPR" width="360" height="480" loading="lazy"><span><b>Zootecnia</b>Aprovação na UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/lucas.webp" alt="Lucas Picussa: Eng. Mecânica UFPR" width="360" height="480" loading="lazy"><span><b>Lucas Picussa</b>Eng. Mecânica UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/deborah.webp" alt="Deborah Viegas: 940 no ENEM" width="360" height="480" loading="lazy"><span><b>Deborah Viegas</b>940 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/3.webp" alt="Luiz Gustavo: Medicina UFPR" width="360" height="480" loading="lazy"><span><b>Luiz Gustavo</b>Medicina UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/leticia.webp" alt="Leticia Martins: 960 no ENEM" width="360" height="480" loading="lazy"><span><b>Leticia Martins</b>960 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/4.webp" alt="Paola Fiori: Nutrição UFPR" width="360" height="480" loading="lazy"><span><b>Paola Fiori</b>Nutrição UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/renata.webp" alt="Renata Lesniowski: 940 no ENEM" width="360" height="480" loading="lazy"><span><b>Renata Lesniowski</b>940 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/iann.webp" alt="Iann Furtado: Eng. Civil UFPR" width="360" height="480" loading="lazy"><span><b>Iann Furtado</b>Eng. Civil UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/milena.webp" alt="Milena Luciano: 940 no ENEM" width="360" height="480" loading="lazy"><span><b>Milena Luciano</b>940 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/10.webp" alt="Juliana Almeida: Medicina UFPR" width="360" height="480" loading="lazy"><span><b>Juliana Almeida</b>Medicina UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/gabriele.webp" alt="Gabriele Nunes: Economia UFPR · 2º lugar" width="360" height="480" loading="lazy"><span><b>Gabriele Nunes</b>Economia UFPR · 2º lugar</span></figure>
+        <figure class="shot"><img src="img/aprovados/ana-teixeira.webp" alt="Ana Teixeira: 920 no ENEM" width="360" height="480" loading="lazy"><span><b>Ana Teixeira</b>920 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/6.webp" alt="Laura Pessoa: Pedagogia UFPR · 940 no ENEM" width="360" height="480" loading="lazy"><span><b>Laura Pessoa</b>Pedagogia UFPR · 940 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/lara.webp" alt="Lara Moreira: 920 no ENEM" width="360" height="480" loading="lazy"><span><b>Lara Moreira</b>920 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/eduardo.webp" alt="Eduardo Lopes: Nutrição UFPR" width="360" height="480" loading="lazy"><span><b>Eduardo Lopes</b>Nutrição UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/eduarda.webp" alt="Eduarda Klemba: 900 no ENEM" width="360" height="480" loading="lazy"><span><b>Eduarda Klemba</b>900 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/5.webp" alt="Enfermagem: Aprovação na UFPR" width="360" height="480" loading="lazy"><span><b>Enfermagem</b>Aprovação na UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/isadora.webp" alt="Isadora Zandonay: 900 no ENEM" width="360" height="480" loading="lazy"><span><b>Isadora Zandonay</b>900 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/joao-pedro.webp" alt="João Pedro: 900 no ENEM" width="360" height="480" loading="lazy"><span><b>João Pedro</b>900 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/perola.webp" alt="Pérola Vogt: 900 no ENEM" width="360" height="480" loading="lazy"><span><b>Pérola Vogt</b>900 no ENEM</span></figure>
+        <figure class="shot"><img src="img/aprovados/7.webp" alt="Ciências Sociais: Aprovação na UFPR" width="360" height="480" loading="lazy"><span><b>Ciências Sociais</b>Aprovação na UFPR</span></figure>
+        <figure class="shot"><img src="img/aprovados/8.webp" alt="Psicologia: Aprovação na UFPR" width="360" height="480" loading="lazy"><span><b>Psicologia</b>Aprovação na UFPR</span></figure>
       </div>
     </div>
   </section>
