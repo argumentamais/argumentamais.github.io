@@ -167,6 +167,12 @@ h1 em{font-style:normal;color:var(--blue-2)}
 .ticker-track span{display:flex;align-items:center;gap:28px;padding-right:28px;white-space:nowrap;font:800 13.5px/1 var(--f);letter-spacing:.06em;text-transform:uppercase}
 .ticker-track span::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--yellow);box-shadow:0 0 8px var(--yellow)}
 
+/* Último botão, vermelho */
+.wall-cta{display:flex;justify-content:center;padding:44px 16px 0}
+.cta.red{background:linear-gradient(180deg,#FF3B47,#C8141F);box-shadow:0 10px 30px -8px rgba(229,34,47,.75);animation-name:nudgeRed}
+.cta.red:hover{box-shadow:0 14px 36px -8px rgba(229,34,47,.95)}
+@keyframes nudgeRed{0%,80%,100%{box-shadow:0 10px 30px -8px rgba(229,34,47,.75),0 0 0 0 rgba(229,34,47,.55)}90%{box-shadow:0 10px 30px -8px rgba(229,34,47,.75),0 0 0 14px rgba(229,34,47,0)}}
+
 /* Feed de aprovados */
 .wall{background:var(--ink);padding:8px 0 88px;overflow:hidden}
 .wall h2{margin:0 auto 28px;padding:0 16px;max-width:1120px;text-align:center;font:900 clamp(24px,6vw,38px)/1.1 var(--f);text-transform:uppercase}
@@ -332,6 +338,7 @@ input[aria-invalid=true]{border-color:var(--red-2)}
         <figure class="shot"><img src="img/aprovados/8.webp" alt="Psicologia: Aprovação na UFPR" width="360" height="480" loading="lazy"><span><b>Psicologia</b>Aprovação na UFPR</span></figure>
       </div>
     </div>
+    <div class="wall-cta"><button class="cta red" type="button" data-open>Quero Argumentar MAIS <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
   </section>
 </main>
 
