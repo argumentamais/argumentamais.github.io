@@ -58,10 +58,12 @@ a{color:inherit}
 .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:40% 30%}
 .hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--ink) 0%,rgba(7,8,13,.82) 22%,rgba(7,8,13,.25) 55%,rgba(7,8,13,.1) 80%),linear-gradient(0deg,var(--ink),transparent 25%)}
 .hero-in{max-width:1120px;margin:0 auto;padding:72px 16px 80px;min-height:calc(100svh - 48px);display:flex;align-items:center}
-.copy{display:flex;flex-direction:column;gap:22px;max-width:560px}
+.copy{display:flex;flex-direction:column;gap:22px;max-width:620px}
 .logo{width:250px;height:auto}
-h1{margin:0;font:900 clamp(30px,7.6vw,50px)/1.06 var(--f);text-transform:uppercase;letter-spacing:-.005em;text-wrap:balance}
-h1 mark{background:var(--yellow);color:#000;padding:0 .14em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+h1{margin:0;font:900 clamp(24px,6.4vw,40px)/1.12 var(--f);text-transform:uppercase;letter-spacing:-.005em;text-wrap:pretty}
+h1 .nw{white-space:nowrap}
+@media (min-width:900px){h1 mark{white-space:nowrap}}
+h1 mark{background:var(--yellow);color:#000;padding:.02em .16em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 h1 em{font-style:normal;color:var(--blue-2)}
 .lead{margin:0;font:500 17px/1.55 var(--f);color:var(--soft);max-width:42ch}
 .lead b{color:var(--text);font-weight:800}
@@ -260,7 +262,7 @@ input[aria-invalid=true]{border-color:var(--red-2)}
     <div class="hero-in">
       <div class="copy">
         <img class="logo" src="img/logo-branco.png" alt="Argumenta MAIS, a 1ª escola de redação de Araucária" width="900" height="200">
-        <h1>Garanta sua aprovação em 2027 com a <mark>maior Black da história</mark> e <em>mais de 5 mil reais em bônus</em></h1>
+        <h1>Garanta sua aprovação em 2027 com a <mark><span class="nw">maior Black</span> <span class="nw">da história</span></mark> e <em>mais de <span class="nw">5 mil</span> <span class="nw">reais em bônus</span></em></h1>
         <p class="lead">Clique no botão abaixo e aproveite o <b>maior desconto da Argumenta MAIS</b>.</p>
         <button class="cta" type="button" data-open>Garantir minha vaga <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         <p class="micro"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Grátis. Leva menos de 20 segundos.</p>
