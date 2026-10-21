@@ -66,13 +66,14 @@ h1 em{font-style:normal;color:var(--blue)}
 
 /* Celular: título ao lado do Argumentinha, faixa embaixo, depois texto e botão */
 @media (max-width:899px){
-  .hero{overflow-x:clip;padding:14px 16px 28px;gap:0;grid-template-columns:1fr 46%;grid-template-areas:"h1 art" "tk tk" "lead lead" "cta cta";align-items:center;align-content:start}
+  .hero{flex:none;overflow-x:clip;padding:14px 16px 8px;gap:0;grid-template-columns:1fr 46%;grid-template-areas:"h1 art" "tk tk" "lead lead" "cta cta";align-items:center;align-content:start}
   .copy{display:contents}
   .kicker,.bubble{display:none}
   h1{grid-area:h1;font-size:clamp(21px,6.3vw,30px);line-height:1.1}
-  .art{grid-area:art}
-  .pic{width:100%}
-  .ticker{display:block;grid-area:tk;margin:6px -16px 22px;transform:rotate(-1.5deg)}
+  .art{grid-area:art;align-self:end}
+  .pic{width:100%;-webkit-mask-image:none;mask-image:none}
+  .art img{animation:none;filter:none}
+  .ticker{display:block;grid-area:tk;position:relative;z-index:2;margin:-14px -16px 22px;transform:rotate(-1.5deg)}
   .lead{grid-area:lead;margin-bottom:22px}
   .open{grid-area:cta;max-width:none}
 }
@@ -91,6 +92,7 @@ h1 em{font-style:normal;color:var(--blue)}
 @keyframes nudge{0%,80%,100%{box-shadow:0 10px 30px -8px rgba(24,181,68,.75),0 0 0 0 rgba(24,181,68,.55)}90%{box-shadow:0 10px 30px -8px rgba(24,181,68,.75),0 0 0 14px rgba(24,181,68,0)}}
 body{min-height:100svh;display:flex;flex-direction:column}
 .hero{flex:1;width:100%}
+@media (max-width:899px){.hero{flex:none}.foot{margin-top:24px}}
 .card h2{margin:0 0 4px;font:900 clamp(22px,5vw,28px)/1.15 var(--f);text-transform:uppercase}
 .card .sub{margin:0 0 24px;color:var(--soft)}
 form{display:flex;flex-direction:column;gap:26px}
