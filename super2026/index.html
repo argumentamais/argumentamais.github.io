@@ -59,9 +59,19 @@ h1 em{font-style:normal;color:var(--blue-2)}
 }
 
 /* Formulário */
-.card-wrap{max-width:1120px;margin:0 auto;padding:8px 16px 72px}
-.card{max-width:720px;margin:0 auto;background:var(--ink-2);border:2px solid var(--blue);border-radius:20px;box-shadow:8px 8px 0 var(--blue);padding:28px 22px}
+/* Janela do formulário: abre pelo botão "Me conta aqui" */
+.card{width:min(640px,calc(100% - 24px));max-height:calc(100dvh - 24px);overflow:auto;margin:auto;color:var(--text);background:var(--ink-2);border:2px solid var(--blue);border-radius:20px;box-shadow:8px 8px 0 var(--blue);padding:28px 22px}
+.card::backdrop{background:rgba(3,4,8,.78);backdrop-filter:blur(3px)}
+.card[open]{animation:pop .25s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
 @media (min-width:700px){.card{padding:36px 40px}}
+.x{position:absolute;top:12px;right:12px;width:40px;height:40px;border:0;border-radius:50%;background:rgba(255,255,255,.08);color:var(--text);display:grid;place-items:center;cursor:pointer}
+.x svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
+.card h2{padding-right:36px}
+.open{max-width:360px;animation:nudge 2.6s ease-in-out infinite}
+@keyframes nudge{0%,80%,100%{box-shadow:0 10px 30px -8px rgba(24,181,68,.75),0 0 0 0 rgba(24,181,68,.55)}90%{box-shadow:0 10px 30px -8px rgba(24,181,68,.75),0 0 0 14px rgba(24,181,68,0)}}
+body{min-height:100svh;display:flex;flex-direction:column}
+.hero{flex:1;width:100%}
 .card h2{margin:0 0 4px;font:900 clamp(22px,5vw,28px)/1.15 var(--f);text-transform:uppercase}
 .card .sub{margin:0 0 24px;color:var(--soft)}
 form{display:flex;flex-direction:column;gap:26px}
@@ -126,6 +136,7 @@ input[type=text]:focus,select:focus{outline:none;border-color:var(--blue-2)}
     <p class="kicker">Superintensivos de reta final</p>
     <h1>Diga onde você quer chegar. <em>Eu vou te ajudar.</em></h1>
     <p class="lead">Conta pra gente <b>quais vestibulares você vai fazer em 2026 ainda</b>. Com as respostas, vou avaliar como posso atendê-los e elaborar mais aulas para as próximas provas.</p>
+    <button class="cta open" type="button" id="abrir"><span>Me conta aqui</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
   </div>
   <div class="art">
     <span class="pic"><img src="img/aluno.webp" alt="Aluno ilustrado com moletom da Argumenta MAIS tomando café e piscando" width="798" height="900" fetchpriority="high"></span>
@@ -133,8 +144,8 @@ input[type=text]:focus,select:focus{outline:none;border-color:var(--blue-2)}
   </div>
 </header>
 
-<main class="card-wrap">
-  <section class="card" aria-labelledby="ftitle">
+<dialog class="card" id="lead" aria-labelledby="ftitle">
+    <button class="x" type="button" id="fechar" aria-label="Fechar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     <div id="formView">
       <h2 id="ftitle">Monte seu superintensivo</h2>
       <p class="sub">São só três perguntas.</p>
@@ -210,13 +221,10 @@ input[type=text]:focus,select:focus{outline:none;border-color:var(--blue-2)}
         <a class="cta" href="../black-oferta/?utm_source=super2026"><span>Quero entrar na lista VIP</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
-  </section>
-</main>
+</dialog>
 
 <footer class="foot">
-  <span>© 2026 Argumenta MAIS · Todos os direitos reservados.</span>
   <span>CNPJ 52.905.996/0001-88</span>
-  <a href="../">argumentamais.github.io</a>
 </footer>
 
 <script>
@@ -224,7 +232,10 @@ input[type=text]:focus,select:focus{outline:none;border-color:var(--blue-2)}
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw5UdRsOr3191k4noc_cOx1GfN6ilokvpq4px0Koefe49DR5shoiV0qqpVRMqMNWZkpTA/exec';
 
 const $ = id => document.getElementById(id);
-const form = $('form'), send = $('send'), formerr = $('formerr');
+const form = $('form'), send = $('send'), formerr = $('formerr'), lead = $('lead');
+$('abrir').addEventListener('click', () => { lead.showModal(); if (!$('formView').hidden) $('nome').focus(); });
+$('fechar').addEventListener('click', () => lead.close());
+lead.addEventListener('click', e => { if (e.target === lead) lead.close(); });
 
 $('curso').addEventListener('change', () => {
   const outro = $('curso').value === 'Outro';
@@ -282,7 +293,6 @@ form.addEventListener('submit', async e => {
     $('doneTitle').textContent = 'Valeu, ' + $('nome').value.trim().split(/\s+/)[0] + '!';
     $('formView').hidden = true; $('doneView').hidden = false;
     $('doneView').focus();
-    $('doneView').scrollIntoView({ behavior: 'smooth', block: 'start' });
   } catch (err) {
     formerr.textContent = 'Não conseguimos enviar agora. Verifique sua internet e tente de novo.';
     formerr.hidden = false;
