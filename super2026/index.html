@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Conte pra Argumenta MAIS qual curso você quer e quais vestibulares vai prestar em 2026. Vamos montar superintensivos de reta final sob medida.">
+<meta property="og:title" content="Superintensivos 2026 · Argumenta MAIS">
+<meta property="og:description" content="Diga qual curso você quer e quais vestibulares vai fazer. A gente monta o superintensivo de reta final para você.">
+<meta property="og:image" content="https://argumentamais.github.io/super2026/img/aluno.webp">
+<meta name="theme-color" content="#07080D">
+<link rel="icon" href="img/logo-branco.png">
+<title>Superintensivos 2026 Argumenta Mais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap">
+<style>
+/* Cadastro para os superintensivos de reta final: capa escura com o aluno ilustrado, formulário curto (nome, curso, vestibulares) e, no fim, encaminhamento para a Black. */
+:root{
+  --ink:#07080D; --ink-2:#11131B; --ink-3:#1C1F2B; --line:rgba(255,255,255,.12);
+  --text:#F5F4EF; --soft:#B3B7C4; --mute:#6F7486;
+  --blue:#1B4FE0; --blue-2:#4F8BFF; --yellow:#FFF71A; --red:#E5222F; --red-2:#FF4D5E;
+  --green:#18B544; --green-2:#0E9437;
+  --f:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+img{max-width:100%;display:block}
+[hidden]{display:none!important}
+body{background:var(--ink);color:var(--text);font:500 15px/1.55 var(--f);-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background-image:radial-gradient(rgba(255,255,255,.06) 1.2px,transparent 1.3px);background-size:22px 22px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* Capa: texto à esquerda, aluno à direita (no celular, aluno em cima) */
+.hero{max-width:1120px;margin:0 auto;padding:40px 16px 24px;display:grid;gap:8px;align-items:center;grid-template-columns:1fr}
+@media (min-width:900px){.hero{grid-template-columns:1.1fr .9fr;gap:40px;padding:64px 16px 40px}}
+.copy{display:flex;flex-direction:column;gap:20px}
+.logo{width:220px;height:auto}
+.kicker{align-self:flex-start;margin:0;font:800 12px var(--f);letter-spacing:.14em;text-transform:uppercase;color:#000;background:var(--yellow);padding:6px 10px;border-radius:3px}
+h1{margin:0;font:900 clamp(28px,7vw,48px)/1.08 var(--f);text-transform:uppercase;text-wrap:balance}
+h1 em{font-style:normal;color:var(--blue-2)}
+.lead{margin:0;font:500 17px/1.55 var(--f);color:var(--soft);max-width:44ch}
+.lead b{color:var(--text);font-weight:800}
+.art{position:relative;display:grid;place-items:end center}
+.pic{position:relative;display:block;width:100%;max-width:440px;isolation:isolate}
+.pic::before{content:"";position:absolute;z-index:-1;left:50%;bottom:4%;width:88%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;
+  background:radial-gradient(circle at 50% 45%,#2E63FF 0%,#1B4FE0 55%,#0E2C8C 100%);box-shadow:0 0 0 10px rgba(27,79,224,.18),0 0 80px rgba(46,99,255,.45)}
+.art img{width:100%;max-width:440px;height:auto;filter:drop-shadow(0 18px 30px rgba(0,0,0,.45));animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.bubble{position:absolute;top:8%;left:2%;max-width:180px;padding:10px 14px;border-radius:16px 16px 16px 4px;background:#fff;color:#0B0D14;font:800 13px/1.3 var(--f);box-shadow:5px 5px 0 var(--yellow);transform:rotate(-3deg)}
+@media (max-width:899px){
+  .hero{padding-top:20px}
+  .art{order:-1;display:flex;align-items:center;justify-content:center;gap:12px;width:100%;max-width:420px;margin:0 auto}
+  .pic{flex:0 0 58%}
+  .bubble{position:static;order:-1;flex:1;max-width:none;font-size:13px;border-radius:16px 16px 4px 16px;transform:rotate(-2deg)}
+  .logo{width:190px}
+}
+
+/* Formulário */
+/* Janela do formulário: abre pelo botão "Me conta aqui" */
+.card{width:min(640px,calc(100% - 24px));max-height:calc(100dvh - 24px);overflow:auto;margin:auto;color:var(--text);background:var(--ink-2);border:2px solid var(--blue);border-radius:20px;box-shadow:8px 8px 0 var(--blue);padding:28px 22px}
+.card::backdrop{background:rgba(3,4,8,.78);backdrop-filter:blur(3px)}
+.card[open]{animation:pop .25s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
+@media (min-width:700px){.card{padding:36px 40px}}
+.x{position:absolute;top:12px;right:12px;width:40px;height:40px;border:0;border-radius:50%;background:rgba(255,255,255,.08);color:var(--text);display:grid;place-items:center;cursor:pointer}
+.x svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
+.card h2{padding-right:36px}
+.open{max-width:360px;animation:nudge 2.6s ease-in-out infinite}
+@keyframes nudge{0%,80%,100%{box-shadow:0 10px 30px -8px rgba(24,181,68,.75),0 0 0 0 rgba(24,181,68,.55)}90%{box-shadow:0 10px 30px -8px rgba(24,181,68,.75),0 0 0 14px rgba(24,181,68,0)}}
+body{min-height:100svh;display:flex;flex-direction:column}
+.hero{flex:1;width:100%}
+.card h2{margin:0 0 4px;font:900 clamp(22px,5vw,28px)/1.15 var(--f);text-transform:uppercase}
+.card .sub{margin:0 0 24px;color:var(--soft)}
+form{display:flex;flex-direction:column;gap:26px}
+.field{display:flex;flex-direction:column;gap:8px;border:0;margin:0;padding:0;min-width:0}
+.field>label,.field>legend{padding:0;font:800 13px var(--f);letter-spacing:.06em;text-transform:uppercase;color:var(--text)}
+.field>legend{margin-bottom:8px}
+.n{display:inline-grid;place-items:center;width:24px;height:24px;margin-right:8px;border-radius:50%;background:var(--blue);color:#fff;font:900 12px var(--f)}
+.hint{margin:0;font-size:13px;color:var(--soft)}
+input[type=text],select{width:100%;height:54px;padding:0 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--ink);color:var(--text);font:600 16px var(--f);transition:border-color .2s}
+select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B3B7C4' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:20px;padding-right:44px}
+input::placeholder{color:var(--mute)}
+input[type=text]:focus,select:focus{outline:none;border-color:var(--blue-2)}
+[aria-invalid=true]{border-color:var(--red-2)!important}
+.err{min-height:0;margin:0;font:600 13px var(--f);color:var(--red-2)}
+.err:empty{display:none}
+
+/* Vestibulares: botões de marcar */
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.chip span{display:flex;align-items:center;justify-content:center;gap:8px;height:52px;border-radius:12px;border:1.5px solid var(--line);background:var(--ink);font:800 15px var(--f);letter-spacing:.02em;transition:background .2s,border-color .2s,transform .15s}
+.chip span::before{content:"";width:18px;height:18px;border-radius:5px;border:2px solid var(--mute);flex:none;transition:all .2s}
+.chip input:checked+span{background:var(--blue);border-color:var(--blue-2)}
+.chip input:checked+span::before{border-color:#fff;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231B4FE0' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12 5 5 9-10'/%3E%3C/svg%3E") center/14px no-repeat}
+.chip input:focus-visible+span{outline:3px solid var(--yellow);outline-offset:2px}
+.chip:active span{transform:scale(.97)}
+.chips[aria-invalid=true] .chip span{border-color:var(--red-2)}
+.extra{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+
+.cta{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:62px;padding:12px 22px;border:3px solid #fff;border-radius:999px;
+  background:linear-gradient(180deg,#22C94F,var(--green-2));color:#fff;font:900 16px/1.15 var(--f);letter-spacing:.04em;text-transform:uppercase;text-align:center;cursor:pointer;text-decoration:none;
+  box-shadow:0 10px 30px -8px rgba(24,181,68,.75);transition:transform .2s,box-shadow .2s}
+.cta:hover{transform:scale(1.02)}
+.cta:active{transform:scale(.98)}
+.cta[disabled]{opacity:.65;cursor:progress;transform:none}
+.cta svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.formerr{margin:0;font:600 13px var(--f);color:var(--red-2)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* Tela final: agradecimento e convite para a Black */
+.done{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px}
+.check{width:64px;height:64px;border-radius:50%;background:rgba(24,181,68,.14);border:2px solid var(--green);display:grid;place-items:center}
+.check svg{width:30px;height:30px;fill:none;stroke:#3EDB6C;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.done p{margin:0;color:var(--soft);max-width:46ch}
+.black{width:100%;margin-top:14px;padding:24px 20px;border-radius:16px;background:#000;border:2px solid var(--red);box-shadow:6px 6px 0 var(--red);display:flex;flex-direction:column;align-items:center;gap:12px}
+.black .tag{font:900 12px var(--f);letter-spacing:.14em;text-transform:uppercase;background:var(--red);color:#fff;padding:5px 10px;border-radius:3px}
+.black h3{margin:0;font:900 clamp(20px,5vw,24px)/1.15 var(--f);text-transform:uppercase}
+.black h3 mark{background:var(--yellow);color:#000;padding:0 .14em}
+.black p{color:var(--soft)}
+.black .cta{background:linear-gradient(180deg,#FF3B47,#C4141F);box-shadow:0 10px 30px -8px rgba(229,34,47,.75);max-width:420px}
+.test{margin:0;font:600 12px var(--f);color:var(--yellow)}
+
+.foot{border-top:1px solid var(--line);padding:22px 16px calc(28px + env(safe-area-inset-bottom));text-align:center;color:var(--mute);font-size:12px;display:flex;flex-direction:column;gap:6px}
+.foot a{text-decoration:none;color:var(--soft)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="copy">
+    <img class="logo" src="img/logo-branco.png" alt="Argumenta MAIS" width="250" height="60">
+    <p class="kicker">Superintensivos de reta final</p>
+    <h1>Diga onde você quer chegar. <em>Eu vou te ajudar.</em></h1>
+    <p class="lead">Conta pra gente <b>quais vestibulares você vai fazer em 2026 ainda</b>. Com as respostas, vou avaliar como posso atendê-los e elaborar mais aulas para as próximas provas.</p>
+    <button class="cta open" type="button" id="abrir"><span>Me conta aqui</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </div>
+  <div class="art">
+    <span class="pic"><img src="img/aluno.webp" alt="Aluno ilustrado com moletom da Argumenta MAIS tomando café e piscando" width="798" height="900" fetchpriority="high"></span>
+    <p class="bubble">Leva menos de 1 minuto 😉</p>
+  </div>
+</header>
+
+<dialog class="card" id="lead" aria-labelledby="ftitle">
+    <button class="x" type="button" id="fechar" aria-label="Fechar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div id="formView">
+      <h2 id="ftitle">Monte seu superintensivo</h2>
+      <p class="sub">São só três perguntas.</p>
+      <form id="form" novalidate>
+        <div class="field">
+          <label for="nome"><span class="n">1</span>Seu nome</label>
+          <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Nome e sobrenome" aria-describedby="nome-err" required>
+          <p class="err" id="nome-err" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="curso"><span class="n">2</span>Curso pretendido</label>
+          <select id="curso" name="curso" aria-describedby="curso-err" required>
+            <option value="">Escolha o curso</option>
+            <option>Medicina</option>
+            <option>Direito</option>
+            <option>Odontologia</option>
+            <option>Psicologia</option>
+            <option>Enfermagem</option>
+            <option>Medicina Veterinária</option>
+            <option>Engenharia</option>
+            <option>Arquitetura e Urbanismo</option>
+            <option>Fisioterapia</option>
+            <option>Nutrição</option>
+            <option>Farmácia</option>
+            <option>Agronomia</option>
+            <option>Ciência da Computação</option>
+            <option>Administração</option>
+            <option>Pedagogia</option>
+            <option>Jornalismo</option>
+            <option>Relações Internacionais</option>
+            <option value="Outro">Outro</option>
+          </select>
+          <div class="extra" id="cursoOutroBox" hidden>
+            <input type="text" id="cursoOutro" placeholder="Qual curso?" aria-label="Qual curso?" aria-describedby="curso-err">
+          </div>
+          <p class="err" id="curso-err" aria-live="polite"></p>
+        </div>
+
+        <fieldset class="field">
+          <legend><span class="n">3</span>Vestibulares que vai fazer em 2026</legend>
+          <p class="hint">Marque todos que você vai prestar.</p>
+          <div class="chips" id="vest" aria-describedby="vest-err">
+            <label class="chip"><input type="checkbox" name="vest" value="ENEM"><span>ENEM</span></label>
+            <label class="chip"><input type="checkbox" name="vest" value="UFPR"><span>UFPR</span></label>
+            <label class="chip"><input type="checkbox" name="vest" value="UEPG"><span>UEPG</span></label>
+            <label class="chip"><input type="checkbox" name="vest" value="UTFPR"><span>UTFPR</span></label>
+            <label class="chip"><input type="checkbox" name="vest" value="Outros" id="outrosChk"><span>Outros</span></label>
+          </div>
+          <div class="extra" id="outrosBox" hidden>
+            <input type="text" id="outros" placeholder="Quais? Ex.: PUCPR, Unicesumar, Fuvest…" aria-label="Quais outros vestibulares?" aria-describedby="outros-hint vest-err">
+            <p class="hint" id="outros-hint">Pode colocar público ou particular.</p>
+          </div>
+          <p class="err" id="vest-err" aria-live="polite"></p>
+        </fieldset>
+
+        <div class="hp" aria-hidden="true"><label>Site <input type="text" id="site" tabindex="-1" autocomplete="off"></label></div>
+        <p class="formerr" id="formerr" hidden></p>
+        <button class="cta" id="send" type="submit"><span>Enviar minhas respostas</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </form>
+    </div>
+
+    <div id="doneView" class="done" hidden tabindex="-1">
+      <div class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></div>
+      <h2 id="doneTitle">Valeu!</h2>
+      <p>Suas respostas chegaram. Com elas, vamos montar os superintensivos de reta final pensando nas provas que você vai fazer. Fique de olho no grupo, que é lá que a gente avisa primeiro.</p>
+      <p class="test" id="testNote" hidden>Modo de teste: a planilha ainda não está ligada, nada foi gravado.</p>
+
+      <div class="black">
+        <span class="tag">Black 2027</span>
+        <h3>E depois dos <mark>vestibulares?</mark></h3>
+        <p>Se você é treineiro ou vai precisar de uma mãozinha em 2027, a Black da Argumenta está com a sua lista de espera aberta. Entre na lista VIP e receba mais de 5 mil reais em bônus.</p>
+        <a class="cta" href="../black-oferta/?utm_source=super2026"><span>Quero entrar na lista VIP</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+</dialog>
+
+<footer class="foot">
+  <span>CNPJ 52.905.996/0001-88</span>
+</footer>
+
+<script>
+/* Endereço do Apps Script da planilha "Cadastros Superintensivos 2026". Vazio = modo de teste (não grava nada). */
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw5UdRsOr3191k4noc_cOx1GfN6ilokvpq4px0Koefe49DR5shoiV0qqpVRMqMNWZkpTA/exec';
+
+const $ = id => document.getElementById(id);
+const form = $('form'), send = $('send'), formerr = $('formerr'), lead = $('lead');
+$('abrir').addEventListener('click', () => { lead.showModal(); if (!$('formView').hidden) $('nome').focus(); });
+$('fechar').addEventListener('click', () => lead.close());
+lead.addEventListener('click', e => { if (e.target === lead) lead.close(); });
+
+$('curso').addEventListener('change', () => {
+  const outro = $('curso').value === 'Outro';
+  $('cursoOutroBox').hidden = !outro;
+  if (outro) $('cursoOutro').focus();
+});
+$('outrosChk').addEventListener('change', () => {
+  $('outrosBox').hidden = !$('outrosChk').checked;
+  if ($('outrosChk').checked) $('outros').focus();
+});
+
+function marca(id, campo, texto){ $(campo).setAttribute('aria-invalid', texto ? 'true' : 'false'); $(id + '-err').textContent = texto || ''; return !texto; }
+form.addEventListener('input', e => {
+  if (e.target.id === 'nome') marca('nome', 'nome', '');
+  if (e.target.id === 'curso' || e.target.id === 'cursoOutro') { marca('curso', 'curso', ''); $('cursoOutro').removeAttribute('aria-invalid'); }
+  if (e.target.name === 'vest' || e.target.id === 'outros') { marca('vest', 'vest', ''); $('outros').removeAttribute('aria-invalid'); }
+});
+
+const marcados = () => [...form.querySelectorAll('input[name=vest]:checked')].map(i => i.value);
+function curso(){ return $('curso').value === 'Outro' ? ($('cursoOutro').value.trim() ? 'Outro: ' + $('cursoOutro').value.trim() : '') : $('curso').value; }
+function vestibulares(){
+  return marcados().map(v => v === 'Outros' ? 'Outros: ' + $('outros').value.trim() : v).join(', ');
+}
+
+function validar(){
+  let ok = marca('nome', 'nome', $('nome').value.trim().split(/\s+/).length >= 2 ? '' : 'Escreva nome e sobrenome.');
+  if (!$('curso').value) ok = marca('curso', 'curso', 'Escolha um curso.') && ok;
+  else if (!curso()) { ok = marca('curso', 'curso', 'Escreva qual é o curso.') && ok; $('cursoOutro').setAttribute('aria-invalid', 'true'); }
+  const v = marcados();
+  if (!v.length) ok = marca('vest', 'vest', 'Marque pelo menos um vestibular.') && ok;
+  else if (v.includes('Outros') && !$('outros').value.trim()) { ok = marca('vest', 'vest', 'Escreva quais são os outros vestibulares.') && ok; $('outros').setAttribute('aria-invalid', 'true'); }
+  if (!ok) {
+    const alvo = form.querySelector('input[aria-invalid=true], select[aria-invalid=true]') || form.querySelector('input[name=vest]');
+    alvo.focus();
+  }
+  return ok;
+}
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  formerr.hidden = true;
+  if (!validar()) return;
+  const utm = new URLSearchParams(location.search).get('utm_source');
+  const data = new URLSearchParams({
+    nome: $('nome').value.trim(),
+    curso: curso(),
+    vestibulares: vestibulares(),
+    origem: utm || '',
+    site: $('site').value
+  });
+  send.disabled = true; send.firstElementChild.textContent = 'Enviando…';
+  try {
+    if (SCRIPT_URL) await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: data });
+    else { await new Promise(r => setTimeout(r, 600)); $('testNote').hidden = false; }
+    $('doneTitle').textContent = 'Valeu, ' + $('nome').value.trim().split(/\s+/)[0] + '!';
+    $('formView').hidden = true; $('doneView').hidden = false;
+    $('doneView').focus();
+  } catch (err) {
+    formerr.textContent = 'Não conseguimos enviar agora. Verifique sua internet e tente de novo.';
+    formerr.hidden = false;
+  } finally {
+    send.disabled = false; send.firstElementChild.textContent = 'Enviar minhas respostas';
+  }
+});
+</script>
+</body>
+</html>
