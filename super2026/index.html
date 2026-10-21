@@ -57,11 +57,24 @@ h1 em{font-style:normal;color:var(--blue)}
 .art img{width:100%;max-width:440px;height:auto;filter:drop-shadow(0 14px 22px rgba(11,13,20,.18));animation:float 5s ease-in-out infinite}
 @keyframes float{50%{transform:translateY(-8px)}}
 .bubble{position:absolute;top:8%;left:2%;max-width:180px;padding:10px 14px;border-radius:16px 16px 16px 4px;background:#fff;color:#0B0D14;font:800 13px/1.3 var(--f);border:2px solid var(--navy);box-shadow:4px 4px 0 var(--yellow);transform:rotate(-3deg)}
+/* Faixa passando (só no celular) */
+.ticker{display:none;background:var(--blue);color:#fff;overflow:hidden;padding:12px 0;border-block:2px solid var(--navy)}
+.ticker-track{display:flex;width:max-content;animation:tick 22s linear infinite}
+@keyframes tick{to{transform:translateX(-50%)}}
+.ticker-track span{display:flex;align-items:center;gap:14px;padding-right:14px;white-space:nowrap;font:900 14px/1 var(--f);letter-spacing:.08em;text-transform:uppercase}
+.ticker-track i{font-style:normal;color:var(--yellow);font-size:16px}
+
+/* Celular: título ao lado do Argumentinha, faixa embaixo, depois texto e botão */
 @media (max-width:899px){
-  .hero{padding-top:20px}
-  .art{order:-1;display:flex;align-items:center;justify-content:center;gap:12px;width:100%;max-width:420px;margin:0 auto}
-  .pic{flex:0 0 58%}
-  .bubble{position:static;order:-1;flex:1;align-self:flex-start;margin-top:12%;max-width:none;font-size:13px;border-radius:16px 16px 4px 16px;transform:rotate(-2deg)}
+  .hero{overflow-x:clip;padding:18px 16px 28px;gap:0;grid-template-columns:1fr 46%;grid-template-areas:"h1 art" "tk tk" "lead lead" "cta cta";align-items:center;align-content:center}
+  .copy{display:contents}
+  .kicker,.bubble{display:none}
+  h1{grid-area:h1;font-size:clamp(21px,6.3vw,30px);line-height:1.1}
+  .art{grid-area:art}
+  .pic{width:100%}
+  .ticker{display:block;grid-area:tk;margin:6px -16px 22px;transform:rotate(-1.5deg)}
+  .lead{grid-area:lead;margin-bottom:22px}
+  .open{grid-area:cta;max-width:none}
 }
 
 /* Formulário */
@@ -148,6 +161,7 @@ input[type=text]:focus,select:focus{outline:none;border-color:var(--blue);box-sh
   <div class="copy">
     <p class="kicker">Superintensivos de reta final</p>
     <h1>Diga onde você quer chegar. <em>Eu vou te ajudar.</em></h1>
+    <div class="ticker" role="marquee" aria-label="Superintensivos de reta final"><div class="ticker-track" id="ticker"><span><i>★</i>Superintensivos de reta final<i>★</i></span></div></div>
     <p class="lead">Conta pra gente <b>quais vestibulares você vai fazer em 2026 ainda</b>. Com as respostas, vou avaliar como posso atendê-los e elaborar mais aulas para as próximas provas.</p>
     <button class="cta open" type="button" id="abrir"><span>Me conta aqui</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
   </div>
@@ -237,7 +251,7 @@ input[type=text]:focus,select:focus{outline:none;border-color:var(--blue);box-sh
 </dialog>
 
 <footer class="foot">
-  <span>CNPJ 52.905.996/0001-88</span>
+  <span>Argumenta MAIS | CNPJ 52.905.996/0001-88 · Todos os direitos reservados.</span>
 </footer>
 
 <script>
@@ -245,6 +259,11 @@ input[type=text]:focus,select:focus{outline:none;border-color:var(--blue);box-sh
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw5UdRsOr3191k4noc_cOx1GfN6ilokvpq4px0Koefe49DR5shoiV0qqpVRMqMNWZkpTA/exec';
 
 const $ = id => document.getElementById(id);
+
+/* Faixa: repete o texto para a volta ficar contínua */
+const ticker = $('ticker');
+ticker.innerHTML = ticker.innerHTML.repeat(8);
+[...ticker.children].forEach((el, i) => { if (i) el.setAttribute('aria-hidden', 'true'); });
 const form = $('form'), send = $('send'), formerr = $('formerr'), lead = $('lead');
 $('abrir').addEventListener('click', () => { lead.showModal(); if (!$('formView').hidden) $('nome').focus(); });
 $('fechar').addEventListener('click', () => lead.close());
