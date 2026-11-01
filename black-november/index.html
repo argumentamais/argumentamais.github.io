@@ -876,10 +876,10 @@ dialog .full{margin:0;font-size:16px;line-height:1.7;color:var(--soft)}
     <div class="med" id="med2"></div>
     <h3 class="aprov-h reveal" style="margin-top:60px">Notas na redação do <span style="color:var(--yellow)">ENEM</span></h3>
     <div class="grid-ap more" id="gridEnem"></div>
-    <button type="button" class="more-b" data-more="gridEnem">Ver todos →</button>
+    <button type="button" class="more-b" data-more="gridEnem">Ver mais resultados →</button>
     <h3 class="aprov-h reveal" style="margin-top:60px">E em muitos outros cursos</h3>
     <div class="grid-ap more" id="gridAp"></div>
-    <button type="button" class="more-b" data-more="gridAp">Ver todos →</button>
+    <button type="button" class="more-b" data-more="gridAp">Ver mais aprovados →</button>
   </div>
 </section>
 
@@ -1026,7 +1026,7 @@ $('#med2').innerHTML = APROV_MED.filter(a => !a[2].endsWith('UFPR')).map(a => ap
 $('#gridAp').innerHTML = APROV.map(a => ap(a)).join('');
 $('#gridEnem').innerHTML = ENEM.map(enem).join('');
 /* Mostrar mais */
-$$('[data-more]').forEach(b => { const g = $('#' + b.dataset.more); const n = g.children.length; b.textContent = `Ver todos os ${n} →`; b.addEventListener('click', () => { g.classList.add('open'); b.hidden = true; }); });
+$$('[data-more]').forEach(b => { const g = $('#' + b.dataset.more); b.addEventListener('click', () => { g.classList.add('open'); b.hidden = true; }); });
 
 /* Torre de preço */
 $('#receipt').innerHTML = RECEIPT.map(([t, v]) => `<li><span>${t}</span><span>R$ ${v}</span></li>`).join('');
