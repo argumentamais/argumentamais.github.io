@@ -1223,7 +1223,7 @@ $$('.reveal, #receipt, .bubbles, .seats').forEach(el => io.observe(el));
     setTimeout(() => {
       el.classList.add('open'); document.body.classList.remove('locked');
       setTimeout(() => el.remove(), 950);
-    }, repeat ? 450 : 850);
+    }, reduce ? 300 : repeat ? 1200 : 2000);
   })(t0);
   store.set('bn-visto', '1');
 })();
