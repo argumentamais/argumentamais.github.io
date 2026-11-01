@@ -1114,7 +1114,7 @@ $$('.reveal, #receipt, .bubbles, .seats').forEach(el => io.observe(el));
 (function intro(){
   const el = $('#intro'), bar = $('#ibar'), pct = $('#ipct'), stat = $('#istat');
   const repeat = store.get('bn-visto') === '1';
-  const dur = reduce ? 200 : repeat ? 650 : 1600;
+  const dur = reduce ? 200 : repeat ? 1650 : 2600;
   const burst = $('#burst');
   for (let i = 0; i < 16; i++) { const b = document.createElement('i'); b.style.setProperty('--a', (i * 22.5) + 'deg'); b.style.setProperty('--d', (90 + Math.random() * 70) + 'px'); burst.appendChild(b); }
   const t0 = performance.now();
