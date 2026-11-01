@@ -293,8 +293,9 @@ h2 .y{color:var(--yellow)}
 /* 08 · Guia */
 .guide-in{display:grid;gap:44px;align-items:center}
 @media (min-width:900px){.guide-in{grid-template-columns:.9fr 1.1fr;gap:64px}}
-.guide figure{margin:0;position:relative;border-radius:20px;overflow:hidden;border:2px solid var(--blue);box-shadow:10px 10px 0 var(--blue)}
-.guide figure img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%}
+.guide figure{margin:0 12px 12px 0;position:relative;isolation:isolate}
+.guide figure::before{content:"";position:absolute;inset:12px -12px -12px 12px;border-radius:20px;background:var(--blue);z-index:-1}
+.guide figure img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 18%;border-radius:20px;box-shadow:0 0 0 2px var(--blue-2)}
 @media (max-width:899px){.guide figure img{aspect-ratio:1}}
 .guide figcaption{position:absolute;left:14px;bottom:14px;font:800 12px var(--f);letter-spacing:.08em;text-transform:uppercase;background:var(--yellow);color:#000;padding:6px 10px;border-radius:3px}
 .cv{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:12px}
@@ -303,7 +304,15 @@ h2 .y{color:var(--yellow)}
 .cv b{display:block;font:800 15px var(--f)}
 .cv span{display:block;color:var(--soft);font-size:14px;margin-top:2px}
 .cv li.gold{border-color:rgba(232,196,82,.5);box-shadow:0 0 18px -6px rgba(232,196,82,.45),inset 0 0 12px -6px rgba(232,196,82,.4)}
-.cv li.gold svg{fill:var(--gold);stroke:none}
+.cv li.gold{position:relative;cursor:default;transition:box-shadow .3s,border-color .3s,transform .3s}
+.cv li.gold svg{fill:var(--gold);stroke:none;transition:transform .6s cubic-bezier(.2,1.6,.4,1),filter .3s}
+.cv li.gold .ico{position:relative;flex:none;width:22px;height:22px}
+.cv li.gold .spark{position:absolute;left:50%;top:50%;width:0;height:0;pointer-events:none}
+.cv li.gold .spark i{position:absolute;left:-2px;top:-2px;width:4px;height:4px;border-radius:50%;background:var(--gold);box-shadow:0 0 6px var(--gold);opacity:0}
+.cv li.gold:hover,.cv li.gold.on{border-color:var(--gold);transform:scale(1.02);box-shadow:0 0 26px -4px rgba(232,196,82,.7),inset 0 0 16px -6px rgba(232,196,82,.6)}
+.cv li.gold:hover svg,.cv li.gold.on svg{transform:rotate(144deg) scale(1.4);filter:drop-shadow(0 0 6px var(--gold)) drop-shadow(0 0 14px rgba(232,196,82,.8))}
+.cv li.gold:hover .spark i,.cv li.gold.on .spark i{animation:sparkOut .7s ease-out}
+@keyframes sparkOut{0%{opacity:1;transform:rotate(var(--a)) translateX(4px) scale(1)}100%{opacity:0;transform:rotate(var(--a)) translateX(24px) scale(.3)}}
 
 /* 09 · Mentoria */
 .ment{display:grid;gap:40px;margin-top:50px}
@@ -480,7 +489,7 @@ dialog .full{margin:0;font-size:16px;line-height:1.7;color:var(--soft)}
 <!-- 01 · Capa -->
 <section class="hero">
   <div class="hero-photo">
-    <picture><source media="(max-width:899px)" srcset="img/pedro-evento-m.webp"><img src="img/pedro-evento.webp" alt="Profe Pedro de braços abertos em um evento da Argumenta MAIS" width="900" height="593"></picture>
+    <picture><source media="(max-width:899px)" srcset="img/pedro-evento-m.webp"><img src="img/pedro-evento.webp" alt="Professor Pedro de braços abertos em um evento da Argumenta MAIS" width="900" height="593"></picture>
   </div>
   <div class="wrap">
     <div class="hero-copy">
@@ -538,7 +547,7 @@ dialog .full{margin:0;font-size:16px;line-height:1.7;color:var(--soft)}
       <article class="item reveal"><span class="n">01</span><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>Aulas toda semana</h3><p><b>Duas aulas por semana</b>: segunda de ENEM e terça de UFPR. Técnica de escrita, conteúdo e produção textual, <b>ao vivo e gravadas</b>.</p></article>
       <article class="item reveal"><span class="n">02</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 19.5V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2.5Z"/><path d="M8 7h7M8 11h5"/></svg></div><h3>Materiais autorais</h3><p><b>Material físico</b> com toda a teoria, as propostas e o espaço para passar a limpo os seus textos (presencial e híbrido). E os <b>PDFs autorais</b> na plataforma, com extras, para todos os planos.</p></article>
       <article class="item reveal hero-item wide"><span class="n">03</span><span class="badge">Nosso carro-chefe</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div><h3>140 correções detalhadas</h3><p>Cada redação volta com <b>marcações por competência</b>, comentários linha a linha e um caminho claro para a próxima. Ninguém detalha uma correção como a gente.</p></article>
-      <article class="item reveal"><span class="n">04</span><span class="badge">Peso 2 em Medicina</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg></div><h3>Língua Portuguesa para a UFPR</h3><p>Curso gravado pelo profe Pedro, com entrega em <b>março de 2027</b>. Na UFPR, para quem vai para Medicina, essa prova tem <b>peso 2</b>.</p></article>
+      <article class="item reveal"><span class="n">04</span><span class="badge">Peso 2 em Medicina</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg></div><h3>Língua Portuguesa para a UFPR</h3><p>Curso gravado pelo professor Pedro, com entrega em <b>março de 2027</b>. Na UFPR, para quem vai para Medicina, essa prova tem <b>peso 2</b>.</p></article>
       <article class="item reveal"><span class="n">05</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2ZM22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7Z"/></svg></div><h3>Literatura</h3><p>Aulas gravadas pelo <b>profe Mateus</b>, com as obras da UFPR e as principais escolas literárias.</p></article>
       <article class="item reveal"><span class="n">06</span><span class="badge">Exclusivo e inédito</span><div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4M9 13h.01M15 13h.01M9 17h6"/></svg></div><h3>Argumentinha</h3><p>Nosso assistente de projetos de texto. Hoje trabalha com o ENEM e, em 2027, <b>também com as propostas da UFPR</b>.</p></article>
       <article class="item reveal wide"><span class="n">07</span><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h3"/></svg></div><h3>Imersão Meu Ano Nota Máxima</h3><p>Uma imersão ao vivo comigo para planejarmos o seu ano juntos, em busca do 1000. Você vai saber <b>exatamente o que fazer</b> ao longo do ano e como aproveitar tudo o que a Argumenta oferece.</p></article>
@@ -650,11 +659,11 @@ dialog .full{margin:0;font-size:16px;line-height:1.7;color:var(--soft)}
 <!-- 08 · Guia -->
 <section class="sec guide">
   <div class="wrap guide-in">
-    <figure class="reveal"><img src="img/pedro-sorrindo.webp" alt="Profe Pedro sorrindo" width="667" height="1000" loading="lazy"><figcaption>Profe Pedro</figcaption></figure>
+    <figure class="reveal"><img src="img/pedro-sorrindo.webp" alt="Professor Pedro sorrindo" width="667" height="1000" loading="lazy"><figcaption>Professor Pedro</figcaption></figure>
     <div class="reveal">
       <p class="label"><b>08</b>Seu professor</p>
       <h2>Quem será <mark>teu guia?</mark></h2>
-      <p class="sub"><b>Profe Pedro</b>, fundador da Argumenta MAIS, a 1ª escola de redação de Araucária.</p>
+      <p class="sub"><b>Professor Pedro</b>, fundador da Argumenta MAIS, a 1ª escola de redação de Araucária.</p>
       <ul class="cv">
         <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><b>10 anos de docência</b><span>Uma década ensinando redação para o ENEM e os vestibulares.</span></div></li>
         <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><b>Fundador da Argumenta MAIS</b><span>A 1ª escola de redação de Araucária.</span></div></li>
@@ -673,18 +682,18 @@ dialog .full{margin:0;font-size:16px;line-height:1.7;color:var(--soft)}
   <div class="wrap">
     <div class="reveal">
       <p class="label"><b>09</b>Mentoria 1:1</p>
-      <h2>O profe Pedro, <span class="y">seu professor particular.</span></h2>
+      <h2>O professor Pedro, <span class="y">seu professor particular.</span></h2>
     </div>
     <div class="ment">
       <div class="ment-card reveal">
-        <p>As mentorias são encontros em que o profe Pedro te ajuda <b>em tudo o que você precisa</b>, só você e ele.</p>
+        <p>As mentorias são encontros em que o professor Pedro te ajuda <b>em tudo o que você precisa</b>, só você e ele.</p>
         <ul class="ment-list">
           <li>Quer corrigir um texto ao vivo? <span>Vamos juntos!</span></li>
           <li>Quer produzir com o professor ao vivo? <span>Vamos juntos!</span></li>
           <li>Quer planejar uma redação tirando dúvidas? <span>Vamos juntos!</span></li>
           <li>Quer entender melhor uma proposta? <span>Vamos juntos!</span></li>
         </ul>
-        <p>Mesmo sendo uma pessoa extremamente ocupada, o profe Pedro se torna, oficialmente, <b>o seu professor particular naquela hora</b>. A partir de agosto, os encontros ficam semanais, porque a reta final pede o refinamento perfeito.</p>
+        <p>Mesmo sendo uma pessoa extremamente ocupada, o professor Pedro se torna, oficialmente, <b>o seu professor particular naquela hora</b>. A partir de agosto, os encontros ficam semanais, porque a reta final pede o refinamento perfeito.</p>
         <p style="margin:0">Por ser um serviço <b>premium e escasso</b>, as vagas desta Black são poucas.</p>
       </div>
       <div class="reveal">
@@ -737,7 +746,7 @@ dialog .full{margin:0;font-size:16px;line-height:1.7;color:var(--soft)}
         <article class="plan ment-p">
           <span class="flag b">Só 10 vagas</span>
           <h3>Presencial + Mentoria</h3>
-          <p class="desc">Tudo do presencial e os encontros 1:1 com o profe Pedro.</p>
+          <p class="desc">Tudo do presencial e os encontros 1:1 com o professor Pedro.</p>
           <p class="from">12x de</p>
           <p class="big">R$ <b>241,67</b></p>
           <p class="alt">+ <b>R$ 400</b> de garantia de vaga<br>ou 10x de R$ 290 · total R$ 3.300</p>
@@ -773,7 +782,7 @@ dialog .full{margin:0;font-size:16px;line-height:1.7;color:var(--soft)}
         <article class="plan ment-p">
           <span class="flag b">Só 10 vagas</span>
           <h3>Híbrido + Mentoria</h3>
-          <p class="desc">Tudo do híbrido e os encontros 1:1 com o profe Pedro.</p>
+          <p class="desc">Tudo do híbrido e os encontros 1:1 com o professor Pedro.</p>
           <p class="from">12x de</p>
           <p class="big">R$ <b>225</b></p>
           <p class="alt">+ <b>R$ 400</b> de garantia de vaga<br>ou 10x de R$ 270 · total R$ 3.100</p>
@@ -809,7 +818,7 @@ dialog .full{margin:0;font-size:16px;line-height:1.7;color:var(--soft)}
         <article class="plan ment-p">
           <span class="flag b">Só 10 vagas</span>
           <h3>Online 1 ano + Mentoria</h3>
-          <p class="desc">Tudo do online e os encontros 1:1 com o profe Pedro.</p>
+          <p class="desc">Tudo do online e os encontros 1:1 com o professor Pedro.</p>
           <p class="from">12x de</p>
           <p class="big">R$ <b>195,66</b></p>
           <p class="alt">ou 10x de R$ 234,79 · total <b>R$ 2.347,90</b></p>
@@ -879,7 +888,7 @@ dialog .full{margin:0;font-size:16px;line-height:1.7;color:var(--soft)}
 <section class="sec last">
   <div class="glow" style="width:600px;height:600px;background:#FFF71A;left:50%;top:40px;translate:-50% 0;opacity:.08"></div>
   <div class="wrap reveal">
-    <div class="ph"><img src="img/pedro-sorrindo.webp" alt="Profe Pedro" loading="lazy"></div>
+    <div class="ph"><img src="img/pedro-sorrindo.webp" alt="Professor Pedro" loading="lazy"></div>
     <p class="label c"><b>13</b>Último passo</p>
     <h2>Sua vaga <span class="y">começa aqui.</span></h2>
     <p class="sub">As condições da Black valem até <b>30 de novembro</b>, e as vagas da Mentoria são limitadas. Escolha o seu plano e vamos juntos até a aprovação.</p>
@@ -906,7 +915,7 @@ dialog .full{margin:0;font-size:16px;line-height:1.7;color:var(--soft)}
       <details><summary><span class="q">02</span>Quando as aulas começam?<span class="pm"></span></summary><p>Em 15 de fevereiro de 2027, e seguem até as provas (ENEM, UFPR, UFSC e outras). Em janeiro, tem o Curso de Férias para todo mundo chegar ainda melhor.</p></details>
       <details><summary><span class="q">03</span>As aulas on-line ficam gravadas?<span class="pm"></span></summary><p>Sim. As aulas são ao vivo e ficam gravadas na plataforma para você rever quando quiser.</p></details>
       <details><summary><span class="q">04</span>Qual a diferença entre presencial e híbrido?<span class="pm"></span></summary><p>No presencial, as duas aulas da semana são na sede. No híbrido, a aula de ENEM é presencial, no sábado de manhã, e a de UFPR é on-line, na terça à noite.</p></details>
-      <details><summary><span class="q">05</span>Como funciona a Mentoria?<span class="pm"></span></summary><p>São 20 encontros on-line de 1h, só você e o profe Pedro: quinzenais até agosto e semanais na reta final, com textos ilimitados. São só 10 vagas.</p></details>
+      <details><summary><span class="q">05</span>Como funciona a Mentoria?<span class="pm"></span></summary><p>São 20 encontros on-line de 1h, só você e o professor Pedro: quinzenais até agosto e semanais na reta final, com textos ilimitados. São só 10 vagas.</p></details>
       <details><summary><span class="q">06</span>E se eu não gostar?<span class="pm"></span></summary><p>Você tem 7 dias de garantia, no online e no presencial.</p></details>
       <details><summary><span class="q">07</span>Até quando valem essas condições?<span class="pm"></span></summary><p>Até 30 de novembro, ou enquanto houver vagas.</p></details>
     </div>
@@ -1031,6 +1040,14 @@ function showTab(t){
 }
 $$('[data-tab]').forEach(b => b.addEventListener('click', () => showTab(b.dataset.tab)));
 const savedTab = store.get('bn-tab'); if (savedTab && $(`[data-panel="${savedTab}"]`)) showTab(savedTab);
+
+/* Estrelas do currículo: brilho e faíscas no mouse (ou no toque) */
+$$('.cv li.gold').forEach(li => {
+  const svg = $('svg', li), ico = document.createElement('span'); ico.className = 'ico';
+  ico.innerHTML = '<span class="spark" aria-hidden="true">' + [0,45,90,135,180,225,270,315].map(a => `<i style="--a:${a}deg"></i>`).join('') + '</span>';
+  svg.replaceWith(ico); ico.prepend(svg);
+  li.addEventListener('touchstart', () => { li.classList.remove('on'); void li.offsetWidth; li.classList.add('on'); setTimeout(() => li.classList.remove('on'), 1200); }, { passive: true });
+});
 
 /* Vagas da Mentoria */
 ['m','v'].forEach(k => { $(`[data-seat="${k}"]`).textContent = `${VAGAS[k]} de ${VAGAS_TOTAL}`; });
