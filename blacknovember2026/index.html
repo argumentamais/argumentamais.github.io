@@ -514,7 +514,7 @@ dialog .full{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.7}
       <div id="formWrap">
         <h2>Conheça a MAIOR Black da história</h2>
         <p class="fs">Preencha em menos de 1 minuto. <b>Entramos em contato com o responsável em até 24 horas</b>, em horário comercial.</p>
-        <div class="form-meta"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Só <b>16 vagas</b> por turma presencial e híbrida. Condição de Black até <b>30/11</b>.</span></div>
+        <div class="form-meta"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Só <b>16 vagas</b> por turma presencial e híbrida e <b>20 no online</b>. Condição de Black até <b>30/11</b>.</span></div>
         <form id="lead" novalidate>
           <fieldset class="mods" id="modsF">
             <legend class="q">Como deseja estudar?</legend>
@@ -656,7 +656,7 @@ dialog .full{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.7}
         <h3>Online</h3>
         <p>Aulas ao vivo e gravadas, para estudar de onde estiver, com o mesmo acompanhamento e as mesmas correções.</p>
         <ul class="sched"><li>Ao vivo<b>seg e ter · 20h</b></li><li>Gravações<b>quando quiser</b></li></ul>
-        <div class="seat free"><div class="r">Online<b>Vagas abertas</b></div><div class="m"><i style="width:100%"></i></div></div>
+        <div class="seat" data-seat="online"><div class="r">Online<b></b></div><div class="m"><i></i></div></div>
       </article>
     </div>
     <div class="how reveal">
@@ -711,7 +711,7 @@ dialog .full{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.7}
         <div><b data-s>00</b><span>seg</span></div>
       </div>
       <a class="btn" href="#form" data-go>Quero ser Argumenta <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <p class="note">16 vagas na turma da tarde · 16 na noitinha · 16 no híbrido</p>
+      <p class="note">16 vagas na turma da tarde · 16 na noitinha · 16 no híbrido · 20 no online</p>
     </div>
   </div>
 </section>
@@ -743,8 +743,8 @@ dialog .full{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.7}
 /* Endereço do Apps Script da planilha "Black November 2026 - Pais". Vazio = modo de teste (não grava nada). */
 const SCRIPT_URL = '';
 const FIM = new Date('2026-11-30T23:59:59-03:00');          // fim da condição de Black November
-const VAGAS = { tarde: 16, noitinha: 16, hibrido: 16 };     // vagas restantes em cada turma
-const VAGAS_TOTAL = 16;
+const VAGAS = { tarde: 16, noitinha: 16, hibrido: 16, online: 20 };     // vagas restantes em cada turma
+const VAGAS_TOTAL = { tarde: 16, noitinha: 16, hibrido: 16, online: 20 };
 const WHATSAPP = '5541988848184';
 
 /* ===== Diferenciais em 4 níveis (cada nível soma os anteriores) ===== */
@@ -928,9 +928,9 @@ document.addEventListener('click', e => {
 
 /* Vagas */
 $$('[data-seat]').forEach(el => {
-  const n = VAGAS[el.dataset.seat];
-  $('b', el).textContent = n <= 0 ? 'Esgotado' : n >= VAGAS_TOTAL ? `${n} vagas` : `Restam ${n} de ${VAGAS_TOTAL}`;
-  el.dataset.w = Math.max(n > 0 ? 6 : 0, n / VAGAS_TOTAL * 100) + '%';
+  const n = VAGAS[el.dataset.seat], t = VAGAS_TOTAL[el.dataset.seat];
+  $('b', el).textContent = n <= 0 ? 'Esgotado' : n >= t ? `${n} vagas` : `Restam ${n} de ${t}`;
+  el.dataset.w = Math.max(n > 0 ? 6 : 0, n / t * 100) + '%';
 });
 
 /* Contagem regressiva */
