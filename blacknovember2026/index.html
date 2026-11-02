@@ -729,7 +729,7 @@ const TIERS = [
   ]},
   { nome:'O PREMIUM', resumo:'Para ir além da redação e de um único vestibular.', itens:[
     ['type','Gramática e Língua Portuguesa','Cursos de Gramática e de Língua Portuguesa para a UFPR, gravados pelo professor Pedro. Na UFPR, para Medicina, essa prova tem peso 2.','Peso 2 em Medicina'],
-    ['lit','Aulas de Literatura','Aulas gravadas pelo professor Mateus, com as obras da UFPR e as principais escolas literárias.'],
+    ['lit','Aulas de Literatura','Aulas gravadas com as obras da UFPR e as principais escolas literárias.'],
     ['cap','Cursos para outros vestibulares','Um curso para cada banca: UTFPR, UFSC, Unioeste e UEL, com o que cada uma cobra e como escrever para ela.']
   ]},
   { nome:'O EXCLUSIVO', resumo:'O que você não encontra em nenhum outro lugar.', itens:[
@@ -796,7 +796,7 @@ const VIS = {
   'O melhor material': () => `<div style="width:100%"><div class="books" data-front>${['teorico-enem','teorico-ufpr','producao-enem','producao-ufpr'].map((c, k) => `<button type="button" class="bk${k === 2 ? ' front' : ''}" aria-label="Ver capa"><img src="img/capas/${c}.webp" alt="Capa do caderno ${c.replace('-', ' ')}" loading="lazy"></button>`).join('')}</div><p class="cap-n">Toque em um caderno · Capas meramente ilustrativas</p></div>`,
   'Simulados semanais de ENEM e de UFPR': () => `<div class="pages" data-front>${[['simulado-01','ENEM'],['simulado-03-ufpr','UFPR'],['simulado-06','ENEM'],['simulado-11-ufpr','UFPR']].map(([s, b], k) => `<button type="button" class="pg${k === 1 ? ' front' : ''}" aria-label="Ver simulado ${b}"><img src="img/simulados/${s}.webp" alt="Página de um simulado ${b}" loading="lazy"><em>${b}</em></button>`).join('')}</div>`,
   'Correção em vídeo dos simulados': () => `<div class="photo"><img src="img/pedro-evento.webp" alt="" loading="lazy" style="filter:saturate(.8) brightness(.85)"><div class="play">${PLAY}</div><div class="prog"><i></i></div></div><div class="chips2"><span>Interpretação da proposta</span><span>O caminho certo</span></div>`,
-  'Aulas de Literatura': () => `<div class="spines">${[['Escolas literárias',230,'#1B6DC1'],['Obras da UFPR',200,'#0A2F5C'],['Professor Mateus',180,'#4FA3FF'],['Romantismo',215,'#26324A'],['Modernismo',190,'#0F4A8C'],['Realismo',165,'#1B6DC1']].map(([t, h, c]) => `<span class="spine" style="height:${h}px;background:${c}">${t}</span>`).join('')}</div>`,
+  'Aulas de Literatura': () => `<div class="spines">${[['Escolas literárias',230,'#1B6DC1'],['Obras da UFPR',200,'#0A2F5C'],['Romantismo',215,'#26324A'],['Modernismo',190,'#0F4A8C'],['Realismo',165,'#1B6DC1']].map(([t, h, c]) => `<span class="spine" style="height:${h}px;background:${c}">${t}</span>`).join('')}</div>`,
   'Super Revisão de reta final': () => `<div class="big">${svg('bolt').replace('<svg', '<svg style="width:120px;height:120px;fill:var(--yellow);stroke:var(--blue);stroke-width:1.4"')}<small>Tudo fresco na cabeça,<br>às vésperas da prova.</small></div>`,
   'Escreve.MAIS': () => `<div class="photo"><img src="img/pedro-evento-m.webp" alt="" loading="lazy"><span class="live"><i></i>AO VIVO</span><div class="ov">Aulas extras de produção: escrever junto, ao vivo.</div></div>`,
   'Momento A+': () => `<div class="phone"><div class="scr"><b>Momento A+</b>${[['duvidas','Dúvida rápida de coesão','1:12'],['explicando','Repertório: Bauman','2:05'],['planejando','Como fechar a conclusão','1:40']].map(([p, t, d]) => `<div class="v"><img src="img/argu/${p}.webp" alt="" loading="lazy"><span>${t}</span><em>${d}</em></div>`).join('')}</div></div>`,
