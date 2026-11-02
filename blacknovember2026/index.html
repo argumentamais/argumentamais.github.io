@@ -80,6 +80,11 @@ h2 em{font-style:normal;color:var(--blue)}
 .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
 .pill{display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border-radius:999px;background:#fff;border:1px solid var(--line);box-shadow:var(--sh);font:700 12.5px var(--f);color:var(--ink-2)}
 .pill i{font-style:normal;padding:5px 9px;border-radius:999px;background:var(--ink);color:var(--yellow);font:900 10.5px var(--f);letter-spacing:.12em}
+.bnfx{position:relative;display:inline-block;padding:2px;border-radius:12px;overflow:hidden;box-shadow:0 10px 30px -10px rgba(12,20,36,.55)}
+.bnfx::before{content:"";position:absolute;inset:-150%;background:conic-gradient(from 0deg,#FFE81A,#1B6DC1,#0C1424,#FFE81A,#1B6DC1,#0C1424,#FFE81A);animation:bnspin 4s linear infinite}
+.bnfx-t{position:relative;display:block;padding:11px 20px;border-radius:10px;background:#0C1424;font:900 clamp(15px,1.8vw,19px)/1 var(--f);letter-spacing:.24em;color:transparent;background-image:linear-gradient(100deg,#FFE81A 0,#FFE81A 40%,#fff 50%,#FFE81A 60%,#FFE81A 100%),linear-gradient(#0C1424,#0C1424);background-size:250% 100%,100% 100%;-webkit-background-clip:text,border-box;background-clip:text,border-box;animation:bnshine 3s ease-in-out infinite}
+@keyframes bnspin{to{transform:rotate(1turn)}}
+@keyframes bnshine{0%{background-position:120% 0,0 0}60%,100%{background-position:-20% 0,0 0}}
 .hero h1{margin:22px 0 0;font:900 clamp(32px,4.8vw,54px)/1.06 var(--f);letter-spacing:-.035em}
 .hero h1 span{color:var(--blue)}
 .hero .lead{margin:20px 0 0;max-width:560px;font-size:17.5px;color:var(--soft)}
@@ -137,12 +142,12 @@ h2 em{font-style:normal;color:var(--blue)}
 
 /* Números */
 .nums{border-block:1px solid var(--line);background:#fff}
-.nums .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.nums .wrap{display:grid;grid-template-columns:repeat(5,1fr)}
 .nums div{padding:28px 18px;text-align:center;border-left:1px solid var(--line)}
 .nums div:first-child{border-left:0}
-.nums b{display:block;font:900 clamp(26px,3.4vw,38px)/1 var(--f);color:var(--blue-d);letter-spacing:-.02em}
-.nums span{display:block;margin-top:8px;font:600 13px/1.35 var(--f);color:var(--soft)}
-@media (max-width:760px){.nums .wrap{grid-template-columns:1fr 1fr;padding:0}.nums div:nth-child(3){border-left:0}.nums div:nth-child(n+3){border-top:1px solid var(--line)}}
+.nums b{display:block;font-variant-numeric:tabular-nums;white-space:nowrap;font:900 clamp(26px,3.4vw,38px)/1 var(--f);color:var(--blue-d);letter-spacing:-.02em}
+.nums div>span{display:block;margin-top:8px;font:600 13px/1.35 var(--f);color:var(--soft)}
+@media (max-width:760px){.nums .wrap{grid-template-columns:1fr 1fr;padding:0}.nums div:nth-child(odd){border-left:0}.nums div:nth-child(n+3){border-top:1px solid var(--line)}.nums div:last-child{grid-column:1/-1}}
 
 /* Sobre */
 .about{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:center}
@@ -363,9 +368,9 @@ dialog .full{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.7}
 <section class="hero">
   <div class="wrap">
     <div class="reveal">
-      <span class="pill"><i>BLACK NOVEMBER</i>Matrículas 2027 com condição especial</span>
-      <h1>A redação que <span>aprova</span>, com acompanhamento de perto.</h1>
-      <p class="lead">Há <b>10 anos</b> a Argumenta MAIS prepara estudantes de Araucária e região para o <b>ENEM</b> e a <b>UFPR</b>. Deixe seus dados e a nossa equipe entra em contato para apresentar as turmas de 2027 e a condição de Black November.</p>
+      <span class="bnfx" aria-label="Black November"><span class="bnfx-t">BLACK NOVEMBER</span></span>
+      <h1>A redação é seu primeiro passo para a <span>Universidade.</span></h1>
+      <p class="lead">Desde 2020, somos o <b>único curso de Araucária</b> que, ano a ano, coloca <b>dezenas de pessoas na Universidade pública</b>. Preencha seus dados que iremos te chamar para você conhecer em mais detalhes as condições da <b>MAIOR BLACK da nossa história</b>.</p>
       <ul class="ticks">
         <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Presencial, híbrido ou online, com turmas reduzidas</li>
         <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>140 correções detalhadas por competência ao longo do ano</li>
@@ -376,8 +381,8 @@ dialog .full{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.7}
 
     <div class="form-card reveal" id="form">
       <div id="formWrap">
-        <h2>Fale com a Argumenta</h2>
-        <p class="fs">Preencha em menos de 1 minuto. Entramos em contato com o responsável.</p>
+        <h2>Conheça a MAIOR Black da história</h2>
+        <p class="fs">Preencha em menos de 1 minuto. <b>Entramos em contato com o responsável em até 24 horas</b>, em horário comercial.</p>
         <div class="form-meta"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Só <b>16 vagas</b> por turma presencial e híbrida. Condição de Black até <b>30/11</b>.</span></div>
         <form id="lead" novalidate>
           <fieldset class="mods" id="modsF">
@@ -419,10 +424,11 @@ dialog .full{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.7}
 
 <section class="nums" aria-label="Números da Argumenta MAIS">
   <div class="wrap">
-    <div><b>10 anos</b><span>ensinando redação</span></div>
-    <div><b>Centenas</b><span>de notas 900+ no ENEM</span></div>
-    <div><b>100+</b><span>aprovados na UFPR</span></div>
-    <div><b>980</b><span>maior nota dos nossos alunos no ENEM</span></div>
+    <div><b><span data-count="10">10</span> ANOS</b><span>em sala de aula</span></div>
+    <div><b><span data-count="450">450</span>+</b><span>notas 900+ no ENEM</span></div>
+    <div><b><span data-count="100">100</span>+</b><span>aprovados na UFPR</span></div>
+    <div><b><span data-count="4">4</span>x 980</b><span>no ENEM: único curso da cidade com essa conquista!</span></div>
+    <div><b><span data-count="4">4</span></b><span>aprovados em Medicina na UFPR</span></div>
   </div>
 </section>
 
@@ -657,6 +663,7 @@ const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const svg = k => `<svg viewBox="0 0 24 24" aria-hidden="true">${IC[k]}</svg>`;
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
 
 /* Diferenciais */
@@ -787,6 +794,12 @@ $$('[data-go]').forEach(a => a.addEventListener('click', () => setTimeout(() => 
 const io = new IntersectionObserver(ens => ens.forEach(en => { if (!en.isIntersecting) return; en.target.classList.add('in'); io.unobserve(en.target);
   $$('.seat', en.target).forEach(s => { if (s.dataset.w) $('i', s).style.width = s.dataset.w; }); }), { threshold: .12, rootMargin: '0px 0px -40px' });
 $$('.reveal').forEach(el => io.observe(el));
+/* Números contando */
+const cio = new IntersectionObserver(ens => ens.forEach(en => { if (!en.isIntersecting) return; cio.unobserve(en.target);
+  const el = en.target, n = +el.dataset.count, t0 = performance.now(), dur = reduce ? 0 : 1800;
+  const step = t => { const k = dur ? Math.min(1, (t - t0) / dur) : 1; el.textContent = Math.round(n * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step); }), { threshold: .5 });
+$$('[data-count]').forEach(el => { el.textContent = '0'; cio.observe(el); });
 </script>
 </body>
 </html>
