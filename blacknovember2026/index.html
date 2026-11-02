@@ -187,34 +187,132 @@ h2 em{font-style:normal;color:var(--blue)}
 .inherit>span:first-child{font:800 11.5px var(--f);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-right:4px}
 .chip{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border-radius:999px;background:var(--bg-2);border:1px solid var(--line);font:700 12.5px var(--f);color:var(--ink-2);animation:in .4s both}
 .chip svg{width:13px;height:13px;fill:none;stroke:var(--green);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.dcards{display:grid;grid-template-columns:repeat(2,1fr);align-items:start;gap:14px;padding:22px 30px 30px}
-.dcard{position:relative;display:flex;gap:16px;align-items:flex-start;padding:20px;border-radius:18px;border:1.5px solid var(--line);background:#fff;text-align:left;cursor:pointer;transition:border-color .25s,box-shadow .25s,transform .25s;animation:in .5s both}
-.dcard:hover{border-color:var(--blue);box-shadow:0 14px 30px -18px rgba(27,109,193,.6);transform:translateY(-2px)}
-.dcard .ic{flex:none;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--blue-l);color:var(--blue)}
-.dcard .ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.dcard h4{margin:2px 0 0;font:800 16.5px/1.25 var(--f)}
-.dcard p{margin:0;max-height:0;overflow:hidden;color:var(--soft);font-size:14.5px;transition:max-height .4s ease,margin .3s}
-.dcard .tg{display:inline-block;margin-top:8px;padding:3px 8px;border-radius:6px;background:var(--yellow);font:900 10px var(--f);letter-spacing:.08em;text-transform:uppercase;color:#000}
-.dcard .pm{position:absolute;right:16px;top:18px;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line-2);display:grid;place-items:center;transition:transform .3s,background .3s,border-color .3s}
-.dcard .pm::before,.dcard .pm::after{content:"";position:absolute;width:10px;height:2px;border-radius:2px;background:var(--soft)}
-.dcard .pm::after{transform:rotate(90deg);transition:transform .3s}
-.dcard[aria-expanded="true"]{border-color:var(--blue);background:linear-gradient(180deg,#fff,var(--bg-3))}
-.dcard[aria-expanded="true"] p{max-height:260px;margin-top:8px}
-.dcard[aria-expanded="true"] .pm{background:var(--blue);border-color:var(--blue)}
-.dcard[aria-expanded="true"] .pm::before,.dcard[aria-expanded="true"] .pm::after{background:#fff}
-.dcard[aria-expanded="true"] .pm::after{transform:rotate(0)}
-.dcard .tx{padding-right:30px;min-width:0}
-.dcard.argu{grid-column:1/-1;background:linear-gradient(120deg,#fff 40%,var(--bg-3));align-items:center}
-.dcard.argu .mascot{flex:none;width:96px;height:auto;margin:-6px 0 -10px}
 .tp-foot{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;padding:0 30px 28px}
 .tp-foot p{margin:0;font:600 13.5px var(--f);color:var(--soft)}
-@keyframes in{from{opacity:0;transform:translateY(10px)}}
+.big.o small{-webkit-text-stroke:0;color:var(--ink-2)}
+/* Diferenciais: lista à direita, palco com mockup à esquerda (estilo Fleming) */
+.xp{display:grid;grid-template-columns:1.35fr 1fr;gap:22px;padding:22px 30px 30px;align-items:start}
+.stage{position:relative;min-height:470px;border-radius:22px;background:linear-gradient(145deg,var(--bg-3),#F7FAFE 60%);border:1px solid var(--line);overflow:hidden;padding:30px;display:flex;flex-direction:column}
+.stage .sg{animation:in .45s both;display:flex;flex-direction:column;height:100%;gap:18px}
+.stage h4{margin:0;font:400 clamp(24px,2.6vw,32px)/1.08 var(--f);letter-spacing:-.02em;color:var(--ink)}
+.stage h4 b{display:block;font-weight:900;color:var(--blue)}
+.stage .sp{margin:0;max-width:440px;color:var(--soft);font-size:15px}
+.stage .sp b{color:var(--ink)}
+.vis{position:relative;flex:1;min-height:250px;display:grid;place-items:center}
+.stage .hint{display:inline-flex;align-items:center;gap:8px;font:800 12px var(--f);letter-spacing:.06em;text-transform:uppercase;color:var(--blue)}
+.stage .hint svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;animation:nudge 1.2s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateX(5px)}}
+.intro-n{font:900 150px/.8 var(--f);color:transparent;-webkit-text-stroke:2px rgba(27,109,193,.28);letter-spacing:-.05em}
+.ilist{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.it{width:100%;display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:14px;border:1.5px solid var(--line);background:#fff;text-align:left;cursor:pointer;transition:all .25s;animation:in .45s both}
+.it:hover{border-color:var(--blue)}
+.it .ic{flex:none;width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:var(--blue-l);color:var(--blue);transition:all .25s}
+.it .ic svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.it b{display:block;font:800 14.5px/1.25 var(--f)}
+.it small{display:block;max-height:0;overflow:hidden;font:500 12.5px/1.45 var(--f);color:rgba(255,255,255,.88);transition:max-height .35s,margin .3s}
+.it .tg{display:inline-block;margin-left:6px;padding:2px 6px;border-radius:5px;background:var(--yellow);font:900 9px var(--f);letter-spacing:.06em;text-transform:uppercase;color:#000;vertical-align:2px}
+.it[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 14px 30px -16px rgba(27,109,193,.9);transform:translateX(-4px)}
+.it[aria-pressed="true"] .ic{background:rgba(255,255,255,.18);color:#fff}
+.it[aria-pressed="true"] small{max-height:120px;margin-top:4px}
+/* Mockups */
+.books{position:relative;width:100%;max-width:440px;height:290px;perspective:1100px}
+.bk{position:absolute;top:10px;width:150px;aspect-ratio:560/793;border:0;padding:0;background:none;cursor:pointer;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.3,.7,.3,1),z-index 0s .2s,filter .3s}
+.bk img{width:100%;height:100%;object-fit:cover;border-radius:3px 8px 8px 3px;box-shadow:inset 6px 0 10px -6px rgba(0,0,0,.4),18px 24px 40px -18px rgba(12,20,36,.55)}
+.bk::before{content:"";position:absolute;left:4px;top:4%;bottom:4%;width:8px;background:repeating-linear-gradient(180deg,#9aa6b8 0 3px,transparent 3px 9px);border-radius:4px;z-index:2}
+.bk:nth-child(1){left:2%;transform:rotateY(22deg) rotateZ(-7deg) translateZ(-40px)}
+.bk:nth-child(2){left:24%;transform:rotateY(14deg) rotateZ(-2deg) translateZ(-20px)}
+.bk:nth-child(3){left:46%;transform:rotateY(6deg) rotateZ(2deg)}
+.bk:nth-child(4){left:66%;transform:rotateY(-4deg) rotateZ(6deg) translateZ(10px)}
+.bk.front{z-index:5;transform:translateY(-14px) scale(1.18) rotateZ(0)!important;filter:drop-shadow(0 20px 26px rgba(12,20,36,.35))}
+.books+.cap-n{margin-top:6px;font:600 11px var(--f);color:var(--mute);text-align:center}
+.browser{position:relative;width:100%;max-width:470px;border-radius:12px;background:#fff;box-shadow:0 30px 50px -24px rgba(12,20,36,.45);overflow:hidden;border:1px solid var(--line)}
+.browser .bar{display:flex;gap:6px;align-items:center;padding:9px 12px;background:#EEF2F7}
+.browser .bar i{width:9px;height:9px;border-radius:50%;background:#D5DCE6}
+.browser .bar span{margin-left:10px;flex:1;height:16px;border-radius:5px;background:#fff;font:600 9.5px/16px var(--f);color:var(--mute);padding-left:8px}
+.balloon{position:absolute;right:-8px;bottom:-26px;width:46%;border-radius:12px;box-shadow:0 24px 40px -18px rgba(12,20,36,.55);border:3px solid #fff;animation:float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.pages{position:relative;width:100%;max-width:440px;height:300px}
+.pg{position:absolute;top:8px;left:50%;width:170px;aspect-ratio:1100/1556;margin-left:-85px;border:0;padding:0;background:#fff;cursor:pointer;border-radius:6px;overflow:hidden;box-shadow:0 18px 34px -16px rgba(12,20,36,.5);transition:transform .5s cubic-bezier(.3,.7,.3,1)}
+.pg img{width:100%;height:100%;object-fit:cover}
+.pg:nth-child(1){transform:translateX(-120px) rotate(-12deg)}
+.pg:nth-child(2){transform:translateX(-40px) rotate(-4deg)}
+.pg:nth-child(3){transform:translateX(40px) rotate(4deg)}
+.pg:nth-child(4){transform:translateX(120px) rotate(12deg)}
+.pg.front{z-index:5;transform:translateY(-6px) scale(1.25)!important}
+.pg em{position:absolute;left:8px;top:8px;padding:3px 7px;border-radius:5px;background:var(--ink);color:var(--yellow);font:900 9px var(--f);font-style:normal;letter-spacing:.08em}
+.photo{position:relative;width:100%;max-width:470px;aspect-ratio:16/10;border-radius:16px;overflow:hidden;box-shadow:0 26px 46px -24px rgba(12,20,36,.55)}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.photo .ov{position:absolute;inset:auto 0 0 0;padding:40px 16px 14px;background:linear-gradient(0deg,rgba(10,47,92,.92),transparent);color:#fff;font:800 14px/1.3 var(--f)}
+.live{position:absolute;left:14px;top:14px;display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border-radius:8px;background:var(--red);color:#fff;font:900 11px var(--f);letter-spacing:.1em}
+.live i{width:7px;height:7px;border-radius:50%;background:#fff;animation:blink 1.1s infinite}
+@keyframes blink{50%{opacity:.2}}
+.play{position:absolute;inset:0;display:grid;place-items:center}
+.play span{width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.95);display:grid;place-items:center;box-shadow:0 0 0 12px rgba(255,255,255,.25);animation:pulse2 2s infinite}
+.play svg{width:28px;height:28px;fill:var(--blue);margin-left:5px}
+@keyframes pulse2{50%{box-shadow:0 0 0 20px rgba(255,255,255,.08)}}
+.prog{position:absolute;left:16px;right:16px;bottom:14px;height:5px;border-radius:5px;background:rgba(255,255,255,.35)}
+.prog i{display:block;height:100%;width:38%;border-radius:5px;background:var(--yellow);animation:prog 6s linear infinite}
+@keyframes prog{from{width:5%}to{width:95%}}
+.chips2{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px}
+.chips2 span{padding:7px 11px;border-radius:999px;background:#fff;border:1px solid var(--line);font:700 12px var(--f);color:var(--ink-2);box-shadow:var(--sh)}
+.spines{display:flex;align-items:flex-end;gap:6px;height:240px}
+.spine{width:46px;border-radius:5px 5px 2px 2px;display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;transform:rotate(180deg);font:800 12px var(--f);letter-spacing:.06em;color:#fff;box-shadow:inset -6px 0 0 rgba(0,0,0,.12);transition:transform .3s;cursor:default}
+.spine:hover{transform:rotate(180deg) translateY(10px)}
+.phone{width:200px;height:300px;border-radius:30px;background:var(--ink);padding:10px;box-shadow:0 30px 50px -22px rgba(12,20,36,.6)}
+.phone .scr{height:100%;border-radius:22px;background:#fff;overflow:hidden;display:grid;grid-template-rows:auto 1fr 1fr 1fr;gap:6px;padding:12px 10px}
+.phone .scr b{font:900 12px var(--f);color:var(--blue);text-align:center}
+.phone .v{position:relative;display:flex;align-items:center;gap:8px;padding:6px;border-radius:12px;background:var(--bg-2);font:700 10.5px/1.25 var(--f);color:var(--ink-2)}
+.phone .v img{width:42px;height:42px;border-radius:9px;background:#fff}
+.phone .v em{position:absolute;right:6px;bottom:5px;font:800 8.5px var(--f);font-style:normal;color:var(--mute)}
+.big{font:900 clamp(90px,12vw,150px)/.9 var(--f);letter-spacing:-.05em;color:var(--blue);text-align:center}
+.big small{display:block;font:800 15px/1.3 var(--f);letter-spacing:.02em;color:var(--ink-2);margin-top:10px}
+.big.o{color:transparent;-webkit-text-stroke:3px var(--blue)}
+.cal{width:100%;max-width:330px;border-radius:16px;background:#fff;box-shadow:var(--sh);border:1px solid var(--line);overflow:hidden}
+.cal header{padding:12px;background:var(--blue);color:#fff;font:900 14px var(--f);letter-spacing:.14em;text-align:center}
+.cal .g{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;padding:12px}
+.cal .g span{aspect-ratio:1;display:grid;place-items:center;border-radius:7px;font:700 11px var(--f);color:var(--mute)}
+.cal .g span.on{background:var(--yellow);color:#000;font-weight:900}
+.unis{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;max-width:360px}
+.unis span{padding:22px 10px;border-radius:16px;background:#fff;border:1.5px solid var(--line);box-shadow:var(--sh);text-align:center;font:900 20px var(--f);color:var(--blue-d);animation:in .5s both}
+.unis span small{display:block;margin-top:4px;font:700 11px var(--f);color:var(--mute)}
+.unis span.cur{grid-column:1/-1;background:var(--blue);color:#fff;border-color:var(--blue)}
+.unis span.cur small{color:#C7D5EA}
+.argu-v{position:relative;width:100%;max-width:420px;height:290px}
+.argu-v .m{position:absolute;left:50%;bottom:0;width:170px;margin-left:-85px;transition:transform .4s}
+.argu-v .pose{position:absolute;width:88px;height:88px;border-radius:50%;border:3px solid #fff;background:#fff;box-shadow:var(--sh);padding:0;cursor:pointer;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.argu-v .pose img{width:100%;height:100%}
+.argu-v .pose:hover,.argu-v .pose.on{transform:scale(1.12);box-shadow:0 0 0 4px var(--blue)}
+.argu-v .bub{position:absolute;left:50%;top:0;transform:translateX(-50%);padding:9px 14px;border-radius:14px;background:var(--ink);color:#fff;font:800 13px var(--f);white-space:nowrap}
+.argu-v .bub::after{content:"";position:absolute;left:50%;bottom:-6px;margin-left:-6px;border:6px solid transparent;border-bottom:0;border-top-color:var(--ink)}
+.year{display:flex;width:100%;max-width:440px;margin-top:14px;border-radius:10px;overflow:hidden;font:800 10.5px var(--f);color:#fff;text-align:center}
+.year span{flex:1;padding:9px 2px}
+.argu-mk{position:relative;width:100%;max-width:440px;height:330px}
+.argu-mk .am{position:absolute;left:0;bottom:-6px;width:190px;z-index:2;filter:drop-shadow(0 20px 22px rgba(12,20,36,.3));animation:float 4s ease-in-out infinite}
+.ph-chat{position:absolute;right:6%;top:0;width:220px;height:330px;transform:rotate(4deg)}
+.ph-chat .scr{display:flex;flex-direction:column;gap:0;padding:0}
+.ch-h{display:flex;align-items:center;gap:8px;padding:12px 10px;background:var(--blue);color:#fff}
+.ch-h img{width:30px;height:30px;border-radius:50%;background:#fff;object-fit:cover;object-position:50% 10%}
+.ch-h b{display:block;font:800 12px var(--f);color:#fff;text-align:left}.ch-h small{display:block;font:600 9.5px var(--f);opacity:.8}
+.ch-b{flex:1;display:flex;flex-direction:column;gap:7px;padding:10px;background:var(--bg-2);overflow:hidden}
+.ch-b p{margin:0;max-width:85%;padding:7px 9px;border-radius:11px;font:600 10.5px/1.35 var(--f);animation:in .4s both}
+.ch-b p:nth-child(2){animation-delay:.25s}.ch-b p:nth-child(3){animation-delay:.5s}.ch-b p:nth-child(4){animation-delay:.75s}
+.ch-b .u{align-self:flex-end;background:var(--blue);color:#fff;border-bottom-right-radius:3px}
+.ch-b .a{align-self:flex-start;background:#fff;color:var(--ink-2);border:1px solid var(--line);border-bottom-left-radius:3px}
+.argu-tabs button{padding:7px 12px;border-radius:999px;background:#fff;border:1.5px solid var(--line);font:800 12px var(--f);color:var(--ink-2);cursor:pointer}
+.argu-tabs button.on{background:var(--ink);border-color:var(--ink);color:var(--yellow)}
+@media (max-width:760px){.argu-mk{height:290px}.argu-mk .am{width:140px}.ph-chat{width:190px;height:290px;right:0}}
+@media (max-width:900px){.stage.empty{display:none}.xp{grid-template-columns:1fr}.ilist{order:-1}.stage{min-height:0}}
+@media (max-width:760px){
+ .xp{padding:18px}.stage{padding:20px}.ilist{grid-template-columns:1fr}
+ .bk{width:110px}.books{height:220px}.pg{width:120px;margin-left:-60px}.pg:nth-child(1){transform:translateX(-80px) rotate(-12deg)}.pg:nth-child(2){transform:translateX(-27px) rotate(-4deg)}.pg:nth-child(3){transform:translateX(27px) rotate(4deg)}.pg:nth-child(4){transform:translateX(80px) rotate(12deg)}.pages{height:220px}
+ .intro-n{font-size:110px}.argu-v{height:250px}.argu-v .m{width:130px;margin-left:-65px}.argu-v .pose{width:66px;height:66px}
+ .spines{height:190px}.spine{width:36px;font-size:10.5px}
+}
 @media (max-width:760px){
  .steps{gap:4px}.steps::before,.steps .bar{top:21px}
  .step .n{width:44px;height:44px;font-size:14px}.step .t{font-size:10.5px;letter-spacing:.03em}.step .t small{display:none}
- .tp-top,.inherit,.dcards,.tp-foot{padding-left:18px;padding-right:18px}
- .dcards{grid-template-columns:1fr}.tp-top h3{font-size:22px}.count b{font-size:32px}
- .dcard.argu .mascot{width:70px}
+ .tp-top,.inherit,.tp-foot{padding-left:18px;padding-right:18px}
+ .tp-top h3{font-size:22px}.count b{font-size:32px}
 }
 
 /* Como funciona */
@@ -335,8 +433,6 @@ dialog .full{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.7}
  .urg .wrap{flex-wrap:nowrap;font-size:12px;text-align:left;gap:10px}
  .pill{font-size:11.5px;padding:6px 12px 6px 6px}.pill i{font-size:9.5px;white-space:nowrap}
  .hero .lead{font-size:16px}.ticks li{font-size:14.5px}
- .dcard{padding:16px;gap:12px}.dcard .ic{width:40px;height:40px;border-radius:12px}.dcard .ic svg{width:20px;height:20px}
- .dcard .tx{padding-right:26px}.dcard .pm{right:12px;top:14px}
  .tp-top{flex-direction:row;align-items:flex-end}
 }
 /* Entrada suave */
@@ -611,20 +707,20 @@ const TIERS = [
   { nome:'O AVANÇADO', resumo:'Treino de prova real, do jeito que a banca cobra.', itens:[
     ['clip','Simulados semanais de ENEM e de UFPR','Um simulado novo toda semana, 100% autoral e fiel ao ENEM e à UFPR, corrigido com o mesmo detalhe das redações. É onde se treina o tempo e a concentração para o dia da prova.','Toda semana'],
     ['play','Correção em vídeo dos simulados','A interpretação de cada proposta e o caminho certo para fazer a redação, explicados em vídeo.'],
-    ['lit','Aulas de Literatura','Aulas gravadas pelo professor Mateus, com as obras da UFPR e as principais escolas literárias.'],
     ['bolt','Super Revisão de reta final','Uma revisão intensiva perto das provas, para o estudante chegar com tudo fresco na cabeça.'],
     ['edit','Escreve.MAIS','Aulas extras de produção textual, ao vivo, para o estudante escrever mais e com acompanhamento.'],
     ['spark','Momento A+','Vídeos mais curtos para o estudante tirar dúvidas específicas e ganhar repertório.']
   ]},
   { nome:'O PREMIUM', resumo:'Para ir além da redação e de um único vestibular.', itens:[
     ['type','Gramática e Língua Portuguesa','Cursos de Gramática e de Língua Portuguesa para a UFPR, gravados pelo professor Pedro. Na UFPR, para Medicina, essa prova tem peso 2.','Peso 2 em Medicina'],
-    ['sun','Curso de férias em janeiro','Antes das aulas começarem, para o estudante chegar em fevereiro na frente.'],
-    ['cap','Cursos para outros vestibulares','Um curso para cada banca: UTFPR, UFSC, Unioeste e UEL, com o que cada uma cobra e como escrever para ela.'],
-    ['target','Operação 40','O superintensivo de reta final: 40 aulas ao vivo com teoria, prática guiada e correção ao vivo, até a prova.']
+    ['lit','Aulas de Literatura','Aulas gravadas pelo professor Mateus, com as obras da UFPR e as principais escolas literárias.'],
+    ['cap','Cursos para outros vestibulares','Um curso para cada banca: UTFPR, UFSC, Unioeste e UEL, com o que cada uma cobra e como escrever para ela.']
   ]},
   { nome:'O EXCLUSIVO', resumo:'O que você não encontra em nenhum outro lugar.', itens:[
     ['bot','Argumentinha','O nosso assistente de projetos de texto. O estudante monta o projeto da redação com ele, que ajuda a organizar as ideias antes de escrever. Hoje com o ENEM e, em 2027, também com as propostas da UFPR.','Inédito','argu'],
-    ['cal','Imersão MEU ANO NOTA MÁXIMA','Uma imersão ao vivo com o professor Pedro para planejar o ano do estudante em busca do 1000: o que fazer em cada fase e como aproveitar tudo o que a Argumenta oferece.','Só na Argumenta']
+    ['cal','Imersão MEU ANO NOTA MÁXIMA','Uma imersão ao vivo com o professor Pedro para planejar o ano do estudante em busca do 1000: o que fazer em cada fase e como aproveitar tudo o que a Argumenta oferece.','Só na Argumenta'],
+    ['sun','Curso de férias em janeiro','Antes das aulas começarem, para o estudante chegar em fevereiro na frente.'],
+    ['target','Operação 40','O superintensivo de reta final: 40 aulas ao vivo com teoria, prática guiada e correção ao vivo, até a prova.']
   ]}
 ];
 
@@ -669,6 +765,33 @@ const svg = k => `<svg viewBox="0 0 24 24" aria-hidden="true">${IC[k]}</svg>`;
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
 
+/* Palco de cada diferencial (mockups) */
+const ARGU_TABS = ['Projeto de texto', 'Tira dúvidas', 'Repertório'];
+const ARGU_CHAT = [
+  '<p class="u">Tema: desafios da educação financeira no Brasil</p><p class="a">Bora montar o seu projeto! 💡 Qual é a sua tese?</p><p class="u">Falta de ensino nas escolas</p><p class="a">Ótimo. Agora escolha 2 argumentos e um repertório para cada um.</p>',
+  '<p class="u">Posso começar com uma citação?</p><p class="a">Pode, sim! Só ligue a citação ao tema logo na frase seguinte.</p><p class="u">E na conclusão?</p><p class="a">Agente, ação, meio, finalidade e detalhamento. Vamos montar juntos?</p>',
+  '<p class="u">Preciso de um repertório sobre tecnologia</p><p class="a">Que tal Zygmunt Bauman e a modernidade líquida? Veja como encaixar no D1 👇</p><p class="u">Perfeito!</p>'
+];
+const PLAY = '<span><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8Z"/></svg></span>';
+const VIS = {
+  'Aulas de ENEM': () => `<div class="photo"><img src="img/pedro-evento.webp" alt="" loading="lazy"><span class="live"><i></i>SEGUNDA · ENEM</span><div class="ov">Duas aulas por semana: uma inteira dedicada ao ENEM.</div></div><div class="chips2"><span>Técnicas de escrita</span><span>Interpretação dos enunciados</span><span>Como trabalhar a prova</span></div>`,
+  'Aulas de UFPR': () => `<div class="photo"><img src="img/pedro-evento-m.webp" alt="" loading="lazy" style="object-position:50% 20%"><span class="live" style="background:var(--blue)"><i></i>TERÇA · UFPR</span><div class="ov">Texto curto, texto longo e os gêneros que a UFPR cobra.</div></div><div class="chips2"><span>Gêneros da UFPR</span><span>Leitura da coletânea</span><span>Adequação à proposta</span></div>`,
+  '140 correções': () => `<div style="position:relative;width:100%;max-width:470px"><div class="browser"><div class="bar"><i></i><i></i><i></i><span>plataforma.argumentamais</span></div><img src="img/correcoes/1-plataforma-notas.webp" alt="Tela da plataforma com a nota por competência" loading="lazy"></div><img class="balloon" src="img/correcoes/3-comentario-c2.webp" alt="Comentário do corretor na competência 2" loading="lazy"></div>`,
+  'O melhor material': () => `<div style="width:100%"><div class="books" data-front>${['teorico-enem','teorico-ufpr','producao-enem','producao-ufpr'].map((c, k) => `<button type="button" class="bk${k === 2 ? ' front' : ''}" aria-label="Ver capa"><img src="img/capas/${c}.webp" alt="Capa do caderno ${c.replace('-', ' ')}" loading="lazy"></button>`).join('')}</div><p class="cap-n">Toque em um caderno · Capas meramente ilustrativas</p></div>`,
+  'Simulados semanais de ENEM e de UFPR': () => `<div class="pages" data-front>${[['simulado-01','ENEM'],['simulado-03-ufpr','UFPR'],['simulado-06','ENEM'],['simulado-11-ufpr','UFPR']].map(([s, b], k) => `<button type="button" class="pg${k === 1 ? ' front' : ''}" aria-label="Ver simulado ${b}"><img src="img/simulados/${s}.webp" alt="Página de um simulado ${b}" loading="lazy"><em>${b}</em></button>`).join('')}</div>`,
+  'Correção em vídeo dos simulados': () => `<div class="photo"><img src="img/pedro-evento.webp" alt="" loading="lazy" style="filter:saturate(.8) brightness(.85)"><div class="play">${PLAY}</div><div class="prog"><i></i></div></div><div class="chips2"><span>Interpretação da proposta</span><span>O caminho certo</span></div>`,
+  'Aulas de Literatura': () => `<div class="spines">${[['Escolas literárias',230,'#1B6DC1'],['Obras da UFPR',200,'#0A2F5C'],['Professor Mateus',180,'#4FA3FF'],['Romantismo',215,'#26324A'],['Modernismo',190,'#0F4A8C'],['Realismo',165,'#1B6DC1']].map(([t, h, c]) => `<span class="spine" style="height:${h}px;background:${c}">${t}</span>`).join('')}</div>`,
+  'Super Revisão de reta final': () => `<div class="big">${svg('bolt').replace('<svg', '<svg style="width:120px;height:120px;fill:var(--yellow);stroke:var(--blue);stroke-width:1.4"')}<small>Tudo fresco na cabeça,<br>às vésperas da prova.</small></div>`,
+  'Escreve.MAIS': () => `<div class="photo"><img src="img/pedro-evento-m.webp" alt="" loading="lazy"><span class="live"><i></i>AO VIVO</span><div class="ov">Aulas extras de produção: escrever junto, ao vivo.</div></div>`,
+  'Momento A+': () => `<div class="phone"><div class="scr"><b>Momento A+</b>${[['duvidas','Dúvida rápida de coesão','1:12'],['explicando','Repertório: Bauman','2:05'],['planejando','Como fechar a conclusão','1:40']].map(([p, t, d]) => `<div class="v"><img src="img/argu/${p}.webp" alt="" loading="lazy"><span>${t}</span><em>${d}</em></div>`).join('')}</div></div>`,
+  'Gramática e Língua Portuguesa': () => `<div class="big">PESO 2<small>é o peso da prova de Língua Portuguesa<br>da UFPR para Medicina.</small></div>`,
+  'Curso de férias em janeiro': () => `<div class="cal"><header>JANEIRO 2027</header><div class="g">${['D','S','T','Q','Q','S','S'].map(d => `<span style="color:var(--ink)">${d}</span>`).join('')}${'<span></span>'.repeat(5)}${Array.from({ length: 31 }, (_, k) => `<span class="${[(k + 5) % 7].some(w => w > 0 && w < 6) && k > 9 && k < 30 ? 'on' : ''}">${k + 1}</span>`).join('')}</div></div>`,
+  'Cursos para outros vestibulares': () => `<div class="unis"><span class="cur">ENEM + UFPR<small>a base do ano</small></span>${['UTFPR', 'UFSC', 'Unioeste', 'UEL'].map((u, k) => `<span style="animation-delay:${k * 80}ms">${u}<small>curso próprio</small></span>`).join('')}</div>`,
+  'Operação 40': () => `<div class="big o">40<small>aulas ao vivo até a prova</small></div>`,
+  'Argumentinha': () => `<div class="argu-mk"><img class="am" src="img/argu/mascote.webp" alt="Argumentinha, o mascote da Argumenta MAIS" loading="lazy"><div class="phone ph-chat"><div class="scr"><div class="ch-h"><img src="img/argu/mascote.webp" alt=""><span><b>Argumentinha</b><small>online agora</small></span></div><div class="ch-b" data-chat>${ARGU_CHAT[0]}</div></div></div></div><div class="chips2 argu-tabs">${ARGU_TABS.map((t, k) => `<button type="button" class="${k ? '' : 'on'}" data-chat-k="${k}">${t}</button>`).join('')}</div>`,
+  'Imersão MEU ANO NOTA MÁXIMA': () => `<div style="width:100%;max-width:470px"><div class="photo"><img src="img/pedro-evento.webp" alt="" loading="lazy"><div class="ov" style="font-size:18px;letter-spacing:.04em">MEU ANO NOTA MÁXIMA</div></div><div class="year">${[['FEV','#0A2F5C'],['ABR','#0F4A8C'],['JUN','#1B6DC1'],['AGO','#2F84DA'],['OUT','#4FA3FF'],['NOV · 1000','#E1B800']].map(([m, c]) => `<span style="background:${c}">${m}</span>`).join('')}</div></div>`
+};
+
 /* Diferenciais */
 const steps = $('#steps'), panel = $('#tierPanel'), bar = $('#stepBar');
 steps.insertAdjacentHTML('beforeend', TIERS.map((t, i) => `<button type="button" class="step" role="tab" id="tab${i}" aria-controls="tierPanel" data-i="${i}"><span class="n">0${i + 1}</span><span class="t">${t.nome}<small>${esc(t.resumo.split(',')[0].split('.')[0])}</small></span></button>`).join(''));
@@ -683,13 +806,21 @@ function showTier(i, focus){
   panel.innerHTML = `
     <div class="tp-top"><h3>${t.nome}<small>${esc(t.resumo)}</small></h3><div class="count"><b>${total}</b>diferenciais${i ? ' somados' : ''}</div></div>
     ${i ? `<div class="inherit"><span>Inclui tudo de ${TIERS[i - 1].nome}${i > 1 ? ' e anteriores' : ''}</span>${prev.map((p, k) => `<span class="chip" style="animation-delay:${k * 25}ms">${CHECK}${esc(p)}</span>`).join('')}</div>` : ''}
-    <div class="dcards">${t.itens.map(([ic, h, p, tag, kind], k) => `
-      <button type="button" class="dcard${kind ? ' ' + kind : ''}" aria-expanded="false" style="animation-delay:${120 + k * 70}ms">
-        ${kind === 'argu' ? '<img class="mascot" src="img/argu/mascote.webp" alt="" width="600" height="716" loading="lazy">' : `<span class="ic">${svg(ic)}</span>`}
-        <span class="tx"><h4>${esc(h)}</h4>${tag ? `<span class="tg">${esc(tag)}</span>` : ''}<p>${esc(p)}</p></span><span class="pm" aria-hidden="true"></span>
-      </button>`).join('')}</div>
+    <div class="xp">
+      <div class="stage" id="stage"></div>
+      <ul class="ilist">${t.itens.map(([ic, h, p, tag], k) => `<li><button type="button" class="it" aria-pressed="false" data-k="${k}" aria-controls="stage" style="animation-delay:${80 + k * 60}ms"><span class="ic">${svg(ic)}</span><span><b>${esc(h)}${tag ? `<span class="tg">${esc(tag)}</span>` : ''}</b><small>${esc(p)}</small></span></button></li>`).join('')}</ul>
+    </div>
     <div class="tp-foot"><p>${i < 3 ? `Próximo nível: <b>${TIERS[i + 1].nome}</b>` : 'Esse é o nível mais completo da Argumenta.'}</p>${i < 3 ? `<button type="button" class="btn sm" data-next>Ver ${TIERS[i + 1].nome.toLowerCase()} <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>` : '<a class="btn sm" href="#form" data-go>Quero ser Argumenta</a>'}</div>`;
+  showItem(-1);
   if (focus) $$('.step', steps)[i].focus();
+}
+function showItem(k){
+  const t = TIERS[cur], st = $('#stage');
+  $$('.it', panel).forEach(b => b.setAttribute('aria-pressed', +b.dataset.k === k));
+  st.classList.toggle('empty', k < 0);
+  if (k < 0) { st.innerHTML = `<div class="sg"><h4>${t.nome.replace(/^O /, 'O ')}<b>${t.itens.length} diferenciais${cur ? ' a mais' : ''}</b></h4><p class="sp">${esc(t.resumo)} Toque em cada item para ver como ele funciona.</p><div class="vis"><span class="intro-n">0${cur + 1}</span></div><span class="hint">Escolha um item ${matchMedia('(max-width:900px)').matches ? 'acima' : 'ao lado'} <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>`; return; }
+  const [, h, p] = t.itens[k], words = h.split(' '), cut = Math.max(1, Math.ceil(words.length / 2) - (words.length > 3 ? 1 : 0));
+  st.innerHTML = `<div class="sg"><h4>${esc(words.slice(0, cut).join(' '))}<b>${esc(words.slice(cut).join(' ') || '')}</b></h4><p class="sp">${esc(p)}</p><div class="vis">${VIS[h] ? VIS[h]() : ''}</div></div>`;
 }
 steps.addEventListener('click', e => { const b = e.target.closest('.step'); if (b) showTier(+b.dataset.i); });
 steps.addEventListener('keydown', e => {
@@ -697,7 +828,9 @@ steps.addEventListener('keydown', e => {
   e.preventDefault(); showTier((cur + d + 4) % 4, true);
 });
 panel.addEventListener('click', e => {
-  const c = e.target.closest('.dcard'); if (c) { c.setAttribute('aria-expanded', c.getAttribute('aria-expanded') !== 'true'); return; }
+  const it = e.target.closest('.it'); if (it) { const k = +it.dataset.k; showItem(it.getAttribute('aria-pressed') === 'true' ? -1 : k); if (matchMedia('(max-width:900px)').matches) $('#stage').scrollIntoView({ block: 'nearest', behavior: 'smooth' }); return; }
+  const f = e.target.closest('[data-front] > button'); if (f) { $$('button', f.parentNode).forEach(b => b.classList.toggle('front', b === f)); return; }
+  const ct = e.target.closest('[data-chat-k]'); if (ct) { $$('[data-chat-k]', panel).forEach(b => b.classList.toggle('on', b === ct)); $('[data-chat]', panel).innerHTML = ARGU_CHAT[+ct.dataset.chatK]; return; }
   if (e.target.closest('[data-next]')) { showTier(cur + 1); steps.scrollIntoView({ block: 'start' }); }
 });
 showTier(0);
