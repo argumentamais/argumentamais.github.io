@@ -184,7 +184,7 @@ h2 em{font-style:normal;color:var(--blue)}
 .count{display:flex;align-items:baseline;gap:8px;font:600 13px var(--f);color:var(--soft)}
 .count b{font:900 40px/1 var(--f);color:var(--blue);font-variant-numeric:tabular-nums}
 .inherit{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:18px 30px 0}
-.inherit>span{font:800 11.5px var(--f);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-right:4px}
+.inherit>span:first-child{font:800 11.5px var(--f);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-right:4px}
 .chip{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border-radius:999px;background:var(--bg-2);border:1px solid var(--line);font:700 12.5px var(--f);color:var(--ink-2);animation:in .4s both}
 .chip svg{width:13px;height:13px;fill:none;stroke:var(--green);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 .dcards{display:grid;grid-template-columns:repeat(2,1fr);align-items:start;gap:14px;padding:22px 30px 30px}
@@ -456,7 +456,7 @@ dialog .full{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.7}
       <div>
         <p class="label">Diferenciais</p>
         <h2>O que só a Argumenta <em>oferece.</em></h2>
-        <p class="sub">São quatro níveis de preparação, e cada um soma tudo o que veio antes. Toque em um nível para ver o que ele acrescenta e em cada item para ler mais.</p>
+        <p class="sub">São quatro níveis de preparação, e todos eles estão na nossa Black November.</p>
       </div>
     </div>
     <div class="steps reveal" role="tablist" aria-label="Níveis de diferenciais" id="steps"><span class="bar" id="stepBar" aria-hidden="true"></span></div>
@@ -598,20 +598,23 @@ const IC = {
   cap:'<path d="M3 9 12 4l9 5-9 5Z"/><path d="M7 11v5c3 2 7 2 10 0v-5"/>',
   target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
   cal:'<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h3"/>',
+  board:'<rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M7 20l3-4M17 20l-3-4M7 8h6M7 11h9"/>',
   bot:'<rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9 17h6"/>'
 };
 const TIERS = [
   { nome:'O ESSENCIAL', resumo:'A base que já está acima de toda a concorrência.', itens:[
+    ['board','Aulas de ENEM','Técnicas de escrita, interpretação adequada dos enunciados e as formas de trabalhar com a prova de redação do ENEM.'],
+    ['board','Aulas de UFPR','Técnicas de escrita, interpretação adequada dos enunciados e as formas de trabalhar com a prova de redação da UFPR.'],
     ['pen','140 correções','Cada redação volta com marcações por competência, comentários linha a linha e um caminho claro para a próxima. São 140 correções ao longo do ano.','Nosso carro-chefe'],
-    ['book','O melhor material','Material físico com toda a teoria, as propostas e espaço para passar a limpo os textos (presencial e híbrido), mais os PDFs autorais na plataforma, para todos.'],
-    ['edit','Escreve.MAIS','Mais propostas e mais prática para o estudante escrever com frequência e ganhar ritmo ao longo do ano.'],
-    ['spark','Momento A+','Um momento especial da Argumenta para celebrar a evolução e manter o estudante motivado durante o ano.']
+    ['book','O melhor material','Material físico com toda a teoria, as propostas e espaço para passar a limpo os textos (presencial e híbrido), mais os PDFs autorais na plataforma, para todos.']
   ]},
   { nome:'O AVANÇADO', resumo:'Treino de prova real, do jeito que a banca cobra.', itens:[
     ['clip','Simulados semanais de ENEM e de UFPR','Um simulado novo toda semana, 100% autoral e fiel ao ENEM e à UFPR, corrigido com o mesmo detalhe das redações. É onde se treina o tempo e a concentração para o dia da prova.','Toda semana'],
     ['play','Correção em vídeo dos simulados','A interpretação de cada proposta e o caminho certo para fazer a redação, explicados em vídeo.'],
     ['lit','Aulas de Literatura','Aulas gravadas pelo professor Mateus, com as obras da UFPR e as principais escolas literárias.'],
-    ['bolt','Super Revisão de reta final','Uma revisão intensiva perto das provas, para o estudante chegar com tudo fresco na cabeça.']
+    ['bolt','Super Revisão de reta final','Uma revisão intensiva perto das provas, para o estudante chegar com tudo fresco na cabeça.'],
+    ['edit','Escreve.MAIS','Aulas extras de produção textual, ao vivo, para o estudante escrever mais e com acompanhamento.'],
+    ['spark','Momento A+','Vídeos mais curtos para o estudante tirar dúvidas específicas e ganhar repertório.']
   ]},
   { nome:'O PREMIUM', resumo:'Para ir além da redação e de um único vestibular.', itens:[
     ['type','Gramática e Língua Portuguesa','Cursos de Gramática e de Língua Portuguesa para a UFPR, gravados pelo professor Pedro. Na UFPR, para Medicina, essa prova tem peso 2.','Peso 2 em Medicina'],
@@ -686,7 +689,6 @@ function showTier(i, focus){
         <span class="tx"><h4>${esc(h)}</h4>${tag ? `<span class="tg">${esc(tag)}</span>` : ''}<p>${esc(p)}</p></span><span class="pm" aria-hidden="true"></span>
       </button>`).join('')}</div>
     <div class="tp-foot"><p>${i < 3 ? `Próximo nível: <b>${TIERS[i + 1].nome}</b>` : 'Esse é o nível mais completo da Argumenta.'}</p>${i < 3 ? `<button type="button" class="btn sm" data-next>Ver ${TIERS[i + 1].nome.toLowerCase()} <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>` : '<a class="btn sm" href="#form" data-go>Quero ser Argumenta</a>'}</div>`;
-  const first = $('.dcard', panel); if (first) first.setAttribute('aria-expanded', 'true');
   if (focus) $$('.step', steps)[i].focus();
 }
 steps.addEventListener('click', e => { const b = e.target.closest('.step'); if (b) showTier(+b.dataset.i); });
