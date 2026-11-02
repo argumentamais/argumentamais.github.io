@@ -198,7 +198,8 @@ h2 em{font-style:normal;color:var(--blue)}
 .stage h4 b{display:block;font-weight:900;color:var(--blue)}
 .stage .sp{margin:0;max-width:440px;color:var(--soft);font-size:15px}
 .stage .sp b{color:var(--ink)}
-.vis{position:relative;flex:1;min-height:250px;display:grid;place-items:center}
+.vis{position:relative;flex:1;min-height:250px;display:grid;grid-template-columns:minmax(0,1fr);justify-items:center;align-items:center}
+.vis>*{max-width:100%;min-width:0}
 .stage .hint{display:inline-flex;align-items:center;gap:8px;font:800 12px var(--f);letter-spacing:.06em;text-transform:uppercase;color:var(--blue)}
 .stage .hint svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;animation:nudge 1.2s ease-in-out infinite}
 @keyframes nudge{50%{transform:translateX(5px)}}
@@ -286,18 +287,33 @@ h2 em{font-style:normal;color:var(--blue)}
 .argu-v .bub::after{content:"";position:absolute;left:50%;bottom:-6px;margin-left:-6px;border:6px solid transparent;border-bottom:0;border-top-color:var(--ink)}
 .year{display:flex;width:100%;max-width:440px;margin-top:14px;border-radius:10px;overflow:hidden;font:800 10.5px var(--f);color:#fff;text-align:center}
 .year span{flex:1;padding:9px 2px}
-.argu-mk{position:relative;width:100%;max-width:440px;height:330px}
-.argu-mk .am{position:absolute;left:0;bottom:-6px;width:190px;z-index:2;filter:drop-shadow(0 20px 22px rgba(12,20,36,.3));animation:float 4s ease-in-out infinite}
-.ph-chat{position:absolute;right:6%;top:0;width:220px;height:330px;transform:rotate(4deg)}
-.ph-chat .scr{display:flex;flex-direction:column;gap:0;padding:0}
-.ch-h{display:flex;align-items:center;gap:8px;padding:12px 10px;background:var(--blue);color:#fff}
-.ch-h img{width:30px;height:30px;border-radius:50%;background:#fff;object-fit:cover;object-position:50% 10%}
-.ch-h b{display:block;font:800 12px var(--f);color:#fff;text-align:left}.ch-h small{display:block;font:600 9.5px var(--f);opacity:.8}
-.ch-b{flex:1;display:flex;flex-direction:column;gap:7px;padding:10px;background:var(--bg-2);overflow:hidden}
-.ch-b p{margin:0;max-width:85%;padding:7px 9px;border-radius:11px;font:600 10.5px/1.35 var(--f);animation:in .4s both}
-.ch-b p:nth-child(2){animation-delay:.25s}.ch-b p:nth-child(3){animation-delay:.5s}.ch-b p:nth-child(4){animation-delay:.75s}
-.ch-b .u{align-self:flex-end;background:var(--blue);color:#fff;border-bottom-right-radius:3px}
-.ch-b .a{align-self:flex-start;background:#fff;color:var(--ink-2);border:1px solid var(--line);border-bottom-left-radius:3px}
+.ag-mk{position:relative;width:100%;max-width:500px;padding:0 0 0 92px}
+.ag-mk .am{position:absolute;left:-10px;bottom:-14px;width:128px;z-index:3;filter:drop-shadow(0 18px 20px rgba(12,20,36,.3));animation:float 4s ease-in-out infinite}
+.ag-br{max-width:none}
+.ag-app{height:300px;overflow:hidden;padding:12px 14px 14px;background:#fff;display:flex;flex-direction:column;gap:10px}
+.ag-q{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #79b4e6;background:#F4F8FC;font:600 10.5px/1.3 var(--f);color:#0e2237}
+.ag-typed{flex:1;overflow:hidden;white-space:nowrap;border-right:2px solid #006dc5;width:0;animation:type 2.2s steps(55) .3s forwards,caret .8s step-end infinite}
+@keyframes type{to{width:100%}}@keyframes caret{50%{border-color:transparent}}
+.ag-q b{flex:none;width:22px;height:22px;border-radius:7px;background:#006dc5;color:#fff;display:grid;place-items:center;font-size:12px}
+.ag-proj{display:flex;flex-direction:column;gap:6px;animation:in .5s 2.4s both}
+.ag-eb{display:block;font:800 8.5px var(--f);letter-spacing:.12em;text-transform:uppercase;color:#006dc5}
+.ag-proj h5{margin:0;font:800 13.5px/1.25 var(--f);color:#0e2237}
+.ag-body{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.ag-body>*{animation:in .4s both}
+.ag-intro{padding:10px 12px;border-radius:11px;background:#f4f8fc;border:1px solid #d5e1ee;display:grid;gap:3px}
+.ag-intro h6{margin:0;font:800 11.5px/1.3 var(--f);color:#0e2237}
+.ag-intro p{margin:0;font:500 10px/1.45 var(--f);color:#0e2237}.ag-intro .ag-src{color:#52667b}
+.ag-chain{display:flex;flex-direction:column;gap:5px}
+.ag-n{position:relative;padding:6px 10px;border-radius:10px;background:#f4f8fc;border:1px solid #d5e1ee;font:500 9.5px/1.4 var(--f);color:#0e2237;animation:in .4s both}
+.ag-n:nth-child(2){animation-delay:.12s}.ag-n:nth-child(3){animation-delay:.24s}.ag-n:nth-child(4){animation-delay:.36s}
+.ag-n b{display:block;font:800 8px var(--f);letter-spacing:.1em;text-transform:uppercase;color:#006dc5;margin-bottom:1px}
+.ag-n.rep{background:#e8f3fd;border-color:#79b4e6;font-weight:700}
+.ag-int{border-radius:11px;border:1px solid #d5e1ee;overflow:hidden}
+.ag-ih{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:#f4f8fc;font:800 9.5px var(--f);color:#0e2237}
+.ag-ih em{font-style:normal;padding:2px 6px;border-radius:5px;background:#19a85d;color:#fff;font:900 8px var(--f);letter-spacing:.08em}
+.ag-int dl{margin:0;padding:8px 10px;display:grid;grid-template-columns:auto 1fr;gap:5px 10px;font:500 10px/1.4 var(--f);color:#0e2237}
+.ag-int dt{font:800 8.5px/1.6 var(--f);letter-spacing:.08em;text-transform:uppercase;color:#006dc5}.ag-int dd{margin:0}
+@media (max-width:760px){.ag-mk{padding-left:0;padding-bottom:58px}.ag-mk .am{width:92px;left:auto;right:-6px;bottom:-10px}.ag-app{height:270px}}
 .argu-tabs button{padding:7px 12px;border-radius:999px;background:#fff;border:1.5px solid var(--line);font:800 12px var(--f);color:var(--ink-2);cursor:pointer}
 .argu-tabs button.on{background:var(--ink);border-color:var(--ink);color:var(--yellow)}
 @media (max-width:760px){.argu-mk{height:290px}.argu-mk .am{width:140px}.ph-chat{width:190px;height:290px;right:0}}
@@ -766,16 +782,16 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
 
 /* Palco de cada diferencial (mockups) */
-const ARGU_TABS = ['Projeto de texto', 'Tira dúvidas', 'Repertório'];
+const ARGU_TABS = ['Introdução', 'Argumento 1', 'Intervenção'];
 const ARGU_CHAT = [
-  '<p class="u">Tema: desafios da educação financeira no Brasil</p><p class="a">Bora montar o seu projeto! 💡 Qual é a sua tese?</p><p class="u">Falta de ensino nas escolas</p><p class="a">Ótimo. Agora escolha 2 argumentos e um repertório para cada um.</p>',
-  '<p class="u">Posso começar com uma citação?</p><p class="a">Pode, sim! Só ligue a citação ao tema logo na frase seguinte.</p><p class="u">E na conclusão?</p><p class="a">Agente, ação, meio, finalidade e detalhamento. Vamos montar juntos?</p>',
-  '<p class="u">Preciso de um repertório sobre tecnologia</p><p class="a">Que tal Zygmunt Bauman e a modernidade líquida? Veja como encaixar no D1 👇</p><p class="u">Perfeito!</p>'
+  `<div class="ag-intro"><span class="ag-eb">Introdução</span><h6>Paulo Freire, “A Importância do Ato de Ler” (1981)</h6><p class="ag-src">Texto em que Freire afirma que a leitura do mundo precede a leitura da palavra.</p><p>A ideia mostra que ler é ato de compreender e transformar a realidade, e não apenas decodificar.</p></div>`,
+  `<span class="ag-eb">Argumento 1</span><div class="ag-chain"><div class="ag-n"><b>Por quê?</b>O acesso aos livros é restrito por preço, pela falta de bibliotecas e pela ausência de mediação.</div><div class="ag-n rep"><b>Repertório · Ligado ao Por quê?</b>Pesquisa Retratos da Leitura no Brasil</div><div class="ag-n"><b>O quê?</b>Sem contato com a leitura, o jovem tem menos repertório e dificuldade de argumentar.</div><div class="ag-n"><b>E daí?</b>Isso o torna mais vulnerável à desinformação e limita sua participação cidadã.</div></div>`,
+  `<div class="ag-int"><div class="ag-ih"><span>Intervenção deste argumento</span><em>COMPLETA</em></div><dl><dt>Agente</dt><dd>O Ministério da Educação</dd><dt>Ação</dt><dd>deve fortalecer bibliotecas escolares e comunitárias</dd><dt>Modo</dt><dd>por meio de acervos atualizados, mediadores de leitura e parcerias com editoras</dd><dt>Efeito</dt><dd>a fim de aproximar o jovem dos livros.</dd></dl></div>`
 ];
 const PLAY = '<span><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8Z"/></svg></span>';
 const VIS = {
-  'Aulas de ENEM': () => `<div class="photo"><img src="img/pedro-evento.webp" alt="" loading="lazy"><span class="live"><i></i>SEGUNDA · ENEM</span><div class="ov">Duas aulas por semana: uma inteira dedicada ao ENEM.</div></div><div class="chips2"><span>Técnicas de escrita</span><span>Interpretação dos enunciados</span><span>Como trabalhar a prova</span></div>`,
-  'Aulas de UFPR': () => `<div class="photo"><img src="img/pedro-evento-m.webp" alt="" loading="lazy" style="object-position:50% 20%"><span class="live" style="background:var(--blue)"><i></i>TERÇA · UFPR</span><div class="ov">Texto curto, texto longo e os gêneros que a UFPR cobra.</div></div><div class="chips2"><span>Gêneros da UFPR</span><span>Leitura da coletânea</span><span>Adequação à proposta</span></div>`,
+  'Aulas de ENEM': () => `<div class="photo"><img src="img/aula-enem.webp" alt="Alunos em aula de redação na sede da Argumenta MAIS" loading="lazy" style="object-position:50% 40%"><span class="live"><i></i>SEGUNDA · ENEM</span><div class="ov">Duas aulas por semana: uma inteira dedicada ao ENEM.</div></div><div class="chips2"><span>Técnicas de escrita</span><span>Interpretação dos enunciados</span><span>Como trabalhar a prova</span></div>`,
+  'Aulas de UFPR': () => `<div class="photo"><img src="img/aula-ufpr.webp" alt="Alunos em aula de redação com a proposta projetada no quadro" loading="lazy" style="object-position:50% 40%"><span class="live" style="background:var(--blue)"><i></i>TERÇA · UFPR</span><div class="ov">Duas aulas por semana: uma inteira dedicada à UFPR.</div></div><div class="chips2"><span>Técnicas de escrita</span><span>Interpretação dos enunciados</span><span>Como trabalhar a prova</span></div>`,
   '140 correções': () => `<div style="position:relative;width:100%;max-width:470px"><div class="browser"><div class="bar"><i></i><i></i><i></i><span>plataforma.argumentamais</span></div><img src="img/correcoes/1-plataforma-notas.webp" alt="Tela da plataforma com a nota por competência" loading="lazy"></div><img class="balloon" src="img/correcoes/3-comentario-c2.webp" alt="Comentário do corretor na competência 2" loading="lazy"></div>`,
   'O melhor material': () => `<div style="width:100%"><div class="books" data-front>${['teorico-enem','teorico-ufpr','producao-enem','producao-ufpr'].map((c, k) => `<button type="button" class="bk${k === 2 ? ' front' : ''}" aria-label="Ver capa"><img src="img/capas/${c}.webp" alt="Capa do caderno ${c.replace('-', ' ')}" loading="lazy"></button>`).join('')}</div><p class="cap-n">Toque em um caderno · Capas meramente ilustrativas</p></div>`,
   'Simulados semanais de ENEM e de UFPR': () => `<div class="pages" data-front>${[['simulado-01','ENEM'],['simulado-03-ufpr','UFPR'],['simulado-06','ENEM'],['simulado-11-ufpr','UFPR']].map(([s, b], k) => `<button type="button" class="pg${k === 1 ? ' front' : ''}" aria-label="Ver simulado ${b}"><img src="img/simulados/${s}.webp" alt="Página de um simulado ${b}" loading="lazy"><em>${b}</em></button>`).join('')}</div>`,
@@ -788,7 +804,7 @@ const VIS = {
   'Curso de férias em janeiro': () => `<div class="cal"><header>JANEIRO 2027</header><div class="g">${['D','S','T','Q','Q','S','S'].map(d => `<span style="color:var(--ink)">${d}</span>`).join('')}${'<span></span>'.repeat(5)}${Array.from({ length: 31 }, (_, k) => `<span class="${[(k + 5) % 7].some(w => w > 0 && w < 6) && k > 9 && k < 30 ? 'on' : ''}">${k + 1}</span>`).join('')}</div></div>`,
   'Cursos para outros vestibulares': () => `<div class="unis"><span class="cur">ENEM + UFPR<small>a base do ano</small></span>${['UTFPR', 'UFSC', 'Unioeste', 'UEL'].map((u, k) => `<span style="animation-delay:${k * 80}ms">${u}<small>curso próprio</small></span>`).join('')}</div>`,
   'Operação 40': () => `<div class="big o">40<small>aulas ao vivo até a prova</small></div>`,
-  'Argumentinha': () => `<div class="argu-mk"><img class="am" src="img/argu/mascote.webp" alt="Argumentinha, o mascote da Argumenta MAIS" loading="lazy"><div class="phone ph-chat"><div class="scr"><div class="ch-h"><img src="img/argu/mascote.webp" alt=""><span><b>Argumentinha</b><small>online agora</small></span></div><div class="ch-b" data-chat>${ARGU_CHAT[0]}</div></div></div></div><div class="chips2 argu-tabs">${ARGU_TABS.map((t, k) => `<button type="button" class="${k ? '' : 'on'}" data-chat-k="${k}">${t}</button>`).join('')}</div>`,
+  'Argumentinha': () => `<div class="ag-mk"><div class="browser ag-br"><div class="bar"><i></i><i></i><i></i><span>argumentamais.github.io/argumentinha</span></div><div class="ag-app"><div class="ag-q"><span class="ag-typed">O baixo incentivo à leitura entre os jovens brasileiros</span><b>↵</b></div><div class="ag-proj"><span class="ag-eb">Projeto de texto · Educação e cultura</span><h5>O baixo incentivo à leitura entre os jovens brasileiros</h5><div class="ag-body" data-chat>${ARGU_CHAT[0]}</div></div></div></div><img class="am" src="img/argu/mascote.webp" alt="Argumentinha, o mascote da Argumenta MAIS" loading="lazy"></div><div class="chips2 argu-tabs">${ARGU_TABS.map((t, k) => `<button type="button" class="${k ? '' : 'on'}" data-chat-k="${k}">${t}</button>`).join('')}</div>`,
   'Imersão MEU ANO NOTA MÁXIMA': () => `<div style="width:100%;max-width:470px"><div class="photo"><img src="img/pedro-evento.webp" alt="" loading="lazy"><div class="ov" style="font-size:18px;letter-spacing:.04em">MEU ANO NOTA MÁXIMA</div></div><div class="year">${[['FEV','#0A2F5C'],['ABR','#0F4A8C'],['JUN','#1B6DC1'],['AGO','#2F84DA'],['OUT','#4FA3FF'],['NOV · 1000','#E1B800']].map(([m, c]) => `<span style="background:${c}">${m}</span>`).join('')}</div></div>`
 };
 
@@ -830,7 +846,7 @@ steps.addEventListener('keydown', e => {
 panel.addEventListener('click', e => {
   const it = e.target.closest('.it'); if (it) { const k = +it.dataset.k; showItem(it.getAttribute('aria-pressed') === 'true' ? -1 : k); if (matchMedia('(max-width:900px)').matches) $('#stage').scrollIntoView({ block: 'nearest', behavior: 'smooth' }); return; }
   const f = e.target.closest('[data-front] > button'); if (f) { $$('button', f.parentNode).forEach(b => b.classList.toggle('front', b === f)); return; }
-  const ct = e.target.closest('[data-chat-k]'); if (ct) { $$('[data-chat-k]', panel).forEach(b => b.classList.toggle('on', b === ct)); $('[data-chat]', panel).innerHTML = ARGU_CHAT[+ct.dataset.chatK]; return; }
+  const ct = e.target.closest('[data-chat-k]'); if (ct) { $$('[data-chat-k]', panel).forEach(b => b.classList.toggle('on', b === ct)); const bd = $('[data-chat]', panel); bd.innerHTML = ARGU_CHAT[+ct.dataset.chatK]; return; }
   if (e.target.closest('[data-next]')) { showTier(cur + 1); steps.scrollIntoView({ block: 'start' }); }
 });
 showTier(0);
