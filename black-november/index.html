@@ -896,7 +896,7 @@ dialog .full{margin:0;font-size:16px;line-height:1.7;color:var(--soft)}
             <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span>Aulas ao vivo e gravadas</span></li>
           </ul>
           <a class="cta" data-pay="online1" data-wa="Online 1 ano (sem Mentoria)" href="#">Quero o Online</a>
-          <p class="pay">No cartão de crédito</p>
+          <p class="pay">Abre o WhatsApp com a mensagem pronta</p>
         </article>
         <article class="plan ment-p">
           <span class="flag b">Só 10 vagas</span>
@@ -911,7 +911,7 @@ dialog .full{margin:0;font-size:16px;line-height:1.7;color:var(--soft)}
             <li class="star"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span>Textos ilimitados na Mentoria</span></li>
           </ul>
           <a class="cta" data-pay="online1m" data-wa="Online 1 ano + Mentoria" href="#">Quero com Mentoria</a>
-          <p class="pay">No cartão de crédito</p>
+          <p class="pay">Abre o WhatsApp com a mensagem pronta</p>
         </article>
         <article class="plan best">
           <span class="flag">Mais completo</span>
@@ -927,13 +927,13 @@ dialog .full{margin:0;font-size:16px;line-height:1.7;color:var(--soft)}
             <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span>Tudo o que você recebe</span></li>
           </ul>
           <a class="cta" data-pay="vitalicio" data-wa="Online vitalício" href="#">Quero o Vitalício</a>
-          <p class="pay">No cartão de crédito</p>
+          <p class="pay">Abre o WhatsApp com a mensagem pronta</p>
         </article>
       </div>
     </div>
 
     <div class="guar-mini"><span><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.4 8.3 8 9 4.6-.7 8-4 8-9V6Z"/><path d="m9 12 2 2 4-4"/></svg>7 dias de garantia em todos os planos</span></div>
-    <p class="plans-note">Presencial e híbrido: o botão abre o WhatsApp comercial para fazer o contrato. Online: pagamento no cartão.</p>
+    <p class="plans-note">Todos os botões abrem o WhatsApp com uma mensagem pronta sobre o plano escolhido. É só enviar.</p>
   </div>
 </section>
 
@@ -1033,7 +1033,18 @@ const FIM = new Date('2026-11-30T23:59:59-03:00');      // fim da Black
 const VAGAS = { m: 10, v: 10 };                         // vagas restantes: m = Mentoria paga, v = bônus do vitalício
 const VAGAS_TOTAL = 10;
 const WHATSAPP = '5541988848184';
-const KIWIFY = { online1: '', online1m: '', vitalicio: '' }; // links de pagamento; vazio = abre o WhatsApp
+/* Mensagem que já vem escrita no WhatsApp, uma para cada botão */
+const MSG = {
+  'Presencial (sem Mentoria)': 'Olá, professor Pedro! Vim pela página da Black November e quero garantir minha vaga no *100% Presencial* (sem Mentoria). Qual turma ainda tem vaga: a da tarde (16h45) ou a da noitinha (18h20)?',
+  'Presencial + Mentoria': 'Olá, professor Pedro! Vim pela página da Black November e quero o *100% Presencial COM Mentoria*. Ainda tem vaga na Mentoria? Qual turma está disponível: a da tarde (16h45) ou a da noitinha (18h20)?',
+  'Híbrido (sem Mentoria)': 'Olá, professor Pedro! Vim pela página da Black November e quero garantir minha vaga no *Híbrido* (sem Mentoria): sábado presencial e terça online.',
+  'Híbrido + Mentoria': 'Olá, professor Pedro! Vim pela página da Black November e quero o *Híbrido COM Mentoria*. Ainda tem vaga na Mentoria?',
+  'Online 1 ano (sem Mentoria)': 'Olá, professor Pedro! Vim pela página da Black November e quero o *Online 1 ano* (sem Mentoria). Como faço para garantir?',
+  'Online 1 ano + Mentoria': 'Olá, professor Pedro! Vim pela página da Black November e quero o *Online 1 ano COM Mentoria*. Ainda tem vaga na Mentoria?',
+  'Online vitalício': 'Olá, professor Pedro! Vim pela página da Black November e quero o *Online Vitalício*. Ainda estou entre os 10 primeiros que ganham 1 ano de Mentoria?',
+  'dúvida': 'Olá, professor Pedro! Vim pela página da Black November e tenho uma dúvida antes de escolher o meu plano.',
+  'próximas turmas (depois da Black)': 'Olá, professor Pedro! Vi que a Black November terminou. Quero saber das próximas turmas.'
+};
 
 /* ===== Depoimentos ===== */
 const D = {
@@ -1118,9 +1129,7 @@ document.addEventListener('click', e => {
 
 /* WhatsApp e Kiwify */
 $$('[data-wa]').forEach(a => {
-  const pay = a.dataset.pay && KIWIFY[a.dataset.pay];
-  if (pay) { a.href = pay; a.target = '_blank'; a.rel = 'noopener'; return; }
-  const msg = a.dataset.wa === 'dúvida' ? 'Olá! Vim pela página da Black November e tenho uma dúvida.' : `Olá! Vim pela página da Black November e quero o plano ${a.dataset.wa}.`;
+  const msg = MSG[a.dataset.wa] || `Olá, professor Pedro! Vim pela página da Black November e quero o plano ${a.dataset.wa}.`;
   a.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`; a.target = '_blank'; a.rel = 'noopener';
 });
 
