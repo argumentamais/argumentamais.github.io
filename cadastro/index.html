@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Cadastro para o contrato de matrícula na Argumenta MAIS.">
+<meta property="og:title" content="Cadastro de matrícula · Argumenta MAIS">
+<meta property="og:description" content="Preencha os dados do responsável e do aluno para elaborarmos o contrato.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="img/logo-azul-preto.png">
+<title>Cadastro de matrícula</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap">
+<style>
+/* Cadastro de matriculados: formulário em etapas (responsável, endereço, aluno, plano, objetivo, revisão), visual sóbrio do Design System Argumenta MAIS. Os dados vão para uma planilha do Google via Apps Script. */
+:root{
+  --azul:#1B6DC1; --azul-700:#155A9F; --azul-900:#0B2A4F; --azul-100:#DDE9F7; --azul-50:#F0F5FC;
+  --amarelo:#FFF71A; --ceu:#009BFA;
+  --n-50:#F6F8FB; --n-100:#EDF1F6; --n-200:#DCE3EC; --n-300:#C3CDD9; --n-500:#6B7788; --n-600:#4C5666;
+  --ok:#12A150; --ok-100:#DDF5E7; --erro:#E03A3A; --erro-100:#FBE1E1;
+  --wpp:#18B544; --wpp-2:#0E9437;
+  --text:var(--azul-900); --soft:var(--n-600); --mute:var(--n-500);
+  --f:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+[hidden]{display:none!important}
+body{background:var(--n-50);color:var(--text);font:500 16px/1.5 var(--f);-webkit-font-smoothing:antialiased;min-height:100svh;display:flex;flex-direction:column}
+img{max-width:100%;display:block}
+a{color:var(--azul)}
+:focus-visible{outline:3px solid var(--ceu);outline-offset:2px;border-radius:8px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+.top{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--n-200);padding-top:env(safe-area-inset-top)}
+.top-in{max-width:720px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.top .logo{width:170px;height:auto}
+.top .tag{font:700 11px var(--f);letter-spacing:.12em;text-transform:uppercase;color:var(--soft);white-space:nowrap}
+.bar{height:4px;background:var(--n-100)}
+.bar i{display:block;height:100%;width:0;background:var(--azul);transition:width .35s ease}
+
+main{flex:1;width:100%;max-width:720px;margin:0 auto;padding:28px 16px 40px}
+
+/* Capa */
+.intro h1{margin:0 0 12px;font:900 clamp(26px,6vw,38px)/1.1 var(--f);text-transform:uppercase;letter-spacing:-.01em}
+.intro h1 em{font-style:normal;color:var(--azul)}
+.intro p{margin:0 0 14px;color:var(--soft);font-size:17px}
+.checks{list-style:none;margin:22px 0 28px;padding:0;display:grid;gap:10px}
+.checks li{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--n-200);border-radius:12px;padding:14px 16px;font-weight:600}
+.checks .n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--azul-50);color:var(--azul);display:grid;place-items:center;font:800 13px var(--f)}
+.checks small{display:block;font-weight:500;color:var(--mute);font-size:14px}
+
+/* Etapas */
+.step-head{margin-bottom:20px}
+.eyebrow{margin:0 0 6px;font:700 12px var(--f);letter-spacing:.12em;text-transform:uppercase;color:var(--azul)}
+.step-head h2{margin:0;font:800 clamp(22px,5vw,28px)/1.2 var(--f)}
+.step-head p{margin:6px 0 0;color:var(--soft)}
+.card{background:#fff;border:1px solid var(--n-200);border-radius:16px;padding:20px 16px;display:grid;gap:18px}
+@media (min-width:600px){.card{padding:28px}}
+.row{display:grid;gap:18px}
+@media (min-width:600px){.row.two{grid-template-columns:1fr 1fr}.row.cep{grid-template-columns:200px 1fr}.row.num{grid-template-columns:1fr 2fr}.row.uf{grid-template-columns:1fr 90px}}
+
+.field{display:grid;gap:6px;min-width:0}
+.field label,.legend{font:700 14px/1.3 var(--f);color:var(--text)}
+.field .hint{font-size:13px;color:var(--mute);font-weight:500}
+input[type=text],input[type=email],input[type=tel],input[type=date],select{width:100%;min-height:50px;padding:12px 14px;border:1.5px solid var(--n-300);border-radius:10px;background:#fff;color:var(--text);font:500 16px var(--f);appearance:none;-webkit-appearance:none}
+input[type=date]{min-height:50px}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234C5666' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+input:focus,select:focus{outline:none;border-color:var(--azul);box-shadow:0 0 0 3px var(--azul-100)}
+input[aria-invalid=true],select[aria-invalid=true]{border-color:var(--erro);background:#FFFBFB}
+.err{color:var(--erro);font-size:13px;font-weight:600}
+.err:empty{display:none}
+
+/* Opções em cartão (plano, pagamento, vestibulares) */
+.opts{display:grid;gap:10px}
+.opts.cols{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+.opt{position:relative;display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:1.5px solid var(--n-300);border-radius:12px;background:#fff;cursor:pointer;transition:border-color .15s,background .15s}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt .dot{flex:none;width:20px;height:20px;margin-top:1px;border:2px solid var(--n-300);border-radius:50%;display:grid;place-items:center;background:#fff}
+.opt input[type=checkbox]+.dot{border-radius:6px}
+.opt input:checked+.dot{border-color:var(--azul);background:var(--azul)}
+.opt input:checked+.dot::after{content:"";width:8px;height:8px;border-radius:50%;background:#fff}
+.opt input[type=checkbox]:checked+.dot::after{width:10px;height:6px;border-radius:0;border:solid #fff;border-width:0 0 2.5px 2.5px;transform:translateY(-1px) rotate(-45deg);background:none}
+.opt:has(input:checked){border-color:var(--azul);background:var(--azul-50)}
+.opt:has(input:focus-visible){outline:3px solid var(--ceu);outline-offset:2px}
+.opt b{display:block;font-weight:700}
+.opt small{display:block;color:var(--mute);font-size:13px;font-weight:500;margin-top:2px}
+.group-t{margin:6px 0 -2px;font:700 12px var(--f);letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.note{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:10px;background:var(--azul-50);color:var(--azul-900);font-size:14px}
+.note b{font-weight:800}
+
+/* Navegação */
+.nav{display:flex;gap:10px;margin-top:20px}
+.btn{flex:1;min-height:54px;padding:14px 20px;border:0;border-radius:12px;font:800 15px var(--f);letter-spacing:.04em;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;transition:background .15s,transform .1s}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--azul);color:#fff}
+.btn.primary:hover{background:var(--azul-700)}
+.btn.ghost{flex:0 0 auto;background:#fff;color:var(--text);border:1.5px solid var(--n-300)}
+.btn.ghost:hover{border-color:var(--azul)}
+.btn.wpp{background:var(--wpp);color:#fff}
+.btn.wpp:hover{background:var(--wpp-2)}
+.btn[disabled]{opacity:.6;cursor:wait}
+.saved{margin:12px 0 0;text-align:center;font-size:13px;color:var(--mute)}
+
+/* Revisão */
+.rev{display:grid;gap:12px}
+.rev-b{background:#fff;border:1px solid var(--n-200);border-radius:14px;padding:16px}
+.rev-b header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px}
+.rev-b h3{margin:0;font:800 13px var(--f);letter-spacing:.1em;text-transform:uppercase;color:var(--azul)}
+.fix{border:0;background:none;color:var(--azul);font:700 14px var(--f);text-decoration:underline;cursor:pointer;padding:6px 0}
+.rev-b dl{margin:0;display:grid;grid-template-columns:minmax(110px,38%) 1fr;gap:6px 12px;font-size:15px}
+.rev-b dt{color:var(--mute);font-weight:500}
+.rev-b dd{margin:0;font-weight:700;overflow-wrap:anywhere}
+.rev-b dd.hl{background:var(--amarelo);padding:0 4px;border-radius:3px;justify-self:start}
+.consent{margin-top:4px}
+.formerr{margin:14px 0 0;padding:12px 14px;border-radius:10px;background:var(--erro-100);color:#8E1F1F;font-weight:600;font-size:14px}
+
+/* Concluído */
+.done{text-align:center;padding-top:12px}
+.done .ok{width:72px;height:72px;margin:0 auto 18px;border-radius:50%;background:var(--ok-100);color:var(--ok);display:grid;place-items:center}
+.done h2{margin:0 0 10px;font:900 clamp(24px,6vw,32px)/1.15 var(--f);text-transform:uppercase}
+.done p{margin:0 auto 14px;max-width:46ch;color:var(--soft)}
+.done .btn{max-width:420px;margin:10px auto 0;width:100%}
+.testnote{margin-top:16px;font-size:13px;color:#8A5A00;background:#FDF1CF;padding:10px 12px;border-radius:8px}
+
+.foot{border-top:1px solid var(--n-200);background:#fff;padding:18px 16px calc(18px + env(safe-area-inset-bottom));text-align:center;font-size:12px;color:var(--mute)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <img class="logo" src="img/logo-azul-preto.png" alt="Argumenta MAIS" width="500" height="98">
+    <span class="tag" id="stepTag">Cadastro de matrícula</span>
+  </div>
+  <div class="bar" aria-hidden="true"><i id="barFill"></i></div>
+</header>
+
+<main>
+<form id="form" novalidate autocomplete="on">
+
+  <!-- 0. Capa -->
+  <section class="step intro" data-step="0">
+    <p class="eyebrow">Turmas 2027</p>
+    <h1>Bem-vindos à <em>Argumenta MAIS</em></h1>
+    <p>Este cadastro reúne os dados para prepararmos o <b>contrato de matrícula</b>. Leva uns 5 minutos.</p>
+    <p>Tenha em mãos o <b>CPF e o RG</b> do responsável e do aluno.</p>
+    <ul class="checks">
+      <li><span class="n">1</span><span>Responsável<small>Quem assina o contrato</small></span></li>
+      <li><span class="n">2</span><span>Endereço<small>Preenchemos sozinhos pelo CEP</small></span></li>
+      <li><span class="n">3</span><span>Aluno<small>Dados e escola</small></span></li>
+      <li><span class="n">4</span><span>Plano e pagamento</span></li>
+      <li><span class="n">5</span><span>Objetivo<small>Vestibulares e curso</small></span></li>
+      <li><span class="n">6</span><span>Revisão<small>Confira tudo antes de enviar</small></span></li>
+    </ul>
+    <div class="nav"><button type="button" class="btn primary" data-next>Começar</button></div>
+  </section>
+
+  <!-- 1. Responsável -->
+  <section class="step" data-step="1" hidden>
+    <div class="step-head"><p class="eyebrow">Etapa 1 de 5</p><h2>Responsável pelo contrato</h2><p>Os dados de quem vai assinar o contrato.</p></div>
+    <div class="card">
+      <div class="field"><label for="r_nome">Nome completo</label><input type="text" id="r_nome" name="r_nome" autocomplete="name" required><span class="err"></span></div>
+      <div class="field"><label for="r_parentesco">Parentesco com o aluno</label>
+        <select id="r_parentesco" name="r_parentesco" required><option value="">Selecione</option><option>Mãe</option><option>Pai</option><option>Avó/Avô</option><option>Tia/Tio</option><option>Outro responsável legal</option></select><span class="err"></span></div>
+      <div class="row two">
+        <div class="field"><label for="r_cpf">CPF</label><input type="text" id="r_cpf" name="r_cpf" inputmode="numeric" data-mask="cpf" placeholder="000.000.000-00" required><span class="err"></span></div>
+        <div class="field"><label for="r_rg">RG</label><input type="text" id="r_rg" name="r_rg" required><span class="err"></span></div>
+      </div>
+      <div class="row two">
+        <div class="field"><label for="r_whats">WhatsApp</label><input type="tel" id="r_whats" name="r_whats" inputmode="numeric" data-mask="tel" placeholder="(41) 90000-0000" autocomplete="tel" required><span class="err"></span></div>
+        <div class="field"><label for="r_email">E-mail</label><input type="email" id="r_email" name="r_email" autocomplete="email" required><span class="err"></span></div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="btn ghost" data-prev>Voltar</button><button type="button" class="btn primary" data-next>Continuar</button></div>
+  </section>
+
+  <!-- 2. Endereço -->
+  <section class="step" data-step="2" hidden>
+    <div class="step-head"><p class="eyebrow">Etapa 2 de 5</p><h2>Endereço</h2><p>Digite o CEP que a gente completa o resto.</p></div>
+    <div class="card">
+      <div class="row cep">
+        <div class="field"><label for="cep">CEP</label><input type="text" id="cep" name="cep" inputmode="numeric" data-mask="cep" placeholder="00000-000" autocomplete="postal-code" required><span class="err" id="cepMsg"></span></div>
+        <div class="field"><label for="rua">Rua</label><input type="text" id="rua" name="rua" autocomplete="address-line1" required><span class="err"></span></div>
+      </div>
+      <div class="row num">
+        <div class="field"><label for="numero">Número</label><input type="text" id="numero" name="numero" inputmode="numeric" required><span class="err"></span></div>
+        <div class="field"><label for="complemento">Complemento <span class="hint">(opcional)</span></label><input type="text" id="complemento" name="complemento" autocomplete="address-line2"></div>
+      </div>
+      <div class="field"><label for="bairro">Bairro</label><input type="text" id="bairro" name="bairro" required><span class="err"></span></div>
+      <div class="row uf">
+        <div class="field"><label for="cidade">Cidade</label><input type="text" id="cidade" name="cidade" autocomplete="address-level2" required><span class="err"></span></div>
+        <div class="field"><label for="uf">UF</label><input type="text" id="uf" name="uf" maxlength="2" autocomplete="address-level1" required><span class="err"></span></div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="btn ghost" data-prev>Voltar</button><button type="button" class="btn primary" data-next>Continuar</button></div>
+  </section>
+
+  <!-- 3. Aluno -->
+  <section class="step" data-step="3" hidden>
+    <div class="step-head"><p class="eyebrow">Etapa 3 de 5</p><h2>Dados do aluno</h2></div>
+    <div class="card">
+      <div class="field"><label for="a_nome">Nome completo do aluno</label><input type="text" id="a_nome" name="a_nome" required><span class="err"></span></div>
+      <div class="field"><label for="a_nasc">Data de nascimento</label><input type="date" id="a_nasc" name="a_nasc" required><span class="err"></span></div>
+      <div class="row two">
+        <div class="field"><label for="a_cpf">CPF do aluno</label><input type="text" id="a_cpf" name="a_cpf" inputmode="numeric" data-mask="cpf" placeholder="000.000.000-00" required><span class="err"></span></div>
+        <div class="field"><label for="a_rg">RG do aluno</label><input type="text" id="a_rg" name="a_rg" required><span class="err"></span></div>
+      </div>
+      <div class="row two">
+        <div class="field"><label for="a_whats">WhatsApp do aluno</label><input type="tel" id="a_whats" name="a_whats" inputmode="numeric" data-mask="tel" placeholder="(41) 90000-0000" required><span class="err"></span></div>
+        <div class="field"><label for="a_email">E-mail do aluno</label><input type="email" id="a_email" name="a_email" required><span class="err"></span></div>
+      </div>
+      <div class="row two">
+        <div class="field"><label for="escola">Escola</label><input type="text" id="escola" name="escola" required><span class="err"></span></div>
+        <div class="field"><label for="serie">Série em 2027</label>
+          <select id="serie" name="serie" required><option value="">Selecione</option><option>1º ano do Ensino Médio</option><option>2º ano do Ensino Médio</option><option>3º ano do Ensino Médio</option><option>Já concluiu o Ensino Médio</option><option>Outro</option></select><span class="err"></span></div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="btn ghost" data-prev>Voltar</button><button type="button" class="btn primary" data-next>Continuar</button></div>
+  </section>
+
+  <!-- 4. Plano e pagamento -->
+  <section class="step" data-step="4" hidden>
+    <div class="step-head"><p class="eyebrow">Etapa 4 de 5</p><h2>Plano e pagamento</h2></div>
+    <div class="card">
+      <div class="field" role="radiogroup" aria-labelledby="planoT">
+        <span class="legend" id="planoT">Plano contratado</span>
+        <div class="opts" id="planos">
+          <p class="group-t">Presencial</p>
+          <label class="opt"><input type="radio" name="plano" value="100% Presencial"><span class="dot"></span><span><b>100% Presencial</b><small>Duas aulas presenciais por semana</small></span></label>
+          <label class="opt"><input type="radio" name="plano" value="Presencial + Mentoria"><span class="dot"></span><span><b>Presencial + Mentoria</b><small>Tudo do presencial e os encontros 1:1</small></span></label>
+          <p class="group-t">Híbrido</p>
+          <label class="opt"><input type="radio" name="plano" value="Híbrido"><span class="dot"></span><span><b>Híbrido</b><small>Uma aula presencial e uma on-line por semana</small></span></label>
+          <label class="opt"><input type="radio" name="plano" value="Híbrido + Mentoria"><span class="dot"></span><span><b>Híbrido + Mentoria</b><small>Tudo do híbrido e os encontros 1:1</small></span></label>
+          <p class="group-t">On-line</p>
+          <label class="opt"><input type="radio" name="plano" value="Online 1 ano"><span class="dot"></span><span><b>Online 1 ano</b><small>Aulas ao vivo e gravadas</small></span></label>
+          <label class="opt"><input type="radio" name="plano" value="Online 1 ano + Mentoria"><span class="dot"></span><span><b>Online 1 ano + Mentoria</b><small>Tudo do online e os encontros 1:1</small></span></label>
+          <label class="opt"><input type="radio" name="plano" value="Online vitalício"><span class="dot"></span><span><b>Online vitalício</b><small>Acesso para sempre e atualizações futuras</small></span></label>
+        </div>
+        <span class="err" id="planoErr"></span>
+      </div>
+
+      <div class="field" id="turmaBox" role="radiogroup" aria-labelledby="turmaT" hidden>
+        <span class="legend" id="turmaT">Turma presencial</span>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="turma" value="Tarde (seg e ter, 16h45 às 18h)"><span class="dot"></span><span><b>Turma da tarde</b><small>Segunda e terça, 16h45 às 18h</small></span></label>
+          <label class="opt"><input type="radio" name="turma" value="Noitinha (seg e ter, 18h20 às 19h35)"><span class="dot"></span><span><b>Turma da noitinha</b><small>Segunda e terça, 18h20 às 19h35</small></span></label>
+        </div>
+        <span class="err" id="turmaErr"></span>
+      </div>
+
+      <div class="field" role="radiogroup" aria-labelledby="pagT">
+        <span class="legend" id="pagT">Forma de pagamento</span>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="pagamento" value="Garantia de vaga + 10 parcelas"><span class="dot"></span><span><b>Garantia de vaga + 10x</b><small>Entrada e mais 10 parcelas</small></span></label>
+          <label class="opt"><input type="radio" name="pagamento" value="Garantia de vaga + 12 parcelas"><span class="dot"></span><span><b>Garantia de vaga + 12x</b><small>Entrada e mais 12 parcelas</small></span></label>
+          <label class="opt"><input type="radio" name="pagamento" value="À vista"><span class="dot"></span><span><b>À vista</b></span></label>
+          <label class="opt"><input type="radio" name="pagamento" value="Tudo no cartão"><span class="dot"></span><span><b>Tudo no cartão de crédito</b></span></label>
+        </div>
+        <span class="err" id="pagErr"></span>
+      </div>
+      <div class="note" id="vencNote"><span aria-hidden="true">📅</span><span>As parcelas vencem <b>todo dia 06</b>. Os valores ficam no contrato.</span></div>
+    </div>
+    <div class="nav"><button type="button" class="btn ghost" data-prev>Voltar</button><button type="button" class="btn primary" data-next>Continuar</button></div>
+  </section>
+
+  <!-- 5. Objetivo -->
+  <section class="step" data-step="5" hidden>
+    <div class="step-head"><p class="eyebrow">Etapa 5 de 5</p><h2>Objetivo do aluno</h2><p>Ajuda a gente a planejar o ano dele.</p></div>
+    <div class="card">
+      <div class="field" role="group" aria-labelledby="vestT">
+        <span class="legend" id="vestT">Vestibulares que pretende prestar</span>
+        <div class="opts cols">
+          <label class="opt"><input type="checkbox" name="vest" value="ENEM"><span class="dot"></span><b>ENEM</b></label>
+          <label class="opt"><input type="checkbox" name="vest" value="UFPR"><span class="dot"></span><b>UFPR</b></label>
+          <label class="opt"><input type="checkbox" name="vest" value="UTFPR"><span class="dot"></span><b>UTFPR</b></label>
+          <label class="opt"><input type="checkbox" name="vest" value="UEPG"><span class="dot"></span><b>UEPG</b></label>
+          <label class="opt"><input type="checkbox" name="vest" value="Outros" id="vestOutros"><span class="dot"></span><b>Outros</b></label>
+        </div>
+        <span class="err" id="vestErr"></span>
+      </div>
+      <div class="field" id="outrosBox" hidden><label for="outros">Quais outros?</label><input type="text" id="outros" name="outros"><span class="err"></span></div>
+      <div class="field"><label for="curso">Curso pretendido</label><input type="text" id="curso" name="curso" placeholder="Ex.: Medicina, Direito, ainda não sei" required><span class="err"></span></div>
+      <div class="field"><label for="conheceu">Como conheceram a Argumenta MAIS?</label>
+        <select id="conheceu" name="conheceu" required><option value="">Selecione</option><option>Instagram</option><option>Indicação de amigo ou familiar</option><option>Já foi aluno</option><option>Na escola</option><option>Google</option><option>TikTok ou YouTube</option><option>Outro</option></select><span class="err"></span></div>
+    </div>
+    <div class="nav"><button type="button" class="btn ghost" data-prev>Voltar</button><button type="button" class="btn primary" data-next>Revisar dados</button></div>
+  </section>
+
+  <!-- 6. Revisão -->
+  <section class="step" data-step="6" hidden>
+    <div class="step-head"><p class="eyebrow">Quase lá</p><h2>Confira os dados</h2><p>Estes dados vão para o contrato. Confira com atenção, principalmente <b>CPF, RG e telefones</b>.</p></div>
+    <div class="rev" id="rev"></div>
+    <div class="card consent" style="margin-top:12px">
+      <label class="opt"><input type="checkbox" id="aceite" name="aceite"><span class="dot"></span><span><b>Os dados estão corretos</b><small>Autorizo a Argumenta MAIS a usar estes dados para elaborar o contrato de matrícula, conforme a LGPD.</small></span></label>
+      <span class="err" id="aceiteErr"></span>
+    </div>
+    <p class="formerr" id="formerr" role="alert" hidden></p>
+    <div class="nav"><button type="button" class="btn ghost" data-prev>Voltar</button><button type="submit" class="btn primary" id="send"><span>Enviar cadastro</span></button></div>
+  </section>
+
+  <div class="hp" aria-hidden="true"><label>Não preencha <input type="text" id="site" name="site" tabindex="-1" autocomplete="off"></label></div>
+</form>
+
+<!-- Concluído -->
+<section class="done" id="done" tabindex="-1" hidden>
+  <div class="ok" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+  <h2>Cadastro enviado!</h2>
+  <p id="doneTxt">Recebemos os dados. Agora é só avisar o Pedro pelo WhatsApp para darmos andamento ao contrato.</p>
+  <a class="btn wpp" id="wppBtn" href="#" target="_blank" rel="noopener">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-.9 1.2-.3.2-.6.1a8.2 8.2 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5 5.9 5.9 0 0 0 1.2 3.1 13.5 13.5 0 0 0 5.2 4.6c1.9.8 2.7.9 3.6.7a3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.1-.3-.2-.6-.3M12 21.8a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8m8.4-18.2A11.8 11.8 0 0 0 1.8 17.9L.1 24l6.3-1.6A11.8 11.8 0 0 0 24 12.2a11.7 11.7 0 0 0-3.6-8.6"/></svg>
+    Avisar pelo WhatsApp
+  </a>
+  <p class="testnote" id="testNote" hidden>Prévia: a planilha ainda não está ligada, então nada foi gravado.</p>
+</section>
+</main>
+
+<footer class="foot">Argumenta MAIS | CNPJ 52.905.996/0001-88 · Todos os direitos reservados.</footer>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTEjnokoNVZUEhMRr6rlNU6XA6HzcauAgMmrDPoeunigm2CsGO--4GFr76Up11bx7o/exec'; // URL do Apps Script (implantação "Qualquer pessoa"); vazio = modo prévia
+const WHATS = '5541988848184';
+const DRAFT = 'am-cadastro-2027';
+
+const $ = id => document.getElementById(id);
+const form = $('form');
+const steps = [...form.querySelectorAll('.step')];
+const LAST = steps.length - 1;
+let cur = 0;
+
+/* Máscaras */
+const masks = {
+  cpf: d => d.slice(0, 11).replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2'),
+  cep: d => d.slice(0, 8).replace(/(\d{5})(\d)/, '$1-$2'),
+  tel: d => { d = d.slice(0, 11); if (d.length <= 2) return d.length ? '(' + d : ''; if (d.length <= 6) return `(${d.slice(0,2)}) ${d.slice(2)}`; if (d.length <= 10) return `(${d.slice(0,2)}) ${d.slice(2,6)}-${d.slice(6)}`; return `(${d.slice(0,2)}) ${d.slice(2,7)}-${d.slice(7)}`; }
+};
+form.querySelectorAll('[data-mask]').forEach(el => el.addEventListener('input', () => { el.value = masks[el.dataset.mask](el.value.replace(/\D/g, '')); }));
+$('uf').addEventListener('input', e => e.target.value = e.target.value.replace(/[^a-z]/gi, '').toUpperCase());
+
+function cpfOk(v) {
+  const d = v.replace(/\D/g, '');
+  if (d.length !== 11 || /^(\d)\1+$/.test(d)) return false;
+  for (let t = 9; t < 11; t++) {
+    let s = 0; for (let i = 0; i < t; i++) s += d[i] * (t + 1 - i);
+    if (((s * 10) % 11) % 10 != d[t]) return false;
+  }
+  return true;
+}
+
+/* CEP: preenche rua, bairro, cidade e UF */
+$('cep').addEventListener('input', async e => {
+  const d = e.target.value.replace(/\D/g, '');
+  const msg = $('cepMsg');
+  if (d.length !== 8) { msg.textContent = ''; return; }
+  msg.style.color = 'var(--mute)'; msg.textContent = 'Buscando endereço…';
+  try {
+    const r = await (await fetch(`https://viacep.com.br/ws/${d}/json/`)).json();
+    if (r.erro) { msg.style.color = ''; msg.textContent = 'CEP não encontrado. Preencha o endereço abaixo.'; return; }
+    $('rua').value = r.logradouro || $('rua').value; $('bairro').value = r.bairro || $('bairro').value;
+    $('cidade').value = r.localidade || ''; $('uf').value = r.uf || '';
+    msg.textContent = '';
+    ['rua','bairro','cidade','uf'].forEach(limpa);
+    (r.logradouro ? $('numero') : $('rua')).focus();
+    salvar();
+  } catch { msg.style.color = ''; msg.textContent = 'Não conseguimos buscar o CEP. Preencha o endereço abaixo.'; }
+});
+
+/* Mostra a turma só no presencial; "quais outros" só com Outros */
+function sync() {
+  const p = val('plano');
+  const pres = p.startsWith('100% Presencial') || p.startsWith('Presencial');
+  $('turmaBox').hidden = !pres;
+  if (!pres) form.querySelectorAll('input[name=turma]').forEach(i => i.checked = false);
+  $('outrosBox').hidden = !$('vestOutros').checked;
+}
+form.addEventListener('change', () => { sync(); salvar(); });
+
+/* Validação */
+const val = n => { const el = form.elements[n]; if (!el) return ''; if (el instanceof RadioNodeList) return el.value || ''; return (el.value || '').trim(); };
+function erro(el, txt) { el.setAttribute('aria-invalid', 'true'); const e = el.closest('.field').querySelector('.err'); if (e) e.textContent = txt; return false; }
+function limpa(id) { const el = typeof id === 'string' ? $(id) : id; el.removeAttribute('aria-invalid'); const e = el.closest('.field')?.querySelector('.err'); if (e && e.id !== 'cepMsg') e.textContent = ''; }
+form.addEventListener('input', e => { if (e.target.matches('input,select')) limpa(e.target); salvar(); });
+
+function validar(n) {
+  const sec = steps[n]; let ok = true;
+  sec.querySelectorAll('input[required],select[required]').forEach(el => {
+    const v = el.value.trim();
+    if (!v) ok = erro(el, 'Campo obrigatório.') && ok;
+    else if (el.dataset.mask === 'cpf' && !cpfOk(v)) ok = erro(el, 'Confira o CPF, ele parece incorreto.') && ok;
+    else if (el.dataset.mask === 'tel' && v.replace(/\D/g, '').length < 10) ok = erro(el, 'Coloque o DDD e o número.') && ok;
+    else if (el.dataset.mask === 'cep' && v.replace(/\D/g, '').length !== 8) ok = erro(el, 'O CEP tem 8 números.') && ok;
+    else if (el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) ok = erro(el, 'Confira o e-mail.') && ok;
+    else if (el.id === 'nome' || el.id === 'r_nome' || el.id === 'a_nome') { if (v.split(/\s+/).length < 2) ok = erro(el, 'Escreva o nome completo.') && ok; }
+  });
+  if (n === 3 && $('a_cpf').value && $('a_cpf').value === $('r_cpf').value) ok = erro($('a_cpf'), 'O CPF do aluno está igual ao do responsável.') && ok;
+  if (n === 4) {
+    const grp = (name, id, txt) => { const e = $(id); e.textContent = val(name) ? '' : txt; return !!val(name); };
+    ok = grp('plano', 'planoErr', 'Escolha o plano.') && ok;
+    if (!$('turmaBox').hidden) ok = grp('turma', 'turmaErr', 'Escolha a turma.') && ok;
+    ok = grp('pagamento', 'pagErr', 'Escolha a forma de pagamento.') && ok;
+  }
+  if (n === 5) {
+    $('vestErr').textContent = vest().length ? '' : 'Marque pelo menos um vestibular.';
+    if (!vest().length) ok = false;
+    if ($('vestOutros').checked && !$('outros').value.trim()) ok = erro($('outros'), 'Escreva quais.') && ok;
+  }
+  if (!ok) { const alvo = sec.querySelector('[aria-invalid=true]') || sec.querySelector('.err:not(:empty)')?.closest('.field')?.querySelector('input'); alvo?.focus(); }
+  return ok;
+}
+const vest = () => [...form.querySelectorAll('input[name=vest]:checked')].map(i => i.value === 'Outros' ? 'Outros: ' + $('outros').value.trim() : i.value);
+
+/* Navegação */
+function ir(n, foco = true) {
+  steps[cur].hidden = true; cur = n; steps[cur].hidden = false;
+  $('barFill').style.width = (cur / LAST * 100) + '%';
+  $('stepTag').textContent = cur === 0 ? 'Cadastro de matrícula' : cur === LAST ? 'Revisão' : `Etapa ${cur} de ${LAST - 1}`;
+  if (cur === LAST) revisar();
+  window.scrollTo({ top: 0 });
+  if (foco) steps[cur].querySelector('h1,h2').setAttribute('tabindex', '-1'), steps[cur].querySelector('h1,h2').focus({ preventScroll: true });
+}
+form.addEventListener('click', e => {
+  if (e.target.closest('[data-next]')) { if (cur === 0 || validar(cur)) ir(cur + 1); }
+  if (e.target.closest('[data-prev]')) ir(cur - 1);
+  const fix = e.target.closest('[data-fix]'); if (fix) ir(+fix.dataset.fix);
+});
+
+/* Revisão */
+const fmtData = v => v ? v.split('-').reverse().join('/') : '';
+function blocos() {
+  return [
+    ['Responsável', 1, [['Nome', val('r_nome')], ['Parentesco', val('r_parentesco')], ['CPF', val('r_cpf'), 1], ['RG', val('r_rg'), 1], ['WhatsApp', val('r_whats'), 1], ['E-mail', val('r_email'), 1]]],
+    ['Endereço', 2, [['CEP', val('cep')], ['Endereço', `${val('rua')}, ${val('numero')}${val('complemento') ? ' – ' + val('complemento') : ''}`], ['Bairro', val('bairro')], ['Cidade', `${val('cidade')} – ${val('uf')}`]]],
+    ['Aluno', 3, [['Nome', val('a_nome')], ['Nascimento', fmtData(val('a_nasc'))], ['CPF', val('a_cpf'), 1], ['RG', val('a_rg'), 1], ['WhatsApp', val('a_whats'), 1], ['E-mail', val('a_email'), 1], ['Escola', val('escola')], ['Série em 2027', val('serie')]]],
+    ['Plano e pagamento', 4, [['Plano', val('plano')], ...(val('turma') ? [['Turma', val('turma')]] : []), ['Pagamento', val('pagamento')], ['Vencimento', 'Todo dia 06']]],
+    ['Objetivo', 5, [['Vestibulares', vest().join(', ')], ['Curso', val('curso')], ['Conheceu por', val('conheceu')]]]
+  ];
+}
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+function revisar() {
+  $('rev').innerHTML = blocos().map(([t, n, linhas]) => `<div class="rev-b"><header><h3>${t}</h3><button type="button" class="fix" data-fix="${n}">Corrigir</button></header><dl>${linhas.map(([k, v, hl]) => `<dt>${k}</dt><dd${hl ? ' class="hl"' : ''}>${esc(v || '—')}</dd>`).join('')}</dl></div>`).join('');
+}
+
+/* Rascunho no aparelho (se fechar a página, não perde o que já digitou) */
+function salvar() {
+  try {
+    const d = {}; [...form.elements].forEach(el => { if (!el.name || el.name === 'site' || el.name === 'aceite') return; if (el.type === 'radio' || el.type === 'checkbox') { if (el.checked) d[el.name] = el.type === 'checkbox' ? [...(d[el.name] || []), el.value] : el.value; } else d[el.name] = el.value; });
+    localStorage.setItem(DRAFT, JSON.stringify(d));
+  } catch {}
+}
+function carregar() {
+  try {
+    const d = JSON.parse(localStorage.getItem(DRAFT) || 'null'); if (!d) return;
+    [...form.elements].forEach(el => { if (!el.name || !(el.name in d)) return; if (el.type === 'radio') el.checked = d[el.name] === el.value; else if (el.type === 'checkbox') el.checked = [].concat(d[el.name]).includes(el.value); else el.value = d[el.name]; });
+    sync();
+  } catch {}
+}
+carregar();
+
+/* Envio */
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  if (cur !== LAST) return;
+  $('formerr').hidden = true;
+  if (!$('aceite').checked) { $('aceiteErr').textContent = 'Confirme os dados e a autorização para enviar.'; $('aceite').focus(); return; }
+  $('aceiteErr').textContent = '';
+  for (let n = 1; n < LAST; n++) if (!validar(n)) { ir(n); return; }
+  const campos = {
+    resp_nome: val('r_nome'), resp_parentesco: val('r_parentesco'), resp_cpf: val('r_cpf'), resp_rg: val('r_rg'), resp_whatsapp: val('r_whats'), resp_email: val('r_email'),
+    cep: val('cep'), rua: val('rua'), numero: val('numero'), complemento: val('complemento'), bairro: val('bairro'), cidade: val('cidade'), uf: val('uf'),
+    aluno_nome: val('a_nome'), aluno_nascimento: fmtData(val('a_nasc')), aluno_cpf: val('a_cpf'), aluno_rg: val('a_rg'), aluno_whatsapp: val('a_whats'), aluno_email: val('a_email'), escola: val('escola'), serie: val('serie'),
+    plano: val('plano'), turma: val('turma'), pagamento: val('pagamento'), vencimento: 'Dia 06',
+    vestibulares: vest().join(', '), curso: val('curso'), conheceu: val('conheceu'),
+    origem: new URLSearchParams(location.search).get('utm_source') || '', site: $('site').value
+  };
+  const send = $('send'); send.disabled = true; send.firstElementChild.textContent = 'Enviando…';
+  try {
+    if (SCRIPT_URL) await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(campos) });
+    else { await new Promise(r => setTimeout(r, 600)); $('testNote').hidden = false; }
+    const aluno = campos.aluno_nome.split(/\s+/)[0];
+    const msg = `Olá, Pedro! Sou ${campos.resp_nome} (${campos.resp_parentesco.toLowerCase()} de ${campos.aluno_nome}). Acabei de preencher o cadastro de matrícula do plano ${campos.plano}.`;
+    $('wppBtn').href = `https://wa.me/${WHATS}?text=${encodeURIComponent(msg)}`;
+    $('doneTxt').textContent = `Recebemos os dados de ${aluno}. Agora é só avisar o Pedro pelo WhatsApp para darmos andamento ao contrato.`;
+    try { localStorage.removeItem(DRAFT); } catch {}
+    form.hidden = true; $('done').hidden = false; $('barFill').style.width = '100%'; $('stepTag').textContent = 'Concluído';
+    window.scrollTo({ top: 0 }); $('done').focus();
+  } catch {
+    $('formerr').textContent = 'Não conseguimos enviar agora. Confira a internet e tente de novo.'; $('formerr').hidden = false;
+  } finally { send.disabled = false; send.firstElementChild.textContent = 'Enviar cadastro'; }
+});
+</script>
+</body>
+</html>
