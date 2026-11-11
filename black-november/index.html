@@ -256,8 +256,16 @@ h2 .y{color:var(--yellow)}
 @media (max-width:700px){.ask{padding:100px 0}}
 .tower-sec .tower{margin-top:0}
 /* Mentoria em fundo claro */
-.light{--text:#0B0D14;--soft:#444A58;--mute:#6B7180;--line:rgba(11,13,20,.12);--ink-2:#F2F5FA;color:var(--text);background:linear-gradient(180deg,var(--ink) 0,#fff 130px,#fff calc(100% - 130px),var(--ink) 100%);padding:200px 0}
+.light{--text:#0B0D14;--soft:#444A58;--mute:#6B7180;--line:rgba(11,13,20,.12);--ink-2:#F2F5FA;--ink-3:#fff;color:var(--text);background:linear-gradient(180deg,var(--ink) 0,#fff 130px,#fff calc(100% - 130px),var(--ink) 100%);padding:200px 0}
 .light .label{color:var(--blue)}
+.light h2 em{color:var(--blue)}
+.light .rail{padding:4px 0 34px}
+.light .tcard{box-shadow:0 18px 40px -28px rgba(11,13,20,.45)}
+.light .tcard:hover{border-color:rgba(27,109,193,.55)}
+.light .tcard img{border-color:var(--blue)}
+.light .tcard .score{color:var(--blue)}
+.light .tag{background:rgba(14,148,55,.12);color:#0B7A2E}
+.light .tag.b{background:rgba(27,109,193,.12);color:var(--blue)}
 .light h2 .y{color:#000;background:var(--yellow);padding:0 .12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .light .ment-card{background:radial-gradient(120% 90% at 0% 0%,rgba(27,109,193,.14),transparent 60%),#fff;border-color:rgba(27,109,193,.35);box-shadow:0 30px 60px -35px rgba(11,13,20,.35)}
 .light .ment-list li{background:var(--ink-2);border:1px solid var(--line)}
@@ -712,7 +720,7 @@ dialog .full{margin:0;font-size:16px;line-height:1.7;color:var(--soft)}
 </section>
 
 <!-- 06 · Depoimentos -->
-<section class="sec dep">
+<section class="sec dep light">
   <div class="wrap center reveal">
     <p class="label c">Provas do método</p>
     <h2>Correções e simulados que <em>mudam a nota.</em></h2>
@@ -1188,8 +1196,8 @@ function onScroll(){
   const sc = scroller(), Y = sc.scrollTop, max = sc.scrollHeight - sc.clientHeight, p = max > 0 ? Math.min(1, Math.max(0, Y / max)) : 0;
   $('#prog').style.transform = `scaleX(${p})`;
   $('#top').classList.toggle('solid', Y > 40);
-  const lr = $('#mentoria').getBoundingClientRect(), lx = innerHeight * .5;
-  document.body.classList.toggle('lz', lr.top + 120 < lx && lr.bottom - 120 > lx);
+  const lx = innerHeight * .5;
+  document.body.classList.toggle('lz', $$('.light').some(l => { const r = l.getBoundingClientRect(); return r.top + 120 < lx && r.bottom - 120 > lx; }));
   if (pathLen) {
     fill.style.strokeDashoffset = pathLen * (1 - p);
     const pt = fill.getPointAtLength(pathLen * p);
