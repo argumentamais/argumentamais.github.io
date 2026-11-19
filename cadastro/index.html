@@ -161,11 +161,11 @@ input[aria-invalid=true],select[aria-invalid=true]{border-color:var(--erro);back
 
   <!-- 1. Responsável -->
   <section class="step" data-step="1" hidden>
-    <div class="step-head"><p class="eyebrow">Etapa 1 de 5</p><h2>Responsável pelo contrato</h2><p>Os dados de quem vai assinar o contrato.</p></div>
+    <div class="step-head"><p class="eyebrow">Etapa 1 de 5</p><h2>Responsável pelo contrato</h2><p>Os dados de quem vai assinar o contrato. Se o aluno for maior de idade e o responsável financeiro, escolha "O próprio aluno" no parentesco.</p></div>
     <div class="card">
       <div class="field"><label for="r_nome">Nome completo</label><input type="text" id="r_nome" name="r_nome" autocomplete="name" required><span class="err"></span></div>
       <div class="field"><label for="r_parentesco">Parentesco com o aluno</label>
-        <select id="r_parentesco" name="r_parentesco" required><option value="">Selecione</option><option>Mãe</option><option>Pai</option><option>Avó/Avô</option><option>Tia/Tio</option><option>Outro responsável legal</option></select><span class="err"></span></div>
+        <select id="r_parentesco" name="r_parentesco" required><option value="">Selecione</option><option>Mãe</option><option>Pai</option><option>Avó/Avô</option><option>Tia/Tio</option><option>Outro responsável legal</option><option value="O próprio aluno">O próprio aluno (maior de idade)</option></select><span class="err"></span></div>
       <div class="row two">
         <div class="field"><label for="r_cpf">CPF</label><input type="text" id="r_cpf" name="r_cpf" inputmode="numeric" data-mask="cpf" placeholder="000.000.000-00" required><span class="err"></span></div>
         <div class="field"><label for="r_rg">RG</label><input type="text" id="r_rg" name="r_rg" required><span class="err"></span></div>
@@ -395,7 +395,7 @@ function validar(n) {
     else if (el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) ok = erro(el, 'Confira o e-mail.') && ok;
     else if (el.id === 'nome' || el.id === 'r_nome' || el.id === 'a_nome') { if (v.split(/\s+/).length < 2) ok = erro(el, 'Escreva o nome completo.') && ok; }
   });
-  if (n === 3 && $('a_cpf').value && $('a_cpf').value === $('r_cpf').value) ok = erro($('a_cpf'), 'O CPF do aluno está igual ao do responsável.') && ok;
+  if (n === 3 && !proprio() && $('a_cpf').value && $('a_cpf').value === $('r_cpf').value) ok = erro($('a_cpf'), 'O CPF do aluno está igual ao do responsável.') && ok;
   if (n === 4) {
     const grp = (name, id, txt) => { const e = $(id); e.textContent = val(name) ? '' : txt; return !!val(name); };
     ok = grp('plano', 'planoErr', 'Escolha o plano.') && ok;
@@ -412,8 +412,16 @@ function validar(n) {
 }
 const vest = () => [...form.querySelectorAll('input[name=vest]:checked')].map(i => i.value === 'Outros' ? 'Outros: ' + $('outros').value.trim() : i.value);
 
+/* Aluno é o próprio responsável financeiro: copia os dados dele para a etapa do aluno */
+const proprio = () => val('r_parentesco') === 'O próprio aluno';
+function copiaProprio() {
+  if (!proprio()) return;
+  [['r_nome','a_nome'],['r_cpf','a_cpf'],['r_rg','a_rg'],['r_whats','a_whats'],['r_email','a_email']].forEach(([de, para]) => { if (!$(para).value.trim()) $(para).value = $(de).value; });
+}
+
 /* Navegação */
 function ir(n, foco = true) {
+  if (n === 3) copiaProprio();
   steps[cur].hidden = true; cur = n; steps[cur].hidden = false;
   $('barFill').style.width = (cur / LAST * 100) + '%';
   $('stepTag').textContent = cur === 0 ? 'Cadastro de matrícula' : cur === LAST ? 'Revisão' : `Etapa ${cur} de ${LAST - 1}`;
@@ -480,7 +488,8 @@ form.addEventListener('submit', async e => {
     if (SCRIPT_URL) await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(campos) });
     else { await new Promise(r => setTimeout(r, 600)); $('testNote').hidden = false; }
     const aluno = campos.aluno_nome.split(/\s+/)[0];
-    const msg = `Olá, Pedro! Sou ${campos.resp_nome} (${campos.resp_parentesco.toLowerCase()} de ${campos.aluno_nome}). Acabei de preencher o cadastro de matrícula do plano ${campos.plano}.`;
+    const quem = proprio() ? `${campos.resp_nome} e vou assinar meu próprio contrato` : `${campos.resp_nome} (${campos.resp_parentesco.toLowerCase()} de ${campos.aluno_nome})`;
+    const msg = `Olá, Pedro! Sou ${quem}. Acabei de preencher o cadastro de matrícula do plano ${campos.plano}.`;
     $('wppBtn').href = `https://wa.me/${WHATS}?text=${encodeURIComponent(msg)}`;
     $('doneTxt').textContent = `Recebemos os dados de ${aluno}. Agora é só avisar o Pedro pelo WhatsApp para darmos andamento ao contrato.`;
     try { localStorage.removeItem(DRAFT); } catch {}
