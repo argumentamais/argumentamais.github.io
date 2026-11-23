@@ -589,6 +589,15 @@ body.locked{overflow:hidden}
 .pf-btn{background:var(--yellow);color:#000;box-shadow:0 14px 30px -14px rgba(0,0,0,.6)}
 .pf-btn:hover{background:#fff;color:var(--blue-d)}
 @media (max-width:820px){.pf,.pf.rev{grid-template-columns:1fr;gap:28px}.pf.rev .pf-ph{order:0}.pf-ph{max-width:340px;width:100%;margin:0 auto;aspect-ratio:1/1}.pf h3{text-align:center}.pf-role{text-align:center}}
+
+.mt{display:grid;grid-template-columns:170px 1fr;gap:22px;align-items:center;width:100%;max-width:560px;animation:in .45s both}
+.mt img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 45%;border-radius:16px;box-shadow:6px 6px 0 var(--yellow)}
+.mt-r{display:block;font:800 11px var(--f);letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.mt b{display:block;margin:2px 0 10px;font:900 26px/1.1 var(--f);color:var(--ink)}
+.mt ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.mt li{position:relative;padding-left:24px;font:600 13.5px/1.4 var(--f);color:var(--ink-2)}
+.mt li::before{content:"✓";position:absolute;left:0;top:1px;display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:var(--yellow);color:var(--ink);font:900 10px/1 var(--f)}
+@media (max-width:520px){.mt{grid-template-columns:1fr;justify-items:center;text-align:left}.mt img{width:150px}}
 </style>
 </head>
 <body class="locked">
@@ -806,22 +815,9 @@ body.locked{overflow:hidden}
         </ul>
       </div>
     </article>
-    <article class="pf rev reveal">
-      <figure class="pf-ph"><img src="img/prof-literatura.webp" alt="Professor Mateus, de Literatura da Argumenta MAIS" width="800" height="1067" loading="lazy" style="object-position:50% 45%"></figure>
-      <div class="pf-tx">
-        <p class="pf-role">Literatura · obras da UFPR</p>
-        <h3>E eu sou o <mark>Mateus</mark></h3>
-        <ul class="pf-li">
-          <li>Sou formado em Letras - Português pela UTFPR.</li>
-          <li>Sou pós-graduado em Literatura Brasileira pela FACUMINAS.</li>
-          <li>Dou aula na rede pública do estado desde 2022, conectando a teoria com a prática.</li>
-          <li>Sou professor da Argumenta MAIS desde março de 2025.</li>
-        </ul>
-      </div>
-    </article>
     <div class="pf-foot reveal">
       <div class="pf-av"><span><img src="img/dep/ana-elisa-980.webp" alt=""><img src="img/dep/julia-gurski-980.webp" alt=""><img src="img/dep/camila-marchetti-980.webp" alt=""><img src="img/dep/joao-luz-980.webp" alt=""></span><b>Ana Elisa, Julia, Camila e João: 980 no ENEM</b></div>
-      <a class="btn pf-btn" href="#form" data-go>Quero estudar na Argumenta <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn pf-btn" href="#form" data-go>Quero estudar com o Pedro <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
 </section>
@@ -1022,7 +1018,7 @@ const TIERS = [
   ]},
   { nome:'O PREMIUM', resumo:'Para ir além da redação e de um único vestibular.', itens:[
     ['type','Gramática e Língua Portuguesa','Cursos de Gramática e de Língua Portuguesa para a UFPR, gravados pelo professor Pedro. Na UFPR, para Medicina, essa prova tem peso 2.','Peso 2 em Medicina'],
-    ['lit','Aulas de Literatura','Aulas gravadas com as obras da UFPR e as principais escolas literárias.'],
+    ['lit','Aulas de Literatura','Aulas gravadas com o professor Mateus sobre as obras da UFPR e as principais escolas literárias.'],
     ['cap','Cursos para outros vestibulares','Um curso para cada banca: UTFPR, UFSC, Unioeste e UEL, com o que cada uma cobra e como escrever para ela.']
   ]},
   { nome:'O EXCLUSIVO', resumo:'O que você não encontra em nenhum outro lugar.', itens:[
@@ -1090,7 +1086,7 @@ const VIS = {
   'O melhor material': () => `<div style="width:100%"><div class="books" data-front>${['teorico-enem','teorico-ufpr','producao-enem','producao-ufpr'].map((c, k) => `<button type="button" class="bk${k === 2 ? ' front' : ''}" aria-label="Ver capa"><img src="img/capas/${c}.webp" alt="Capa do caderno ${c.replace('-', ' ')}" loading="lazy"></button>`).join('')}</div><p class="cap-n">Toque em um caderno · Capas meramente ilustrativas</p></div>`,
   'Simulados semanais de ENEM e de UFPR': () => `<div class="pages" data-front>${[['simulado-01','ENEM'],['simulado-03-ufpr','UFPR'],['simulado-06','ENEM'],['simulado-11-ufpr','UFPR']].map(([s, b], k) => `<button type="button" class="pg${k === 1 ? ' front' : ''}" aria-label="Ver simulado ${b}"><img src="img/simulados/${s}.webp" alt="Página de um simulado ${b}" loading="lazy"><em>${b}</em></button>`).join('')}</div>`,
   'Correção em vídeo dos simulados': () => `<div class="photo"><img src="img/pedro-evento.webp" alt="" loading="lazy" style="filter:saturate(.8) brightness(.85)"><div class="play">${PLAY}</div><div class="prog"><i></i></div></div><div class="chips2"><span>Interpretação da proposta</span><span>O caminho certo</span></div>`,
-  'Aulas de Literatura': () => `<div class="spines">${[['Escolas literárias',230,'#1B6DC1'],['Obras da UFPR',200,'#0A2F5C'],['Romantismo',215,'#26324A'],['Modernismo',190,'#0F4A8C'],['Realismo',165,'#1B6DC1']].map(([t, h, c]) => `<span class="spine" style="height:${h}px;background:${c}">${t}</span>`).join('')}</div>`,
+  'Aulas de Literatura': () => `<div class="mt"><img src="img/prof-literatura.webp" alt="Professor Mateus, de Literatura" loading="lazy"><div><span class="mt-r">Seu professor de Literatura</span><b>Mateus</b><ul><li>Formado em Letras - Português pela UTFPR</li><li>Pós-graduado em Literatura Brasileira pela FACUMINAS</li><li>Professor da rede pública do estado desde 2022, conectando teoria e prática</li><li>Professor da Argumenta desde março de 2025</li></ul></div></div>`,
   'Super Revisão de reta final': () => `<div class="big">${svg('bolt').replace('<svg', '<svg style="width:120px;height:120px;fill:var(--yellow);stroke:var(--blue);stroke-width:1.4"')}<small>Tudo fresco na cabeça,<br>às vésperas da prova.</small></div>`,
   'Escreve.MAIS': () => `<div class="photo shot"><img src="img/escreve-mais.webp" alt="Professor Pedro em aula ao vivo de produção, com o texto anotado na tela" loading="lazy"><span class="live"><i></i>AO VIVO</span></div><div class="chips2"><span>Produção ao vivo</span><span>Texto anotado na tela</span><span>Aulas extras</span></div>`,
   'Momento A+': () => `<div class="photo shot"><img src="img/momento-a.webp" alt="Professor Pedro explicando exemplos em um vídeo curto do Momento A+" loading="lazy"><span class="live" style="background:var(--ink);color:var(--yellow)">MOMENTO A+</span><div class="play">${PLAY}</div><div class="prog"><i></i></div></div><div class="chips2"><span>Vídeos curtos</span><span>Dúvidas específicas</span><span>Repertório</span></div>`,
