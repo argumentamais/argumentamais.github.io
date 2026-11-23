@@ -598,6 +598,90 @@ body.locked{overflow:hidden}
 .mt li{position:relative;padding-left:24px;font:600 13.5px/1.4 var(--f);color:var(--ink-2)}
 .mt li::before{content:"✓";position:absolute;left:0;top:1px;display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:var(--yellow);color:var(--ink);font:900 10px/1 var(--f)}
 @media (max-width:520px){.mt{grid-template-columns:1fr;justify-items:center;text-align:left}.mt img{width:150px}}
+
+/* Professores: espaços menores e troféus animados */
+.sec.prof{padding:56px 0 60px}
+.prof .pf{margin-top:28px}
+.prof .pf h3{margin-bottom:16px}
+.prof .pf-foot{margin-top:30px;gap:16px}
+.pf-li li::before{content:none}
+.pf-li li{transition:transform .25s,box-shadow .25s}
+.pf-li .tr{flex:none;width:24px;height:24px;padding:4px;margin-top:-2px;border-radius:50%;background:var(--yellow);fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transform-origin:50% 90%;transition:box-shadow .25s}
+.pf-li li:hover{transform:translateX(6px) scale(1.015);box-shadow:0 0 0 2px var(--yellow),0 0 22px rgba(255,232,26,.55)}
+.pf-li li:hover .tr{animation:trophy .7s ease-in-out;box-shadow:0 0 14px 3px rgba(255,232,26,.9)}
+@keyframes trophy{0%{transform:rotate(0) scale(1)}20%{transform:rotate(-16deg) scale(1.25)}40%{transform:rotate(14deg) scale(1.25)}60%{transform:rotate(-8deg) scale(1.15)}80%{transform:rotate(5deg) scale(1.08)}100%{transform:rotate(0) scale(1)}}
+.pf-av img{transition:transform .25s}
+.pf-av:hover img{transform:translateY(-4px)}
+.pf-av:hover img:nth-child(2){transition-delay:.05s}.pf-av:hover img:nth-child(3){transition-delay:.1s}.pf-av:hover img:nth-child(4){transition-delay:.15s}
+.pf-ph{transition:transform .35s,box-shadow .35s}
+.pf-ph:hover{transform:translate(-4px,-4px);box-shadow:16px 16px 0 var(--yellow),0 0 40px rgba(255,232,26,.35)}
+
+/* Interações (neon e expansão) em toda a página */
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+ .btn{transition:transform .2s,box-shadow .25s,background .2s,color .2s}
+ .btn:hover{transform:translateY(-2px);box-shadow:0 0 0 3px rgba(27,109,193,.18),0 0 26px rgba(42,134,232,.75)}
+ .pf-btn:hover,.lv-foot .btn:hover{box-shadow:0 0 0 3px rgba(255,232,26,.35),0 0 30px rgba(255,232,26,.8)}
+ .nums div{transition:transform .25s,background .25s}
+ .nums div:hover{transform:translateY(-4px);background:var(--blue-l)}
+ .nums div:hover b{text-shadow:0 0 18px rgba(42,134,232,.55)}
+ .cv li{transition:transform .25s,box-shadow .25s,border-color .25s}
+ .cv li:hover{transform:translateY(-3px);border-color:var(--blue);box-shadow:0 0 0 1px var(--blue),0 0 22px rgba(42,134,232,.35)}
+ .collage figure{transition:transform .35s}
+ .collage figure:hover{transform:scale(1.03);z-index:2}
+ .lv-b:hover{transform:translateX(4px);box-shadow:0 0 0 1px var(--blue),0 0 18px rgba(42,134,232,.35)}
+ .lv-b[aria-expanded="true"]:hover{box-shadow:0 0 24px rgba(42,134,232,.8)}
+ .lv-card{transition:box-shadow .3s}
+ .lv-card:hover{box-shadow:0 28px 60px -28px rgba(15,74,140,.75),0 0 40px rgba(42,134,232,.45)}
+ .lv-vis{transition:transform .3s}
+ .lv-vis:hover{transform:scale(1.015)}
+ .mt img{transition:transform .3s,box-shadow .3s}
+ .mt:hover img{transform:rotate(-2deg) scale(1.04);box-shadow:8px 8px 0 var(--yellow),0 0 24px rgba(255,232,26,.6)}
+ .mcard{transition:opacity .7s,transform .3s,box-shadow .3s,border-color .3s}
+ .mcard:hover{transform:translateY(-6px);border-color:var(--blue);box-shadow:0 0 0 1px var(--blue),0 18px 40px -18px rgba(15,74,140,.5),0 0 30px rgba(42,134,232,.3)}
+ .mcard .ic{transition:transform .35s,background .3s,color .3s}
+ .mcard:hover .ic{transform:rotate(-8deg) scale(1.1);background:var(--blue);color:#fff}
+ .how div{transition:transform .25s,border-color .25s,box-shadow .25s}
+ .how div:hover{transform:translateY(-3px);border-style:solid;border-color:var(--blue);box-shadow:0 0 20px rgba(42,134,232,.3)}
+ .start span{transition:transform .2s}
+ .start span:hover{transform:scale(1.04)}
+ .ap{transition:opacity .7s,transform .3s,box-shadow .3s}
+ .ap img{transition:transform .5s}
+ .ap:hover{transform:translateY(-6px);box-shadow:0 0 0 2px var(--yellow),0 18px 36px -16px rgba(12,20,36,.4),0 0 28px rgba(255,232,26,.45)}
+ .ap:hover img{transform:scale(1.06)}
+ .tcard{transition:transform .25s,box-shadow .25s,border-color .25s}
+ .tcard:hover{transform:translateY(-5px);box-shadow:0 0 0 1px var(--blue),0 0 26px rgba(42,134,232,.35)}
+ .wshot:hover{box-shadow:0 0 0 3px var(--yellow),0 0 30px rgba(255,232,26,.7)}
+ .fq-g details{transition:transform .2s,border-color .2s,box-shadow .2s}
+ .fq-g details:hover{transform:translateX(3px);border-color:var(--blue);box-shadow:0 0 16px rgba(42,134,232,.25)}
+ .fq-bub{transition:transform .3s,box-shadow .3s}
+ .fq-bub:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--yellow),0 0 26px rgba(255,232,26,.5)}
+ .fq-bub img{transition:transform .35s}
+ .fq-bub:hover img{transform:rotate(-6deg) translateY(-6px)}
+ .mod span{transition:transform .2s,box-shadow .2s,border-color .2s}
+ .mod span:hover{transform:translateY(-2px);border-color:var(--blue);box-shadow:0 0 16px rgba(42,134,232,.35)}
+ .fld input,.fld select{transition:box-shadow .2s,border-color .2s}
+ .fld input:focus,.fld select:focus{box-shadow:0 0 0 3px rgba(27,109,193,.18),0 0 16px rgba(42,134,232,.35)}
+ .hero-photo{transition:transform .4s}
+ .hero-photo:hover{transform:scale(1.02)}
+ .top nav a{transition:color .2s,text-shadow .2s}
+ .top nav a:hover{color:var(--blue);text-shadow:0 0 12px rgba(42,134,232,.5)}
+}
+
+/* Centralização dos cadernos, simulados e cards do Quem somos */
+.books{margin:0 auto;height:300px}
+.bk{transition:transform .55s cubic-bezier(.3,.7,.3,1),left .55s cubic-bezier(.3,.7,.3,1),z-index 0s .2s,filter .3s}
+.bk:nth-child(1){left:0}
+.bk:nth-child(2){left:22%}
+.bk:nth-child(3){left:44%}
+.bk:nth-child(4){left:calc(100% - 150px)}
+.bk.front{left:calc(50% - 75px)!important;top:22px}
+.pages{margin:0 auto;height:340px}
+.pg{top:34px}
+.lv-vis .vis{display:flex;justify-content:center;align-items:center}
+.lv-vis .vis>*{margin-left:auto;margin-right:auto}
+.cv li{align-items:center}
+.cv li svg{flex:none}
+@media (max-width:520px){.books{height:250px;width:86%}.bk{width:120px}.bk:nth-child(4){left:calc(100% - 120px)}.bk.front{left:calc(50% - 60px)!important}.pages{height:290px}.pg{width:140px;margin-left:-70px}.pg:nth-child(1){transform:translateX(-62px) rotate(-10deg)}.pg:nth-child(2){transform:translateX(-24px) rotate(-4deg)}.pg:nth-child(3){transform:translateX(24px) rotate(4deg)}.pg:nth-child(4){transform:translateX(62px) rotate(10deg)}.lv-vis{overflow:hidden}}
 </style>
 </head>
 <body class="locked">
@@ -806,18 +890,18 @@ body.locked{overflow:hidden}
         <p class="pf-role">Redação · ENEM e UFPR</p>
         <h3>Prazer, eu sou o <mark>Pedro</mark></h3>
         <ul class="pf-li">
-          <li>Sou formado em Letras - Português pela UTFPR.</li>
-          <li>Dou aula de redação há 10 anos.</li>
-          <li>Fundei a Argumenta MAIS em 2020, a 1ª escola de redação de Araucária.</li>
-          <li>Meus alunos já tiraram 980 no ENEM quatro vezes, conquista única na cidade.</li>
-          <li>Já são mais de 100 aprovados na UFPR, 5 deles em Medicina.</li>
-          <li>Mais de 450 notas 900+ na redação do ENEM.</li>
+          <li><svg class="tr" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0Z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>Sou formado em Letras - Português pela UTFPR.</li>
+          <li><svg class="tr" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0Z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>Dou aula de redação há 10 anos.</li>
+          <li><svg class="tr" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0Z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>Fundei a Argumenta MAIS em 2020, a 1ª escola de redação de Araucária.</li>
+          <li><svg class="tr" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0Z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>Meus alunos já tiraram 980 no ENEM quatro vezes, conquista única na cidade.</li>
+          <li><svg class="tr" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0Z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>Já são mais de 100 aprovados na UFPR, 5 deles em Medicina.</li>
+          <li><svg class="tr" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0Z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>Mais de 450 notas 900+ na redação do ENEM.</li>
         </ul>
       </div>
     </article>
     <div class="pf-foot reveal">
-      <div class="pf-av"><span><img src="img/dep/ana-elisa-980.webp" alt=""><img src="img/dep/julia-gurski-980.webp" alt=""><img src="img/dep/camila-marchetti-980.webp" alt=""><img src="img/dep/joao-luz-980.webp" alt=""></span><b>Ana Elisa, Julia, Camila e João: 980 no ENEM</b></div>
-      <a class="btn pf-btn" href="#form" data-go>Quero estudar com o Pedro <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <div class="pf-av"><span><img src="img/dep/ana-elisa-980.webp" alt=""><img src="img/dep/julia-gurski-980.webp" alt=""><img src="img/dep/camila-marchetti-980.webp" alt=""><img src="img/dep/joao-luz-980.webp" alt=""></span><b>Ana, Julia, Camila e outros 446 tiraram 900+ no ENEM. E você?</b></div>
+      <a class="btn pf-btn" href="#form" data-go>Eu também quero <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
 </section>
