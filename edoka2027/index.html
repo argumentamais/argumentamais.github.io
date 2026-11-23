@@ -8,7 +8,7 @@
 <meta name="description" content="Argumenta MAIS, a 1ª escola de redação de Araucária. Matrículas abertas para as turmas 2027 de ENEM e UFPR. Deixe seus dados e nossa equipe entra em contato.">
 <meta property="og:title" content="Matrículas Abertas 2027 · Argumenta MAIS">
 <meta property="og:description" content="Turmas 2027 de redação para ENEM e UFPR. Matrículas abertas, com vagas limitadas por turma.">
-<meta property="og:image" content="https://argumentamais.github.io/matriculas2027/img/pedro-evento.webp">
+<meta property="og:image" content="https://argumentamais.github.io/edoka2027/img/pedro-evento.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -500,6 +500,49 @@ body.locked{overflow:hidden}
 .intro.done .burst i{animation:burst .9s ease-out forwards}
 @keyframes burst{0%{opacity:1;transform:rotate(var(--a)) translateX(0)}100%{opacity:0;transform:rotate(var(--a)) translateX(var(--d))}}
 @media (max-width:520px){.bnfx-t{letter-spacing:.1em;font-size:14px;padding:11px 14px}}
+
+/* Diferenciais: lista em coluna à esquerda + card azul (estilo coluna de preços) à direita */
+.lv{display:grid;grid-template-columns:minmax(260px,330px) 1fr;gap:34px;margin-top:40px;align-items:start}
+.lv-nav{display:grid;gap:22px}
+.lv-g h3{display:flex;align-items:center;gap:10px;margin:0 0 10px;font:900 13px/1.2 var(--f);letter-spacing:.1em;color:var(--ink)}
+.lv-g h3 .n{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--blue-dd);color:var(--yellow);font:900 11.5px var(--f);letter-spacing:0}
+.lv-g h3 small{display:block;margin-top:2px;font:600 11.5px/1.3 var(--f);letter-spacing:0;color:var(--soft)}
+.lv-g ul{list-style:none;margin:0 0 0 14px;padding:0 0 0 14px;border-left:2px solid var(--line);display:grid;gap:7px}
+.lv-b{scroll-margin-top:92px;width:100%;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:11px;border:1.5px solid var(--line);background:#fff;text-align:left;cursor:pointer;font:700 14px/1.25 var(--f);color:var(--ink-2);transition:all .2s;box-shadow:0 1px 2px rgba(12,20,36,.04)}
+.lv-b:hover{border-color:var(--blue);color:var(--blue-d)}
+.lv-b .ic{flex:none;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:var(--blue-l);color:var(--blue);transition:all .2s}
+.lv-b .ic svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.lv-b .tx{flex:1;min-width:0}
+.lv-b .ar{flex:none;width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;opacity:.35;transition:transform .25s,opacity .2s}
+.lv-b[aria-expanded="true"]{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 12px 26px -14px rgba(27,109,193,.95)}
+.lv-b[aria-expanded="true"] .ic{background:rgba(255,255,255,.18);color:#fff}
+.lv-b[aria-expanded="true"] .ar{opacity:1}
+.lv-side{position:sticky;top:96px}
+.lv-card{position:relative;overflow:hidden;border-radius:26px;padding:30px;color:#fff;background:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px) 0 0/28px 28px,linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px) 0 0/28px 28px,linear-gradient(160deg,#2A86E8 0%,var(--blue) 45%,var(--blue-d) 100%);box-shadow:0 28px 60px -28px rgba(15,74,140,.75)}
+.lv-card>div{animation:in .4s both}
+.lv-eb{display:inline-flex;align-items:center;gap:8px;padding:6px 11px;border-radius:8px;background:var(--blue-dd);font:900 10.5px var(--f);letter-spacing:.12em;text-transform:uppercase}
+.lv-eb i{width:7px;height:7px;border-radius:50%;background:var(--yellow)}
+.lv-card h4{margin:16px 0 0;font:900 clamp(26px,3vw,38px)/1.05 var(--f);letter-spacing:-.02em}
+.lv-card .tg{display:inline-block;margin-top:12px;padding:4px 9px;border-radius:6px;background:var(--yellow);color:#000;font:900 10.5px var(--f);letter-spacing:.08em;text-transform:uppercase}
+.lv-what{margin:18px 0 0;padding:16px 18px;border-radius:16px;background:rgba(10,47,92,.35);border:1px solid rgba(255,255,255,.16)}
+.lv-what b{display:block;font:900 11px var(--f);letter-spacing:.12em;text-transform:uppercase;color:var(--yellow);margin-bottom:6px}
+.lv-what p{margin:0;font:500 15.5px/1.55 var(--f);color:rgba(255,255,255,.95)}
+.lv-vis{margin-top:20px;padding:22px;border-radius:20px;background:linear-gradient(145deg,#fff,#F3F7FD);color:var(--ink)}
+.lv-vis .vis{min-height:230px}
+.lv-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:20px}
+.lv-foot span{font:700 12.5px var(--f);color:rgba(255,255,255,.8)}
+.lv-foot .btn{background:#fff;color:var(--blue-d);box-shadow:0 10px 24px -12px rgba(0,0,0,.5)}
+.lv-foot .btn:hover{background:var(--yellow);color:#000}
+@media (max-width:900px){
+ .lv{grid-template-columns:1fr;gap:0}
+ .lv-side{display:none}
+ .lv-g ul{padding-left:0;margin-left:0;border-left:0}
+ .lv-b{padding:13px 14px;font-size:15px}
+ .lv-b[aria-expanded="true"] .ar{transform:rotate(90deg)}
+ .lv-g li>.lv-card{margin:8px 0 6px;padding:22px 18px;border-radius:20px}
+ .lv-card h4{font-size:26px}
+ .lv-vis{padding:14px}
+}
 </style>
 </head>
 <body class="locked">
@@ -684,11 +727,13 @@ body.locked{overflow:hidden}
       <div>
         <p class="label">Diferenciais</p>
         <h2>O que só a Argumenta <em>oferece.</em></h2>
-        <p class="sub">São quatro níveis de preparação, do essencial ao exclusivo.</p>
+        <p class="sub">São quatro níveis de preparação, do essencial ao exclusivo. Toque em cada diferencial para ver o que o estudante tem.</p>
       </div>
     </div>
-    <div class="steps reveal" role="tablist" aria-label="Níveis de diferenciais" id="steps"><span class="bar" id="stepBar" aria-hidden="true"></span></div>
-    <div class="tier-panel reveal" id="tierPanel" role="tabpanel" aria-live="polite"></div>
+    <div class="lv reveal" id="lv">
+      <div class="lv-nav" id="lvNav"></div>
+      <div class="lv-side" id="lvSide"><article class="lv-card" id="lvCard" aria-live="polite"></article></div>
+    </div>
   </div>
 </section>
 
@@ -798,7 +843,7 @@ body.locked{overflow:hidden}
 
 <script>
 /* ===== Ajustes rápidos ===== */
-/* Endereço do Apps Script da planilha de pais (a mesma da Black November 2026; a coluna Página diz "matriculas2027"). Vazio = modo de teste (não grava nada). */
+/* Endereço do Apps Script da planilha de pais (a mesma da Black November 2026; a coluna Página diz "edoka2027"). Vazio = modo de teste (não grava nada). */
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxlT-Qd3szfsZoHxCUFSWYai0NhmTE9Zl5GYGoUilhYY6mWb_PsO1CnSfvBaIne53XC7g/exec';
 const VAGAS = { tarde: 16, noitinha: 16, hibrido: 16, online: 20 };     // vagas restantes em cada turma
 const VAGAS_TOTAL = { tarde: 16, noitinha: 16, hibrido: 16, online: 20 };
@@ -919,47 +964,42 @@ const VIS = {
 };
 
 /* Diferenciais */
-const steps = $('#steps'), panel = $('#tierPanel'), bar = $('#stepBar');
-steps.insertAdjacentHTML('beforeend', TIERS.map((t, i) => `<button type="button" class="step" role="tab" id="tab${i}" aria-controls="tierPanel" data-i="${i}"><span class="n">0${i + 1}</span><span class="t">${t.nome}<small>${esc(t.resumo.split(',')[0].split('.')[0])}</small></span></button>`).join(''));
-let cur = 0;
-function showTier(i, focus){
-  cur = i;
-  $$('.step', steps).forEach((b, j) => { b.setAttribute('aria-selected', j === i); b.tabIndex = j === i ? 0 : -1; b.classList.toggle('done', j < i); });
-  bar.style.width = (75 * i / 3) + '%';
-  const t = TIERS[i], prev = TIERS.slice(0, i).flatMap(x => x.itens.map(it => it[1]));
-  const total = prev.length + t.itens.length;
-  panel.setAttribute('aria-labelledby', 'tab' + i);
-  panel.innerHTML = `
-    <div class="tp-top"><h3>${t.nome}<small>${esc(t.resumo)}</small></h3><div class="count"><b>${total}</b>diferenciais${i ? ' somados' : ''}</div></div>
-    ${i ? `<div class="inherit"><span>Inclui tudo de ${TIERS[i - 1].nome}${i > 1 ? ' e anteriores' : ''}</span>${prev.map((p, k) => `<span class="chip" style="animation-delay:${k * 25}ms">${CHECK}${esc(p)}</span>`).join('')}</div>` : ''}
-    <div class="xp">
-      <div class="stage" id="stage"></div>
-      <ul class="ilist">${t.itens.map(([ic, h, p, tag], k) => `<li><button type="button" class="it" aria-pressed="false" data-k="${k}" aria-controls="stage" style="animation-delay:${80 + k * 60}ms"><span class="ic">${svg(ic)}</span><span><b>${esc(h)}${tag ? `<span class="tg">${esc(tag)}</span>` : ''}</b><small>${esc(p)}</small></span></button></li>`).join('')}</ul>
-    </div>
-    <div class="tp-foot"><p>${i < 3 ? `Próximo nível: <b>${TIERS[i + 1].nome}</b>` : 'Esse é o nível mais completo da Argumenta.'}</p>${i < 3 ? `<button type="button" class="btn sm" data-next>Ver ${TIERS[i + 1].nome.toLowerCase()} <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>` : '<a class="btn sm" href="#form" data-go>Quero ser Argumenta</a>'}</div>`;
-  showItem(-1);
-  if (focus) $$('.step', steps)[i].focus();
+/* Diferenciais: coluna de itens + lvCard azul (no celular, vira acordeão) */
+const lvNav = $('#lvNav'), lvSide = $('#lvSide'), lvCard = $("#lvCard");
+const ALL = TIERS.flatMap((t, i) => t.itens.map((it, k) => ({ t, i, it, k })));
+const ARR = '<svg class="ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
+lvNav.innerHTML = TIERS.map((t, i) => `<div class="lv-g"><h3><span class="n">0${i + 1}</span><span>${t.nome}<small>${esc(t.resumo)}</small></span></h3><ul>${t.itens.map(([ic, h]) => { const n = ALL.findIndex(x => x.it[1] === h); return `<li><button type="button" class="lv-b" data-n="${n}" aria-expanded="false" aria-controls="lvCard"><span class="ic">${svg(ic)}</span><span class="tx">${esc(h)}</span>${ARR}</button></li>`; }).join('')}</ul></div>`).join('');
+const mob = matchMedia('(max-width:900px)');
+let curN = 0;
+function showN(n, scroll){
+  curN = n;
+  $$('.lv-b', lvNav).forEach(b => b.setAttribute('aria-expanded', +b.dataset.n === n));
+  if (n < 0) { lvCard.hidden = true; return; }
+  lvCard.hidden = false;
+  const { t, i, it: [, h, p, tag] } = ALL[n], nx = ALL[n + 1];
+  lvCard.innerHTML = `<div>
+    <span class="lv-eb"><i></i>Nível 0${i + 1} · ${t.nome}</span>
+    <h4>${esc(h)}</h4>${tag ? `<span class="tg">${esc(tag)}</span>` : ''}
+    <div class="lv-what"><b>O que o estudante tem</b><p>${esc(p)}</p></div>
+    ${VIS[h] ? `<div class="lv-vis"><div class="vis">${VIS[h]()}</div></div>` : ''}
+    <div class="lv-foot"><span>Diferencial ${n + 1} de ${ALL.length}</span>${nx ? `<button type="button" class="btn sm" data-nx>Próximo: ${esc(nx.it[1])} <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>` : '<a class="btn sm" href="#form" data-go>Quero ser Argumenta</a>'}</div>
+  </div>`;
+  place();
+  if (scroll && mob.matches) setTimeout(() => $(`.lv-b[data-n="${n}"]`, lvNav).scrollIntoView({ block: 'start', behavior: reduce ? 'auto' : 'smooth' }), 30);
 }
-function showItem(k){
-  const t = TIERS[cur], st = $('#stage');
-  $$('.it', panel).forEach(b => b.setAttribute('aria-pressed', +b.dataset.k === k));
-  st.classList.toggle('empty', k < 0);
-  if (k < 0) { st.innerHTML = `<div class="sg"><h4>${t.nome.replace(/^O /, 'O ')}<b>${t.itens.length} diferenciais${cur ? ' a mais' : ''}</b></h4><p class="sp">${esc(t.resumo)} Toque em cada item para ver como ele funciona.</p><div class="vis"><span class="intro-n">0${cur + 1}</span></div><span class="hint">Escolha um item ${matchMedia('(max-width:900px)').matches ? 'acima' : 'ao lado'} <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>`; return; }
-  const [, h, p] = t.itens[k], words = h.split(' '), cut = Math.max(1, Math.ceil(words.length / 2) - (words.length > 3 ? 1 : 0));
-  st.innerHTML = `<div class="sg"><h4>${words.length === 1 ? `<b>${esc(h)}</b>` : `${esc(words.slice(0, cut).join(' '))}<b>${esc(words.slice(cut).join(' '))}</b>`}</h4><p class="sp">${esc(p)}</p><div class="vis">${VIS[h] ? VIS[h]() : ''}</div></div>`;
+function place(){
+  if (mob.matches && curN >= 0) $(`.lv-b[data-n="${curN}"]`, lvNav).parentNode.appendChild(lvCard);
+  else if (!mob.matches && lvCard.parentNode !== lvSide) lvSide.appendChild(lvCard);
 }
-steps.addEventListener('click', e => { const b = e.target.closest('.step'); if (b) showTier(+b.dataset.i); });
-steps.addEventListener('keydown', e => {
-  const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key]; if (!d) return;
-  e.preventDefault(); showTier((cur + d + 4) % 4, true);
-});
-panel.addEventListener('click', e => {
-  const it = e.target.closest('.it'); if (it) { const k = +it.dataset.k; showItem(it.getAttribute('aria-pressed') === 'true' ? -1 : k); if (matchMedia('(max-width:900px)').matches) $('#stage').scrollIntoView({ block: 'nearest', behavior: 'smooth' }); return; }
+mob.addEventListener('change', () => { if (!mob.matches && curN < 0) showN(0); else place(); });
+lvNav.addEventListener('click', e => { const b = e.target.closest('.lv-b'); if (!b) return; const n = +b.dataset.n; showN(n === curN && mob.matches ? -1 : n, true); });
+$('#lv').addEventListener('click', e => {
+  if (e.target.closest('[data-nx]')) { showN(curN + 1, true); return; }
   const f = e.target.closest('[data-front] > button'); if (f) { $$('button', f.parentNode).forEach(b => b.classList.toggle('front', b === f)); return; }
-  const ct = e.target.closest('[data-chat-k]'); if (ct) { $$('[data-chat-k]', panel).forEach(b => b.classList.toggle('on', b === ct)); const bd = $('[data-chat]', panel); bd.innerHTML = ARGU_CHAT[+ct.dataset.chatK]; return; }
-  if (e.target.closest('[data-next]')) { showTier(cur + 1); steps.scrollIntoView({ block: 'start' }); }
+  const ct = e.target.closest('[data-chat-k]'); if (ct) { $$('[data-chat-k]', lvCard).forEach(b => b.classList.toggle('on', b === ct)); $('[data-chat]', lvCard).innerHTML = ARGU_CHAT[+ct.dataset.chatK]; }
 });
-showTier(0);
+showN(0);
+
 
 /* Resultados */
 const ap = ([f, n, c, nt, u = 'UFPR']) => `<div class="ap reveal"><img src="img/aprov/${f}.webp" alt="${esc(n)}, aprovação em ${esc(c)}" loading="lazy"><span class="u">${u}</span><div class="cap"><b>${esc(n)}</b><span>${esc(c)}</span>${nt ? `<span class="nt">${nt.includes('/') ? 'Redação ' : ''}${esc(nt)}</span>` : ''}</div></div>`;
@@ -1022,7 +1062,7 @@ form.addEventListener('submit', async e => {
   const btn = $('.submit', form); btn.disabled = true; btn.firstChild.textContent = 'Enviando... ';
   const data = new FormData(form);
   data.append('origem', params.get('utm_source') || params.get('origem') || (document.referrer ? new URL(document.referrer).hostname : 'direto'));
-  data.append('pagina', 'matriculas2027');
+  data.append('pagina', 'edoka2027');
   try { if (SCRIPT_URL) await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: data }); else console.info('Modo de teste: nada foi gravado.', Object.fromEntries(data)); } catch (err) { console.warn(err); }
   const aluno = `${data.get('aluno_nome').trim()} ${data.get('aluno_sobrenome').trim()}`;
   const msg = `Olá! Sou ${data.get('resp_nome').trim()}, responsável por ${aluno} (${data.get('serie')}). Preenchi a página de Matrículas 2027 e quero saber mais sobre o formato ${data.get('modalidade')} para 2027.`;
