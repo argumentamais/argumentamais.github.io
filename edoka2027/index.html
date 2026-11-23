@@ -676,8 +676,6 @@ body.locked{overflow:hidden}
 .bk.front{left:calc(50% - 75px)!important;top:22px}
 .pages{margin:0 auto;height:340px}
 .pg{top:34px}
-.lv-vis .vis{display:flex;justify-content:center;align-items:center}
-.lv-vis .vis>*{margin-left:auto;margin-right:auto}
 .cv li{align-items:center}
 .cv li svg{flex:none}
 @media (max-width:520px){.books{height:250px;width:86%}.bk{width:120px}.bk:nth-child(4){left:calc(100% - 120px)}.bk.front{left:calc(50% - 60px)!important}.pages{height:290px}.pg{width:140px;margin-left:-70px}.pg:nth-child(1){transform:translateX(-62px) rotate(-10deg)}.pg:nth-child(2){transform:translateX(-24px) rotate(-4deg)}.pg:nth-child(3){transform:translateX(24px) rotate(4deg)}.pg:nth-child(4){transform:translateX(62px) rotate(10deg)}.lv-vis{overflow:hidden}}
@@ -695,6 +693,12 @@ body.locked{overflow:hidden}
 .cf dd{margin:0;font:800 13.5px var(--f);color:var(--ink);text-align:right;word-break:break-word}
 .cf-b{display:grid;grid-template-columns:1fr 1.4fr;gap:10px;margin-top:18px}
 @media (max-width:420px){.cf dl div{flex-direction:column;gap:2px}.cf dd{text-align:left}}
+
+/* Celular: card dos diferenciais nunca passa da largura da tela */
+.lv-g ul{grid-template-columns:minmax(0,1fr)}
+.lv-g li,.lv-card,.lv-card>div,.lv-vis,.lv-what{min-width:0;max-width:100%}
+.lv-vis .vis{width:100%}
+@media (max-width:900px){.lv-card{overflow:hidden}.ag-mk{max-width:100%}.ag-br,.ag-app{max-width:100%;min-width:0}.ag-mk .am{right:-4px}}
 </style>
 </head>
 <body class="locked">
@@ -1178,8 +1182,8 @@ const ARGU_CHAT = [
 ];
 const PLAY = '<span><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8Z"/></svg></span>';
 const VIS = {
-  'Aulas de ENEM': () => `<div class="photo"><img src="img/aula-enem.webp" alt="Alunos em aula de redação na sede da Argumenta MAIS" loading="lazy" style="object-position:50% 40%"><span class="live"><i></i>SEGUNDA · ENEM</span><div class="ov">Duas aulas por semana: uma inteira dedicada ao ENEM.</div></div><div class="chips2"><span>Técnicas de escrita</span><span>Interpretação dos enunciados</span><span>Como trabalhar a prova</span></div>`,
-  'Aulas de UFPR': () => `<div class="photo"><img src="img/aula-ufpr.webp" alt="Alunos em aula de redação com a proposta projetada no quadro" loading="lazy" style="object-position:50% 40%"><span class="live" style="background:var(--blue)"><i></i>TERÇA · UFPR</span><div class="ov">Duas aulas por semana: uma inteira dedicada à UFPR.</div></div><div class="chips2"><span>Técnicas de escrita</span><span>Interpretação dos enunciados</span><span>Como trabalhar a prova</span></div>`,
+  'Aulas de ENEM': () => `<div class="photo"><img src="img/aula-enem.webp" alt="Alunos em aula de redação na sede da Argumenta MAIS" loading="lazy" style="object-position:50% 40%"><span class="live"><i></i>SEGUNDA · ENEM</span><div class="ov">Duas aulas por semana: uma inteira dedicada ao ENEM.</div></div>`,
+  'Aulas de UFPR': () => `<div class="photo"><img src="img/aula-ufpr.webp" alt="Alunos em aula de redação com a proposta projetada no quadro" loading="lazy" style="object-position:50% 40%"><span class="live" style="background:var(--blue)"><i></i>TERÇA · UFPR</span><div class="ov">Duas aulas por semana: uma inteira dedicada à UFPR.</div></div>`,
   '140 correções': () => `<div style="position:relative;width:100%;max-width:470px"><div class="browser"><div class="bar"><i></i><i></i><i></i><span>plataforma.argumentamais</span></div><img src="img/correcoes/1-plataforma-notas.webp" alt="Tela da plataforma com a nota por competência" loading="lazy"></div><img class="balloon" src="img/correcoes/3-comentario-c2.webp" alt="Comentário do corretor na competência 2" loading="lazy"></div>`,
   'O melhor material': () => `<div style="width:100%"><div class="books" data-front>${['teorico-enem','teorico-ufpr','producao-enem','producao-ufpr'].map((c, k) => `<button type="button" class="bk${k === 2 ? ' front' : ''}" aria-label="Ver capa"><img src="img/capas/${c}.webp" alt="Capa do caderno ${c.replace('-', ' ')}" loading="lazy"></button>`).join('')}</div><p class="cap-n">Toque em um caderno · Capas meramente ilustrativas</p></div>`,
   'Simulados semanais de ENEM e de UFPR': () => `<div class="pages" data-front>${[['simulado-01','ENEM'],['simulado-03-ufpr','UFPR'],['simulado-06','ENEM'],['simulado-11-ufpr','UFPR']].map(([s, b], k) => `<button type="button" class="pg${k === 1 ? ' front' : ''}" aria-label="Ver simulado ${b}"><img src="img/simulados/${s}.webp" alt="Página de um simulado ${b}" loading="lazy"><em>${b}</em></button>`).join('')}</div>`,
