@@ -543,6 +543,26 @@ body.locked{overflow:hidden}
  .lv-card h4{font-size:26px}
  .lv-vis{padding:14px}
 }
+
+/* Dúvidas (FAQ por assunto) */
+.fq-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.fq-u{position:relative}
+.fq-u::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:5px;border-radius:5px;background:var(--yellow)}
+.fq-bub{position:relative;max-width:360px;padding:18px 110px 18px 20px;border-radius:18px;background:#fff;border:2px solid var(--ink);box-shadow:5px 5px 0 var(--yellow)}
+.fq-bub p{margin:0 0 12px;font:700 14px/1.45 var(--f);color:var(--ink)}
+.fq-bub img{position:absolute;right:-6px;bottom:-8px;width:112px;height:auto}
+.fq-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px 30px;margin-top:44px;align-items:start}
+.fq-g h3{margin:0 0 12px;font:900 13px var(--f);letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.fq-g details{margin:0 0 8px;border:1.5px solid var(--line);border-radius:12px;background:#fff;transition:border-color .2s,box-shadow .2s}
+.fq-g details:hover{border-color:var(--line-2)}
+.fq-g details[open]{border-color:var(--blue);box-shadow:0 10px 24px -16px rgba(27,109,193,.6)}
+.fq-g summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 14px;cursor:pointer;list-style:none;font:700 14.5px/1.35 var(--f);color:var(--ink)}
+.fq-g summary::-webkit-details-marker{display:none}
+.fq-g summary::after{content:"+";flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--blue-l);color:var(--blue);font:800 16px/1 var(--f);transition:transform .25s}
+.fq-g details[open] summary::after{transform:rotate(45deg);background:var(--blue);color:#fff}
+.fq-g details p{margin:0;padding:0 14px 14px;font-size:14.5px;line-height:1.55;color:var(--soft)}
+.fq-cta{margin-top:40px;text-align:center}
+@media (max-width:820px){.fq-grid{grid-template-columns:1fr;gap:26px}.fq-bub{max-width:none;width:100%}}
 </style>
 </head>
 <body class="locked">
@@ -571,6 +591,7 @@ body.locked{overflow:hidden}
       <a href="#diferenciais">Diferenciais</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#resultados">Resultados</a>
+      <a href="#duvidas">Dúvidas</a>
     </nav>
     <a class="btn sm" href="#form" data-go>Quero ser Argumenta</a>
   </div>
@@ -806,6 +827,56 @@ body.locked{overflow:hidden}
     <p class="sub">Toque em um cartão para ler o depoimento inteiro.</p>
   </div>
   <div class="rail" id="rail" style="--dur:110s"></div>
+</section>
+
+<section class="sec alt" id="duvidas">
+  <div class="wrap">
+    <div class="fq-head reveal">
+      <div>
+        <p class="label">Dúvidas</p>
+        <h2>Ficou alguma <em class="fq-u">dúvida?</em></h2>
+        <p class="sub" style="margin-left:0">Separamos por assunto. Toque na pergunta para abrir a resposta.</p>
+      </div>
+      <div class="fq-bub">
+        <p>Se a sua dúvida não estiver aqui, chama a gente no WhatsApp que a nossa equipe responde.</p>
+        <a class="btn sm" href="https://wa.me/5541988848184?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20as%20turmas%20de%202027." target="_blank" rel="noopener">Falar no WhatsApp</a>
+        <img src="img/argu/argumentinha-recorte.webp" alt="" loading="lazy">
+      </div>
+    </div>
+    <div class="fq-grid">
+      <div class="fq-g reveal">
+        <h3>Matrícula e pagamento</h3>
+        <details open><summary>Como faço a matrícula?</summary><p>Preencha os seus dados no formulário desta página. Em até 24 horas, em horário comercial, a nossa equipe chama o responsável, tira todas as dúvidas e explica os próximos passos.</p></details>
+        <details><summary>Quanto custa?</summary><p>O valor depende do formato escolhido (presencial, híbrido ou online). A nossa equipe apresenta os planos e as formas de pagamento na conversa com o responsável.</p></details>
+        <details><summary>Posso parcelar?</summary><p>Sim. No online, em até 12x no cartão. No presencial e no híbrido, você paga a garantia de vaga e o restante em 10x ou 12x.</p></details>
+        <details><summary>Quem assina o contrato?</summary><p>O responsável financeiro pelo estudante. Se o estudante já for maior de idade, ele mesmo pode ser o responsável.</p></details>
+        <details><summary>As vagas podem acabar?</summary><p>Sim. As turmas são reduzidas: 16 vagas na turma da tarde, 16 na noitinha, 16 no híbrido e 20 no online. As vagas são preenchidas por ordem de matrícula.</p></details>
+      </div>
+      <div class="fq-g reveal">
+        <h3>Aulas e formatos</h3>
+        <details><summary>Quando as aulas começam?</summary><p>Em 15 de fevereiro de 2027, e seguem até as provas. Em janeiro tem o Curso de Férias, para o estudante chegar em fevereiro na frente.</p></details>
+        <details><summary>Quais são os dias e horários?</summary><p>Presencial: segunda e terça, às 16h45 (tarde) ou às 18h20 (noitinha). Híbrido: sábado às 9h30, presencial, e terça às 20h, online. Online: segunda e terça às 20h, ao vivo.</p></details>
+        <details><summary>Qual a diferença entre presencial e híbrido?</summary><p>No presencial, as duas aulas da semana são na sede. No híbrido, a aula de ENEM é presencial, no sábado de manhã, e a de UFPR é online, na terça à noite.</p></details>
+        <details><summary>As aulas online ficam gravadas?</summary><p>Sim. As aulas são ao vivo e ficam gravadas na plataforma, para o estudante rever quando quiser.</p></details>
+        <details><summary>Onde fica a sede?</summary><p>Rua Maria de Lourdes Grabowski Kampa, 390, no Centro de Araucária.</p></details>
+      </div>
+      <div class="fq-g reveal">
+        <h3>Funciona para o meu filho?</h3>
+        <details><summary>Ele está no 1º ou no 2º ano. Vale a pena?</summary><p>Vale. Quanto antes o estudante começa, mais tempo ele tem para treinar sem a pressão do ano da prova. Temos alunos que tiraram 900+ ainda no 2º ano.</p></details>
+        <details><summary>Ele está começando do zero.</summary><p>Muitos dos nossos alunos chegaram assim. Os depoimentos desta página contam histórias de quem saiu dos 500 pontos e chegou aos 900+.</p></details>
+        <details><summary>Ele já escreve bem.</summary><p>As correções detalhadas por competência mostram exatamente onde ainda dá para ganhar pontos. É o que leva quem já tira 900 até os 980.</p></details>
+        <details><summary>Serve para outros vestibulares?</summary><p>Sim. Além de ENEM e UFPR, temos cursos para UTFPR, UFSC, Unioeste e UEL, com o que cada banca cobra.</p></details>
+        <details><summary>Ele trabalha ou tem pouco tempo.</summary><p>O online tem aulas ao vivo à noite que ficam gravadas, e o estudante envia as redações pela plataforma no ritmo dele.</p></details>
+      </div>
+      <div class="fq-g reveal">
+        <h3>Garantia e acompanhamento</h3>
+        <details><summary>E se ele não gostar?</summary><p>Você tem 7 dias de garantia, no online e no presencial.</p></details>
+        <details><summary>Como acompanho a evolução?</summary><p>Cada redação volta corrigida na plataforma, com nota por competência e comentários. Assim dá para ver, texto a texto, como o estudante está evoluindo.</p></details>
+        <details><summary>Como sei que a Argumenta é confiável?</summary><p>Somos uma escola com sede física no Centro de Araucária, em funcionamento desde 2020, com CNPJ 52.905.996/0001-88 e centenas de alunos com 900+ e aprovados na UFPR.</p></details>
+      </div>
+    </div>
+    <div class="fq-cta reveal"><a class="btn" href="#form" data-go>Quero ser Argumenta <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
 </section>
 
 <section class="sec final">
