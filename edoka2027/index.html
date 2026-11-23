@@ -682,6 +682,20 @@ body.locked{overflow:hidden}
 .cv li{align-items:center}
 .cv li svg{flex:none}
 @media (max-width:520px){.books{height:250px;width:86%}.bk{width:120px}.bk:nth-child(4){left:calc(100% - 120px)}.bk.front{left:calc(50% - 60px)!important}.pages{height:290px}.pg{width:140px;margin-left:-70px}.pg:nth-child(1){transform:translateX(-62px) rotate(-10deg)}.pg:nth-child(2){transform:translateX(-24px) rotate(-4deg)}.pg:nth-child(3){transform:translateX(24px) rotate(4deg)}.pg:nth-child(4){transform:translateX(62px) rotate(10deg)}.lv-vis{overflow:hidden}}
+
+/* Confirmação do formulário */
+.cf{max-width:480px;text-align:center}
+.cf-ic{width:54px;height:54px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;background:var(--yellow);color:var(--ink);font:900 28px/1 var(--f);animation:stamp .45s cubic-bezier(.2,1.6,.4,1) both;transform:none}
+.cf h3{margin:0;font:900 21px/1.25 var(--f);color:var(--ink)}
+.cf>p{margin:8px 0 16px;color:var(--soft);font-size:14px}
+.cf dl{margin:0;text-align:left;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.cf dl div{display:flex;justify-content:space-between;gap:14px;padding:10px 14px;border-top:1px solid var(--line)}
+.cf dl div:first-child{border-top:0}
+.cf dl div:nth-child(even){background:var(--bg-2)}
+.cf dt{font:700 12.5px var(--f);color:var(--soft)}
+.cf dd{margin:0;font:800 13.5px var(--f);color:var(--ink);text-align:right;word-break:break-word}
+.cf-b{display:grid;grid-template-columns:1fr 1.4fr;gap:10px;margin-top:18px}
+@media (max-width:420px){.cf dl div{flex-direction:column;gap:2px}.cf dd{text-align:left}}
 </style>
 </head>
 <body class="locked">
@@ -750,6 +764,7 @@ body.locked{overflow:hidden}
             <label class="fld"><span>Nome do aluno</span><input name="aluno_nome" autocomplete="off" placeholder="Nome" required maxlength="80"><em class="err-msg">Informe o nome.</em></label>
             <label class="fld"><span>Sobrenome do aluno</span><input name="aluno_sobrenome" autocomplete="off" placeholder="Sobrenome" required maxlength="80"><em class="err-msg">Informe o sobrenome.</em></label>
           </div>
+          <label class="fld"><span>Telefone (WhatsApp) do estudante</span><input name="aluno_telefone" type="tel" autocomplete="off" inputmode="tel" placeholder="(41) 99999-9999" required maxlength="16"><em class="err-msg">Informe um telefone com DDD.</em></label>
           <label class="fld"><span>Nome do responsável</span><input name="resp_nome" autocomplete="name" placeholder="Nome completo do pai, mãe ou responsável" required maxlength="120"><em class="err-msg">Informe o nome do responsável.</em></label>
           <label class="fld"><span>E-mail do responsável</span><input name="resp_email" type="email" autocomplete="email" inputmode="email" placeholder="seuemail@exemplo.com" required maxlength="120"><em class="err-msg">Informe um e-mail válido.</em></label>
           <label class="fld"><span>Telefone (WhatsApp) do responsável</span><input name="resp_telefone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(41) 99999-9999" required maxlength="16"><em class="err-msg">Informe um telefone com DDD.</em></label>
@@ -1057,6 +1072,7 @@ body.locked{overflow:hidden}
   <a class="btn" href="#form" data-go tabindex="-1">Quero ser Argumenta</a>
 </div>
 
+<dialog id="conf" aria-labelledby="confT"><div class="box cf"><div class="cf-ic" aria-hidden="true">?</div><h3 id="confT">Você preencheu corretamente todos os dados?</h3><p>Confira antes de enviar. É por esses contatos que a nossa equipe vai falar com vocês.</p><dl id="confList"></dl><div class="cf-b"><button type="button" class="btn ghost" data-fix>Corrigir</button><button type="button" class="btn" id="confOk">Sim, enviar</button></div></div></dialog>
 <dialog id="dlg"><div class="box"><button class="x" type="button" aria-label="Fechar">×</button><div id="dlgBody"></div></div></dialog>
 
 <script>
@@ -1254,17 +1270,18 @@ $$('[data-seat]').forEach(el => {
 
 
 /* Formulário */
-const form = $('#lead'), tel = form.resp_telefone;
-tel.addEventListener('input', () => {
+const form = $('#lead');
+[form.resp_telefone, form.aluno_telefone].forEach(tel => tel.addEventListener('input', () => {
   const v = tel.value.replace(/\D/g, '').slice(0, 11);
   tel.value = v.length > 10 ? `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}` : v.length > 6 ? `(${v.slice(0,2)}) ${v.slice(2,6)}-${v.slice(6)}` : v.length > 2 ? `(${v.slice(0,2)}) ${v.slice(2)}` : v;
-});
+}));
 const checks = {
   aluno_nome: v => v.trim().length >= 2,
   aluno_sobrenome: v => v.trim().length >= 2,
   resp_nome: v => v.trim().length >= 3,
   resp_email: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()),
   resp_telefone: v => v.replace(/\D/g, '').length >= 10,
+  aluno_telefone: v => v.replace(/\D/g, '').length >= 10,
   serie: v => !!v
 };
 function validate(){
@@ -1277,20 +1294,29 @@ function validate(){
 form.addEventListener('input', e => { const f = e.target.closest('.fld'); if (f && f.classList.contains('err') && checks[e.target.name]?.(e.target.value)) f.classList.remove('err'); });
 form.addEventListener('change', e => { if (e.target.name === 'modalidade') $('#modsF').classList.remove('err'); });
 const params = new URLSearchParams(location.search);
-form.addEventListener('submit', async e => {
+const conf = $('#conf');
+form.addEventListener('submit', e => {
   e.preventDefault();
   const bad = validate(); if (bad) { bad.focus(); return; }
+  const d = new FormData(form);
+  const rows = [['Como deseja estudar', d.get('modalidade')], ['Estudante', `${d.get('aluno_nome').trim()} ${d.get('aluno_sobrenome').trim()}`], ['Telefone do estudante', d.get('aluno_telefone')], ['Responsável', d.get('resp_nome').trim()], ['E-mail do responsável', d.get('resp_email').trim()], ['Telefone do responsável', d.get('resp_telefone')], ['Série', d.get('serie')]];
+  $('#confList').innerHTML = rows.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
+  conf.showModal();
+});
+conf.addEventListener('click', e => { if (e.target === conf || e.target.closest('[data-fix]')) conf.close(); });
+$('#confOk').addEventListener('click', () => { conf.close(); send(); });
+async function send(){
   const btn = $('.submit', form); btn.disabled = true; btn.firstChild.textContent = 'Enviando... ';
   const data = new FormData(form);
   data.append('origem', params.get('utm_source') || params.get('origem') || (document.referrer ? new URL(document.referrer).hostname : 'direto'));
   data.append('pagina', 'edoka2027');
   try { if (SCRIPT_URL) await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: data }); else console.info('Modo de teste: nada foi gravado.', Object.fromEntries(data)); } catch (err) { console.warn(err); }
   const aluno = `${data.get('aluno_nome').trim()} ${data.get('aluno_sobrenome').trim()}`;
-  const msg = `Olá! Sou ${data.get('resp_nome').trim()}, responsável por ${aluno} (${data.get('serie')}). Preenchi a página de Matrículas 2027 e quero saber mais sobre o formato ${data.get('modalidade')} para 2027.`;
+  const msg = `Olá! Sou ${data.get('resp_nome').trim()}, responsável por ${aluno} (${data.get('serie')}, WhatsApp do estudante ${data.get('aluno_telefone')}). Preenchi a página de Matrículas 2027 e quero saber mais sobre o formato ${data.get('modalidade')} para 2027.`;
   $('#okWa').href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
   $('#formWrap').hidden = true; const ok = $('#ok'); ok.hidden = false; ok.focus({ preventScroll: true });
   $('#form').scrollIntoView({ block: 'center' });
-});
+}
 
 /* Topo, botão fixo e entrada suave */
 const topBar = $('#top'), dock = $('#dock'), formCard = $('#form');
