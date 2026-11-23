@@ -912,7 +912,7 @@ body.locked{overflow:hidden}
         <h3>Matrícula e pagamento</h3>
         <details open><summary>Como faço a matrícula?</summary><p>Preencha os seus dados no formulário desta página. Em até 24 horas, em horário comercial, a nossa equipe chama o responsável, tira todas as dúvidas e explica os próximos passos.</p></details>
         <details><summary>Quanto custa?</summary><p>O valor depende do formato escolhido (presencial, híbrido ou online). A nossa equipe apresenta os planos e as formas de pagamento na conversa com o responsável.</p></details>
-        <details><summary>Posso parcelar?</summary><p>Sim. No online, em até 12x no cartão. No presencial e no híbrido, você paga a garantia de vaga e o restante em 10x ou 12x.</p></details>
+        <details><summary>Posso parcelar?</summary><p>Sim. Cobramos a garantia de vaga e você pode parcelar o restante em 10x ou 12x, no cartão ou na recorrência.</p></details>
         <details><summary>Quem assina o contrato?</summary><p>O responsável financeiro pelo estudante. Se o estudante já for maior de idade, ele mesmo pode ser o responsável.</p></details>
         <details><summary>As vagas podem acabar?</summary><p>Sim. As turmas são reduzidas: 16 vagas na turma da tarde, 16 na noitinha, 16 no híbrido e 20 no online. As vagas são preenchidas por ordem de matrícula.</p></details>
       </div>
@@ -1136,6 +1136,9 @@ $('#lv').addEventListener('click', e => {
 showN(0);
 
 
+/* Dúvidas: abrir uma pergunta fecha a anterior */
+const fqAll = $$('#duvidas details');
+fqAll.forEach(d => d.addEventListener('toggle', () => { if (d.open) fqAll.forEach(o => { if (o !== d) o.open = false; }); }));
 /* Resultados */
 const ap = ([f, n, c, nt, u = 'UFPR']) => `<div class="ap reveal"><img src="img/aprov/${f}.webp" alt="${esc(n)}, aprovação em ${esc(c)}" loading="lazy"><span class="u">${u}</span><div class="cap"><b>${esc(n)}</b><span>${esc(c)}</span>${nt ? `<span class="nt">${nt.includes('/') ? 'Redação ' : ''}${esc(nt)}</span>` : ''}</div></div>`;
 const enem = ([f, n, s, y, x]) => `<div class="ap reveal"><img src="img/enem/${f}.webp" alt="${esc(n)}, ${s} na redação do ENEM" loading="lazy"><span class="sc">${s}<small>ENEM</small></span><div class="cap"><b>${esc(n)}</b><span>Redação ENEM${x ? ` · também ${esc(x)}` : ''}</span></div></div>`;
