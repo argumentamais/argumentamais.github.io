@@ -131,6 +131,8 @@ input:focus,select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 
 .msg b{color:var(--text)}
 .check.heart{background:rgba(27,79,224,.1);border-color:var(--blue)}
 .check.heart svg{stroke:var(--blue)}
+.check.trophy{background:rgba(255,247,26,.35);border-color:#C9A400}
+.check.trophy svg{stroke:#8A6D00}
 .test{font:600 12px var(--f);color:#8A6D00!important}
 
 .foot{border-top:1px solid var(--line);padding:22px 16px calc(28px + env(safe-area-inset-bottom));text-align:center;color:var(--mute);font-size:12px}
@@ -234,8 +236,13 @@ input:focus,select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 
     <div id="doneView" class="done" hidden tabindex="-1">
       <div class="check" id="iconOk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></div>
       <div class="check heart" id="iconNao" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div>
+      <div class="check trophy" id="iconSim" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3"/></svg></div>
       <h2 id="doneTitle">Recebido!</h2>
       <div id="msgOk"><p>Seu resultado chegou. Vou analisar com calma e falar com você sobre os próximos passos.</p></div>
+      <div id="msgSim" class="msg" hidden>
+        <p>Fico imensamente feliz em saber que avançamos mais uma etapa. Agora é meter marcha e torcer! <b>O mais difícil foi feito.</b></p>
+        <p>Se for necessário, vamos pra cima com recursos, para conquistarmos mais esse sonho. Confio em ti e, sem dúvidas, dará certo!</p>
+      </div>
       <div id="msgNao" class="msg" hidden>
         <p>Sinto muito que a sua redação não vá ser corrigida desta vez. Sei o quanto você se dedicou, e esse esforço não se perde: ele continua com você.</p>
         <p>Um resultado não define quem você é nem até onde você pode chegar. <b>Não desista do seu sonho.</b> Respire, descanse e, quando chegar a hora, siga lutando por ele. Vale sempre a pena.</p>
@@ -305,10 +312,10 @@ form.addEventListener('submit', async e => {
     if (SCRIPT_URL) await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: data });
     else { await new Promise(r => setTimeout(r, 600)); $('testNote').hidden = false; }
     const primeiro = $('nome').value.trim().split(/\s+/)[0];
-    const nao = redacao() === 'Não';
-    $('doneTitle').textContent = nao ? primeiro + ', obrigado por contar' : 'Recebido, ' + primeiro + '!';
-    $('iconOk').hidden = nao; $('iconNao').hidden = !nao;
-    $('msgOk').hidden = nao; $('msgNao').hidden = !nao;
+    const r = redacao(), sim = r === 'Sim', nao = r === 'Não';
+    $('doneTitle').textContent = sim ? 'Parabéns, ' + primeiro + '!' : nao ? primeiro + ', obrigado por contar' : 'Recebido, ' + primeiro + '!';
+    $('iconSim').hidden = !sim; $('iconNao').hidden = !nao; $('iconOk').hidden = sim || nao;
+    $('msgSim').hidden = !sim; $('msgNao').hidden = !nao; $('msgOk').hidden = sim || nao;
     $('formView').hidden = true; $('doneView').hidden = false;
     $('doneView').focus();
   } catch (err) {
