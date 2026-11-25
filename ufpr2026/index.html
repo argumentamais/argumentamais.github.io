@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Informe seu resultado na primeira fase da UFPR 2026: curso, número de acertos e se a sua redação será corrigida.">
+<meta property="og:title" content="Resultado da 1ª fase UFPR 2026 · Argumenta MAIS">
+<meta property="og:description" content="Informe seu curso, seus acertos e se a UFPR vai corrigir a sua redação.">
+<meta name="theme-color" content="#F6F5F0">
+<link rel="icon" href="img/logo-azul-preto.png">
+<title>Resultado UFPR 2026 Argumenta Mais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap">
+<style>
+/* Levantamento do resultado da 1ª fase da UFPR 2026: tom sóbrio, capa com texto e a ficha do que será perguntado, formulário em janela (nome, curso, acertos, correção da redação). */
+:root{
+  --ink:#F6F5F0; --ink-2:#FFFFFF; --ink-3:#ECEBE4; --line:rgba(11,13,20,.14);
+  --text:#0B0D14; --soft:#4A4F5C; --mute:#7A7F8C; --navy:#0B0D14;
+  --blue:#1B4FE0; --blue-d:#1238A8; --red:#E5222F; --green:#18B544; --green-2:#0E9437;
+  --f:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+img{max-width:100%;display:block}
+[hidden]{display:none!important}
+body{min-height:100svh;display:flex;flex-direction:column;background:var(--ink);color:var(--text);font:500 15px/1.55 var(--f);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* Cabeçalho */
+.top{position:sticky;top:0;z-index:10;background:rgba(246,245,240,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.top-in{max-width:1120px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{width:190px;height:auto}
+.top .tag{font:800 11px var(--f);letter-spacing:.12em;text-transform:uppercase;color:var(--soft);border:1px solid var(--line);border-radius:999px;padding:6px 12px;white-space:nowrap}
+@media (max-width:420px){.logo{width:160px}.top .tag{font-size:10px;padding:5px 10px}}
+
+/* Capa: texto à esquerda, ficha do levantamento à direita (no celular, um embaixo do outro) */
+.hero{flex:1;width:100%;max-width:1120px;margin:0 auto;padding:56px 16px;display:grid;gap:40px;align-items:center;grid-template-columns:1fr}
+@media (min-width:900px){.hero{grid-template-columns:1.1fr .9fr;gap:56px}}
+.copy{display:flex;flex-direction:column;gap:20px}
+.kicker{margin:0;display:flex;align-items:center;gap:10px;font:800 12px var(--f);letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+.kicker::before{content:"";width:28px;height:2px;background:var(--blue)}
+h1{margin:0;font:900 clamp(28px,6.4vw,46px)/1.1 var(--f);text-wrap:balance}
+h1 em{font-style:normal;color:var(--blue)}
+.lead{margin:0;font:500 17px/1.6 var(--f);color:var(--soft);max-width:46ch}
+.lead b{color:var(--text);font-weight:800}
+
+.sheet{background:var(--ink-2);border:1px solid var(--line);border-radius:16px;padding:26px 24px;box-shadow:0 18px 40px -24px rgba(11,13,20,.35)}
+.sheet h2{margin:0 0 4px;font:800 12px var(--f);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.sheet ol{list-style:none;margin:0;padding:0;counter-reset:q}
+.sheet li{counter-increment:q;display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line)}
+.sheet li:last-child{border-bottom:0;padding-bottom:0}
+.sheet li::before{content:counter(q,decimal-leading-zero);flex:none;width:34px;font:900 15px/1.4 var(--f);color:var(--blue)}
+.sheet b{display:block;font:800 15px/1.35 var(--f)}
+.sheet span{display:block;font-size:13.5px;color:var(--soft)}
+.sheet .note{display:flex;gap:10px;align-items:center;margin:16px 0 0;padding:12px 14px;border-radius:10px;background:var(--ink);font:600 13px/1.45 var(--f);color:var(--soft)}
+.sheet .note svg{width:18px;height:18px;flex:none;fill:none;stroke:var(--blue);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+@media (max-width:899px){
+  .hero{padding:28px 16px 32px;gap:24px;align-content:center}
+  .copy{gap:16px}
+  .lead{font-size:16px}
+  .sheet{padding:20px 18px}
+  .sheet li{padding:11px 0}
+}
+
+/* Botões */
+.cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:58px;padding:12px 22px;border:0;border-radius:10px;
+  background:var(--blue);color:#fff;font:800 15px/1.15 var(--f);letter-spacing:.06em;text-transform:uppercase;text-align:center;cursor:pointer;text-decoration:none;
+  box-shadow:0 10px 24px -12px rgba(27,79,224,.8);transition:background .2s,transform .2s}
+.cta:hover{background:var(--blue-d)}
+.cta:active{transform:scale(.98)}
+.cta[disabled]{opacity:.65;cursor:progress}
+.cta svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.open{max-width:340px}
+@media (max-width:899px){.open{max-width:none}}
+
+/* Janela do formulário */
+.card{width:min(620px,calc(100% - 24px));max-height:calc(100dvh - 24px);overflow:auto;margin:auto;color:var(--text);background:var(--ink-2);border:1px solid var(--line);border-radius:16px;box-shadow:0 30px 60px -20px rgba(11,13,20,.45);padding:28px 22px}
+.card::backdrop{background:rgba(11,13,20,.55);backdrop-filter:blur(3px)}
+.card[open]{animation:pop .25s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+@media (min-width:700px){.card{padding:36px 40px}}
+.x{position:absolute;top:12px;right:12px;width:40px;height:40px;border:0;border-radius:50%;background:rgba(11,13,20,.06);color:var(--text);display:grid;place-items:center;cursor:pointer}
+.x svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
+.card h2{margin:0 0 4px;padding-right:36px;font:900 clamp(21px,5vw,26px)/1.2 var(--f)}
+.card .sub{margin:0 0 24px;color:var(--soft)}
+form{display:flex;flex-direction:column;gap:24px}
+.field{display:flex;flex-direction:column;gap:8px;border:0;margin:0;padding:0;min-width:0}
+.field>label,.field>legend{padding:0;font:800 13px var(--f);letter-spacing:.06em;text-transform:uppercase;color:var(--text)}
+.field>legend{margin-bottom:8px}
+.n{display:inline-grid;place-items:center;width:24px;height:24px;margin-right:8px;border-radius:6px;background:var(--blue);color:#fff;font:900 12px var(--f)}
+.hint{margin:0;font-size:13px;color:var(--soft)}
+input[type=text],input[type=number],select{width:100%;height:54px;padding:0 16px;border-radius:10px;border:1.5px solid rgba(11,13,20,.22);background:var(--ink);color:var(--text);font:600 16px var(--f);transition:border-color .2s}
+input[type=number]{max-width:160px;-moz-appearance:textfield}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.acertos{display:flex;align-items:center;gap:12px}
+.acertos span{font:700 15px var(--f);color:var(--soft)}
+select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234A4F5C' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:20px;padding-right:44px}
+input::placeholder{color:var(--mute)}
+input:focus,select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(27,79,224,.15)}
+[aria-invalid=true]{border-color:var(--red)!important}
+.err{margin:0;font:600 13px var(--f);color:var(--red)}
+.err:empty{display:none}
+.extra{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+
+/* Correção da redação: uma opção só */
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media (max-width:480px){.opts{grid-template-columns:1fr}}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.opt span{display:flex;align-items:center;justify-content:center;gap:10px;height:52px;border-radius:10px;border:1.5px solid rgba(11,13,20,.22);background:var(--ink);font:800 15px var(--f);transition:background .2s,border-color .2s}
+.opt span::before{content:"";width:16px;height:16px;border-radius:50%;border:2px solid var(--mute);flex:none;transition:all .2s}
+.opt input:checked+span{background:var(--blue);border-color:var(--blue);color:#fff}
+.opt input:checked+span::before{border-color:#fff;background:var(--blue);box-shadow:inset 0 0 0 3px var(--blue),inset 0 0 0 8px #fff}
+.opt input:focus-visible+span{outline:3px solid var(--blue);outline-offset:2px}
+.opts[aria-invalid=true] .opt span{border-color:var(--red)}
+
+.formerr{margin:0;font:600 13px var(--f);color:var(--red)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* Tela final */
+.done{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding-top:8px}
+.check{width:64px;height:64px;border-radius:50%;background:rgba(24,181,68,.12);border:2px solid var(--green);display:grid;place-items:center}
+.check svg{width:30px;height:30px;fill:none;stroke:var(--green-2);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.done p{margin:0;color:var(--soft);max-width:46ch}
+.test{font:600 12px var(--f);color:#8A6D00!important}
+
+.foot{border-top:1px solid var(--line);padding:22px 16px calc(28px + env(safe-area-inset-bottom));text-align:center;color:var(--mute);font-size:12px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <img class="logo" src="img/logo-azul-preto.png" alt="Argumenta MAIS" width="500" height="98">
+    <span class="tag">UFPR 2026</span>
+  </div>
+</header>
+
+<main class="hero">
+  <div class="copy">
+    <p class="kicker">Resultado da 1ª fase</p>
+    <h1>Como foi a sua prova da <em>UFPR?</em></h1>
+    <p class="lead">Preciso saber <b>para qual curso você prestou</b>, <b>quantas questões acertou</b> e <b>se a UFPR vai corrigir a sua redação</b>. Com isso, consigo acompanhar cada aluno de perto nesta reta final.</p>
+    <button class="cta open" type="button" id="abrir"><span>Informar meu resultado</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </div>
+  <aside class="sheet" aria-label="O que vou perguntar">
+    <h2>O que vou perguntar</h2>
+    <ol>
+      <li><div><b>Seu nome</b><span>Nome e sobrenome.</span></div></li>
+      <li><div><b>Curso</b><span>O curso para o qual você prestou.</span></div></li>
+      <li><div><b>Número de acertos</b><span>Na prova objetiva, de 0 a 80.</span></div></li>
+      <li><div><b>Correção da redação</b><span>Se a UFPR vai corrigir a sua redação.</span></div></li>
+    </ol>
+    <p class="note"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Suas respostas ficam só com o professor.</p>
+  </aside>
+</main>
+
+<dialog class="card" id="lead" aria-labelledby="ftitle">
+    <button class="x" type="button" id="fechar" aria-label="Fechar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div id="formView">
+      <h2 id="ftitle">Resultado da 1ª fase da UFPR</h2>
+      <p class="sub">São quatro perguntas rápidas.</p>
+      <form id="form" novalidate>
+        <div class="field">
+          <label for="nome"><span class="n">1</span>Seu nome</label>
+          <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Nome e sobrenome" aria-describedby="nome-err" required>
+          <p class="err" id="nome-err" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="curso"><span class="n">2</span>Curso para o qual prestou</label>
+          <select id="curso" name="curso" aria-describedby="curso-err" required>
+            <option value="">Escolha o curso</option>
+            <option>Medicina</option>
+            <option>Direito</option>
+            <option>Odontologia</option>
+            <option>Psicologia</option>
+            <option>Enfermagem</option>
+            <option>Medicina Veterinária</option>
+            <option>Engenharia</option>
+            <option>Arquitetura e Urbanismo</option>
+            <option>Fisioterapia</option>
+            <option>Nutrição</option>
+            <option>Farmácia</option>
+            <option>Agronomia</option>
+            <option>Ciência da Computação</option>
+            <option>Administração</option>
+            <option>Pedagogia</option>
+            <option>Jornalismo</option>
+            <option>Relações Internacionais</option>
+            <option value="Outro">Outro</option>
+          </select>
+          <div class="extra" id="cursoOutroBox" hidden>
+            <input type="text" id="cursoOutro" placeholder="Qual curso?" aria-label="Qual curso?" aria-describedby="curso-err">
+          </div>
+          <p class="err" id="curso-err" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="acertos"><span class="n">3</span>Número de acertos</label>
+          <div class="acertos">
+            <input type="number" id="acertos" name="acertos" inputmode="numeric" min="0" max="80" step="1" placeholder="Ex.: 52" aria-describedby="acertos-hint acertos-err" required>
+            <span>de 80 questões</span>
+          </div>
+          <p class="hint" id="acertos-hint">Na prova objetiva da 1ª fase.</p>
+          <p class="err" id="acertos-err" aria-live="polite"></p>
+        </div>
+
+        <fieldset class="field">
+          <legend><span class="n">4</span>A UFPR vai corrigir a sua redação?</legend>
+          <div class="opts" id="redacao" role="radiogroup" aria-describedby="redacao-err">
+            <label class="opt"><input type="radio" name="redacao" value="Sim"><span>Sim</span></label>
+            <label class="opt"><input type="radio" name="redacao" value="Não"><span>Não</span></label>
+            <label class="opt"><input type="radio" name="redacao" value="Ainda não sei"><span>Ainda não sei</span></label>
+          </div>
+          <p class="err" id="redacao-err" aria-live="polite"></p>
+        </fieldset>
+
+        <div class="hp" aria-hidden="true"><label>Site <input type="text" id="site" tabindex="-1" autocomplete="off"></label></div>
+        <p class="formerr" id="formerr" hidden></p>
+        <button class="cta" id="send" type="submit"><span>Enviar resultado</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </form>
+    </div>
+
+    <div id="doneView" class="done" hidden tabindex="-1">
+      <div class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></div>
+      <h2 id="doneTitle">Recebido!</h2>
+      <p>Seu resultado chegou. Vou analisar com calma e falar com você sobre os próximos passos.</p>
+      <p class="test" id="testNote" hidden>Modo de teste: a planilha ainda não está ligada, nada foi gravado.</p>
+    </div>
+</dialog>
+
+<footer class="foot">Argumenta MAIS | CNPJ 52.905.996/0001-88 · Todos os direitos reservados.</footer>
+
+<script>
+/* Endereço do Apps Script da planilha "Resultados UFPR 2026". Vazio = modo de teste (não grava nada). */
+const SCRIPT_URL = '';
+
+const $ = id => document.getElementById(id);
+const form = $('form'), send = $('send'), formerr = $('formerr'), lead = $('lead');
+$('abrir').addEventListener('click', () => { lead.showModal(); if (!$('formView').hidden) $('nome').focus(); });
+$('fechar').addEventListener('click', () => lead.close());
+lead.addEventListener('click', e => { if (e.target === lead) lead.close(); });
+
+$('curso').addEventListener('change', () => {
+  const outro = $('curso').value === 'Outro';
+  $('cursoOutroBox').hidden = !outro;
+  if (outro) $('cursoOutro').focus();
+});
+
+function marca(id, campo, texto){ $(campo).setAttribute('aria-invalid', texto ? 'true' : 'false'); $(id + '-err').textContent = texto || ''; return !texto; }
+form.addEventListener('input', e => {
+  if (e.target.id === 'nome') marca('nome', 'nome', '');
+  if (e.target.id === 'curso' || e.target.id === 'cursoOutro') { marca('curso', 'curso', ''); $('cursoOutro').removeAttribute('aria-invalid'); }
+  if (e.target.id === 'acertos') marca('acertos', 'acertos', '');
+  if (e.target.name === 'redacao') marca('redacao', 'redacao', '');
+});
+
+function curso(){ return $('curso').value === 'Outro' ? ($('cursoOutro').value.trim() ? 'Outro: ' + $('cursoOutro').value.trim() : '') : $('curso').value; }
+const redacao = () => (form.querySelector('input[name=redacao]:checked') || {}).value || '';
+
+function validar(){
+  let ok = marca('nome', 'nome', $('nome').value.trim().split(/\s+/).length >= 2 ? '' : 'Escreva nome e sobrenome.');
+  if (!$('curso').value) ok = marca('curso', 'curso', 'Escolha o curso.') && ok;
+  else if (!curso()) { ok = marca('curso', 'curso', 'Escreva qual é o curso.') && ok; $('cursoOutro').setAttribute('aria-invalid', 'true'); }
+  const a = $('acertos').value.trim();
+  ok = marca('acertos', 'acertos', /^\d{1,2}$/.test(a) && +a <= 80 ? '' : 'Digite um número de 0 a 80.') && ok;
+  ok = marca('redacao', 'redacao', redacao() ? '' : 'Escolha uma opção.') && ok;
+  if (!ok) {
+    const alvo = form.querySelector('input[aria-invalid=true], select[aria-invalid=true]') || form.querySelector('input[name=redacao]');
+    alvo.focus();
+  }
+  return ok;
+}
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  formerr.hidden = true;
+  if (!validar()) return;
+  const utm = new URLSearchParams(location.search).get('utm_source');
+  const data = new URLSearchParams({
+    nome: $('nome').value.trim(),
+    curso: curso(),
+    acertos: String(+$('acertos').value),
+    redacao: redacao(),
+    origem: utm || '',
+    site: $('site').value
+  });
+  send.disabled = true; send.firstElementChild.textContent = 'Enviando…';
+  try {
+    if (SCRIPT_URL) await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: data });
+    else { await new Promise(r => setTimeout(r, 600)); $('testNote').hidden = false; }
+    $('doneTitle').textContent = 'Recebido, ' + $('nome').value.trim().split(/\s+/)[0] + '!';
+    $('formView').hidden = true; $('doneView').hidden = false;
+    $('doneView').focus();
+  } catch (err) {
+    formerr.textContent = 'Não conseguimos enviar agora. Verifique sua internet e tente de novo.';
+    formerr.hidden = false;
+  } finally {
+    send.disabled = false; send.firstElementChild.textContent = 'Enviar resultado';
+  }
+});
+</script>
+</body>
+</html>
