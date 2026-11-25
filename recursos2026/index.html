@@ -127,6 +127,10 @@ input:focus,select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 
 .check{width:64px;height:64px;border-radius:50%;background:rgba(24,181,68,.12);border:2px solid var(--green);display:grid;place-items:center}
 .check svg{width:30px;height:30px;fill:none;stroke:var(--green-2);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 .done p{margin:0;color:var(--soft);max-width:46ch}
+.msg{display:flex;flex-direction:column;gap:12px}
+.msg b{color:var(--text)}
+.check.heart{background:rgba(27,79,224,.1);border-color:var(--blue)}
+.check.heart svg{stroke:var(--blue)}
 .test{font:600 12px var(--f);color:#8A6D00!important}
 
 .foot{border-top:1px solid var(--line);padding:22px 16px calc(28px + env(safe-area-inset-bottom));text-align:center;color:var(--mute);font-size:12px}
@@ -228,9 +232,14 @@ input:focus,select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 
     </div>
 
     <div id="doneView" class="done" hidden tabindex="-1">
-      <div class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></div>
+      <div class="check" id="iconOk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></div>
+      <div class="check heart" id="iconNao" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div>
       <h2 id="doneTitle">Recebido!</h2>
-      <p>Seu resultado chegou. Vou analisar com calma e falar com você sobre os próximos passos.</p>
+      <div id="msgOk"><p>Seu resultado chegou. Vou analisar com calma e falar com você sobre os próximos passos.</p></div>
+      <div id="msgNao" class="msg" hidden>
+        <p>Sinto muito que a sua redação não vá ser corrigida desta vez. Sei o quanto você se dedicou, e esse esforço não se perde: ele continua com você.</p>
+        <p>Um resultado não define quem você é nem até onde você pode chegar. <b>Não desista do seu sonho.</b> Respire, descanse e, quando chegar a hora, siga lutando por ele. Vale sempre a pena.</p>
+      </div>
       <p class="test" id="testNote" hidden>Modo de teste: a planilha ainda não está ligada, nada foi gravado.</p>
     </div>
 </dialog>
@@ -239,7 +248,7 @@ input:focus,select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 
 
 <script>
 /* Endereço do Apps Script da planilha "Resultados UFPR 2026". Vazio = modo de teste (não grava nada). */
-const SCRIPT_URL = '';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwySPTSTunYNrZALbFIrAMkkEArPXg3OFdawQqddjia-9NGGC325uElZ3hPXrYiKmP2QQ/exec';
 
 const $ = id => document.getElementById(id);
 const form = $('form'), send = $('send'), formerr = $('formerr'), lead = $('lead');
@@ -295,7 +304,11 @@ form.addEventListener('submit', async e => {
   try {
     if (SCRIPT_URL) await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: data });
     else { await new Promise(r => setTimeout(r, 600)); $('testNote').hidden = false; }
-    $('doneTitle').textContent = 'Recebido, ' + $('nome').value.trim().split(/\s+/)[0] + '!';
+    const primeiro = $('nome').value.trim().split(/\s+/)[0];
+    const nao = redacao() === 'Não';
+    $('doneTitle').textContent = nao ? primeiro + ', obrigado por contar' : 'Recebido, ' + primeiro + '!';
+    $('iconOk').hidden = nao; $('iconNao').hidden = !nao;
+    $('msgOk').hidden = nao; $('msgNao').hidden = !nao;
     $('formView').hidden = true; $('doneView').hidden = false;
     $('doneView').focus();
   } catch (err) {
